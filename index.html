@@ -1,0 +1,1104 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Расшифровка ЭКГ</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#FFFFFF;
+  --grid-fine:rgba(214,74,86,.10);
+  --grid-bold:rgba(214,74,86,.22);
+  --ink:#1C2733;
+  --ink-soft:#56636F;
+  --trace:#C4122F;
+  --line:#E3D6D8;
+  --surface:#FFFFFF;
+  --surface-2:#F7F2F3;
+  --action:#1C2733;
+  --action-ink:#FFFFFF;
+  --ok:#1F7A4D; --ok-bg:#E6F4EC;
+  --warn:#9A5B00; --warn-bg:#FFF2DC;
+  --bad:#B00020; --bad-bg:#FDE7EA;
+  --radius:14px;
+  --font:"Onest", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --paper:#161A1F; --grid-fine:rgba(240,110,120,.07); --grid-bold:rgba(240,110,120,.15);
+    --ink:#EEF1F4; --ink-soft:#A2ADB8; --trace:#FF5A6E; --line:#2E343B;
+    --surface:#1D2228; --surface-2:#242A31; --action:#EEF1F4; --action-ink:#161A1F;
+    --ok:#6FD39E; --ok-bg:#16301F; --warn:#F2B35B; --warn-bg:#352812; --bad:#FF7B8A; --bad-bg:#3A1A20;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#161A1F; --grid-fine:rgba(240,110,120,.07); --grid-bold:rgba(240,110,120,.15);
+  --ink:#EEF1F4; --ink-soft:#A2ADB8; --trace:#FF5A6E; --line:#2E343B;
+  --surface:#1D2228; --surface-2:#242A31; --action:#EEF1F4; --action-ink:#161A1F;
+  --ok:#6FD39E; --ok-bg:#16301F; --warn:#F2B35B; --warn-bg:#352812; --bad:#FF7B8A; --bad-bg:#3A1A20;
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{
+  background-color:var(--paper);
+  background-image:
+    linear-gradient(var(--grid-bold) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-bold) 1px, transparent 1px),
+    linear-gradient(var(--grid-fine) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-fine) 1px, transparent 1px);
+  background-size:40px 40px,40px 40px,8px 8px,8px 8px;
+  color:var(--ink); font-family:var(--font); font-size:17px; line-height:1.5;
+  -webkit-font-smoothing:antialiased;
+}
+.wrap{max-width:680px;margin:0 auto;padding:20px 18px 64px}
+header.top{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:4px 0 8px}
+.brand{font-weight:700;font-size:19px;letter-spacing:-.01em;display:flex;align-items:center;gap:8px}
+.brand svg{width:26px;height:26px}
+.hero{padding:18px 0 8px}
+.hero h1{font-size:clamp(34px,8vw,52px);line-height:1.02;letter-spacing:-.03em;margin:0 0 12px;font-weight:700;max-width:14ch}
+.hero p{margin:0;color:var(--ink-soft);max-width:48ch}
+.trace{display:block;width:100%;height:92px;margin:18px 0 6px;overflow:visible}
+.trace path{fill:none;stroke:var(--trace);stroke-width:2.4;stroke-linejoin:round;stroke-linecap:round;
+  stroke-dasharray:1600;stroke-dashoffset:1600;animation:draw 2.2s ease-out .2s forwards}
+@keyframes draw{to{stroke-dashoffset:0}}
+@media (prefers-reduced-motion: reduce){.trace path{animation:none;stroke-dashoffset:0}}
+
+.mode{display:grid;grid-template-columns:1fr 1fr;gap:6px;padding:5px;background:var(--surface-2);border:1px solid var(--line);border-radius:12px;margin-bottom:14px}
+.mode button{border:0;background:transparent;padding:10px 8px;text-align:center;border-radius:9px;font-weight:600;color:var(--ink-soft)}
+.mode button span{display:block;font-weight:400;font-size:13px;margin-top:1px}
+.mode button[aria-pressed="true"]{background:var(--surface);color:var(--ink);box-shadow:0 0 0 1px var(--line)}
+.mode button[aria-pressed="true"] span{color:var(--ink-soft)}
+.tag{display:inline-block;font-size:13px;color:var(--ink-soft);border:1px solid var(--line);border-radius:999px;padding:2px 10px;margin-bottom:10px}
+.explain{background:var(--surface-2);border-radius:10px;padding:12px 14px;margin:10px 0}
+.explain b{display:block;margin-bottom:2px}
+details.nums{margin:14px 0}
+details.nums summary{cursor:pointer;color:var(--ink-soft)}
+details.nums .metrics{margin-top:10px}
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:18px;margin-top:18px}
+.drop{border:2px dashed var(--line);border-radius:12px;padding:28px 16px;text-align:center;cursor:pointer;background:var(--surface-2);transition:border-color .15s}
+.drop:hover,.drop.over{border-color:var(--trace)}
+.drop:focus-visible{outline:3px solid var(--trace);outline-offset:2px}
+.drop strong{display:block;font-size:18px;margin-bottom:4px}
+.drop span{color:var(--ink-soft);font-size:15px}
+.preview{display:none;position:relative}
+.preview img{display:block;width:100%;max-height:360px;object-fit:contain;border-radius:10px;background:#fff;border:1px solid var(--line)}
+.preview .row{display:flex;gap:10px;margin-top:10px;flex-wrap:wrap}
+.fields{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:16px}
+.fields .full{grid-column:1/-1}
+label{display:block;font-size:14px;color:var(--ink-soft);margin-bottom:4px;font-weight:500}
+input,select,textarea{width:100%;font:inherit;font-size:16px;color:var(--ink);background:var(--surface-2);border:1px solid var(--line);border-radius:10px;padding:10px 12px}
+textarea{min-height:64px;resize:vertical}
+input:focus-visible,select:focus-visible,textarea:focus-visible,button:focus-visible{outline:3px solid var(--trace);outline-offset:1px}
+details.more{margin-top:14px}
+details.more summary{cursor:pointer;color:var(--ink-soft);font-size:15px}
+button{font:inherit;cursor:pointer;border-radius:10px;border:1px solid var(--line);background:var(--surface-2);color:var(--ink);padding:10px 14px;font-size:15px;font-weight:500}
+button.primary{width:100%;margin-top:18px;background:var(--action);color:var(--action-ink);border-color:var(--action);padding:15px;font-size:17px;font-weight:600}
+button:disabled{opacity:.5;cursor:not-allowed}
+.hint{font-size:14px;color:var(--ink-soft);margin:10px 0 0}
+
+.status{display:none;align-items:center;gap:14px}
+.pulse{width:44px;height:28px;flex:none}
+.pulse path{fill:none;stroke:var(--trace);stroke-width:2.2;stroke-dasharray:90;animation:beat 1.1s linear infinite}
+@keyframes beat{from{stroke-dashoffset:90}to{stroke-dashoffset:-90}}
+@media (prefers-reduced-motion: reduce){.pulse path{animation:none}}
+
+.verdict{border-radius:12px;padding:16px;margin-bottom:16px}
+.verdict h2{margin:0 0 4px;font-size:22px;letter-spacing:-.01em}
+.verdict p{margin:0}
+.v-normal{background:var(--ok-bg);color:var(--ok)}
+.v-attention{background:var(--warn-bg);color:var(--warn)}
+.v-urgent{background:var(--bad-bg);color:var(--bad)}
+.v-unreadable{background:var(--surface-2);color:var(--ink)}
+.metrics{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:1px;background:var(--line);border:1px solid var(--line);border-radius:12px;overflow:hidden;margin:0 0 18px}
+.metric{background:var(--surface);padding:10px 12px}
+.metric dt{font-size:13px;color:var(--ink-soft)}
+.metric dd{margin:2px 0 0;font-weight:600;font-variant-numeric:tabular-nums}
+h3{font-size:18px;margin:20px 0 8px}
+.finding{border-left:3px solid var(--trace);padding:2px 0 2px 12px;margin:10px 0}
+.finding b{display:block}
+.finding small{color:var(--ink-soft)}
+.conclusion{font-size:18px;line-height:1.55}
+ul.recs{margin:0;padding-left:20px}
+ul.recs li{margin:4px 0}
+.disclaimer{font-size:14px;color:var(--ink-soft);border-top:1px solid var(--line);margin-top:22px;padding-top:12px}
+.error{color:var(--bad);margin-top:12px;display:none}
+.notice{background:var(--warn-bg);color:var(--warn);border-radius:10px;padding:12px;font-size:15px;margin-top:14px;display:none}
+@media (max-width:480px){.fields{grid-template-columns:1fr}.panel{padding:14px}}
+/* --- Сердце и вероятности --- */
+:root{--heart-base:#E7B3BA;--heart-atria:#F2D2D6;--cavity:#FBF0F1;--heart-line:#B9747E;--heart-cond:#7A3A45;--hl:var(--warn)}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--heart-base:#5A363D;--heart-atria:#46313A;--cavity:#241B1F;--heart-line:#8A5E68;--heart-cond:#D8A9B2}}
+:root[data-theme="dark"]{--heart-base:#5A363D;--heart-atria:#46313A;--cavity:#241B1F;--heart-line:#8A5E68;--heart-cond:#D8A9B2}
+.heart-card{display:grid;grid-template-columns:minmax(0,1fr);gap:6px;margin:0 0 18px;padding:14px;border:1px solid var(--line);border-radius:12px;background:var(--surface-2)}
+@media (min-width:560px){.heart-card{grid-template-columns:260px minmax(0,1fr);align-items:center}}
+.heart-wrap{position:relative;max-width:280px;width:100%;margin:0 auto}
+.heart-svg{display:block;width:100%;height:auto;overflow:visible}
+.heart-svg .body{transform-box:fill-box;transform-origin:50% 55%;transition:transform .12s ease-out}
+.heart-svg .body.beat{transform:scale(1.04)}
+.heart-svg .reg{stroke:var(--heart-line);stroke-width:1.2;transition:fill .25s,opacity .25s}
+.heart-svg .reg.atr{fill:var(--heart-atria)}
+.heart-svg .reg.ven{fill:var(--heart-base)}
+.heart-svg .vessel{fill:none;stroke:var(--heart-line);stroke-width:14;stroke-linecap:round}
+.heart-svg .outline{fill:none;stroke:var(--heart-line);stroke-width:2}
+.heart-svg .cond{fill:none;stroke:var(--heart-cond);stroke-width:2.2;stroke-linecap:round;opacity:.8;transition:stroke .25s,stroke-width .25s,opacity .25s}
+.heart-svg .node{fill:var(--heart-cond);stroke:none;transition:fill .25s}
+.heart-svg .acc{display:none}
+.heart-svg .on.reg{fill:var(--hl);fill-opacity:var(--ro,1);animation:glow 1.6s ease-in-out infinite}
+.heart-svg .on.cond{stroke:var(--hl);stroke-opacity:var(--ro,1);stroke-width:4;opacity:1;stroke-dasharray:6 5;animation:flow .9s linear infinite}
+.heart-svg .on.node{fill:var(--hl);animation:glow 1.6s ease-in-out infinite}
+.heart-svg .on.acc{display:inline}
+.heart-svg.focus .on{opacity:.4;animation:none}
+.heart-svg .sel.node{stroke:var(--hl);stroke-width:8;stroke-opacity:.35}
+.heart-svg.focus .on.sel{opacity:1;animation:glow 1.1s ease-in-out infinite}
+.heart-svg.focus .on.cond.sel{animation:flow .9s linear infinite}
+.heart-svg.chaotic .reg.atr{animation:flicker .35s steps(3) infinite}
+@keyframes glow{0%,100%{opacity:1}50%{opacity:.55}}
+@keyframes flow{to{stroke-dashoffset:-22}}
+@keyframes flicker{0%{opacity:1}33%{opacity:.7}66%{opacity:.9}}
+@media (prefers-reduced-motion: reduce){.heart-svg *{animation:none!important;transition:none!important}}
+.heart-hr{display:flex;justify-content:center;align-items:baseline;gap:6px;margin-top:2px;font-variant-numeric:tabular-nums}
+.heart-hr b{font-size:26px;color:var(--trace)}
+.heart-hr span{font-size:12px;color:var(--ink-soft)}
+.heart-side h3{margin:0 0 6px}
+.heart-side p{margin:0 0 10px;font-size:15px;color:var(--ink-soft)}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{font-size:13px;padding:3px 10px;border-radius:999px;border:1px solid var(--line);background:var(--surface);color:var(--ink)}
+.chip i{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--hl);margin-right:6px;vertical-align:1px;font-style:normal}
+.fcard{display:block;width:100%;text-align:left;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:12px 14px;margin:10px 0;cursor:pointer;font-weight:400;font-size:16px;line-height:1.45}
+.fcard[aria-pressed="true"]{border-color:var(--hl);box-shadow:0 0 0 1px var(--hl)}
+.fcard .ftop{display:flex;justify-content:space-between;gap:12px;align-items:baseline}
+.fcard .ftitle{font-weight:600}
+.fcard .pct{font-weight:700;font-variant-numeric:tabular-nums;white-space:nowrap}
+.bar{display:block;height:6px;border-radius:3px;background:var(--surface-2);margin:8px 0;overflow:hidden}
+.bar span{display:block;height:100%;border-radius:3px;width:0;transition:width .6s ease-out}
+.p-high .bar span{background:var(--trace)} .p-high .pct{color:var(--trace)}
+.p-mid .bar span{background:var(--warn)} .p-mid .pct{color:var(--warn)}
+.p-low .bar span{background:var(--ink-soft)} .p-low .pct{color:var(--ink-soft)}
+.fcard .fdetail{display:block;color:var(--ink)}
+.fcard .fwhere{display:block;margin-top:6px;font-size:13px;color:var(--ink-soft)}
+.pnote{font-size:13px;color:var(--ink-soft);margin:4px 0 0}
+.ecg-thumb summary{cursor:pointer;color:var(--ink-soft);margin:14px 0 8px}
+.ecg-thumb img{width:100%;border-radius:10px;border:1px solid var(--line);background:#fff}
+.metrics{display:flex!important;flex-wrap:wrap;background:none!important;gap:0!important}
+.metric{flex:1 1 130px;border-right:1px solid var(--line);border-bottom:1px solid var(--line);margin:0 -1px -1px 0}
+.heart-svg .cavity{fill:var(--cavity);stroke:var(--heart-line);stroke-width:1;pointer-events:none}
+.heart-svg .avplane{fill:none;stroke:var(--heart-line);stroke-width:1.2;opacity:.7}
+.heart-svg .vessel.thin{stroke-width:10}
+.heart-svg .lbl text{font:600 11px var(--font);fill:var(--ink-soft);pointer-events:none}
+/* --- Параметры записи, фото, редактор --- */
+.rec-params{margin:4px 0 14px}
+.plabel{display:flex;justify-content:space-between;align-items:baseline;font-size:14px;color:var(--ink-soft);font-weight:500;margin:10px 0 6px}
+.linkish{border:0;background:none;padding:0;color:var(--trace);font-size:14px;text-decoration:underline;text-underline-offset:3px}
+.seg{display:grid;grid-template-columns:repeat(3,1fr);gap:4px;padding:4px;background:var(--surface-2);border:1px solid var(--line);border-radius:10px}
+.seg button{border:0;background:transparent;padding:9px 4px;border-radius:7px;font-weight:600;font-size:15px;color:var(--ink-soft)}
+.seg button[aria-checked="true"]{background:var(--surface);color:var(--ink);box-shadow:0 0 0 1px var(--line)}
+.speed-help{background:var(--surface-2);border-radius:10px;padding:10px 12px}
+.tips{margin:6px 0 14px;border:1px solid var(--line);border-radius:12px;padding:10px 14px;background:var(--surface-2)}
+.tips summary{cursor:pointer;font-weight:600}
+.tips-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin:12px 0 6px}
+.tip{margin:0;text-align:center;font-size:13px;color:var(--ink-soft)}
+.tip svg{display:block;width:100%;height:auto;border-radius:8px;background:var(--surface);border:1px solid var(--line)}
+.tip figcaption{margin-top:4px}
+.tip.good figcaption b{color:var(--ok)} .tip.bad figcaption b{color:var(--bad)}
+.tips-list{margin:6px 0 2px;padding-left:20px;font-size:15px}
+.tips-list li{margin:3px 0}
+.shots{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+.shots:empty{display:none}
+.shot{position:relative;border:1px solid var(--line);border-radius:12px;overflow:hidden;background:var(--surface-2)}
+.shot img{display:block;width:100%;aspect-ratio:4/3;object-fit:contain;background:#fff}
+.shot .num{position:absolute;left:8px;top:8px;background:rgba(0,0,0,.65);color:#fff;font-size:13px;font-weight:600;border-radius:999px;padding:1px 9px}
+.shot-actions{display:grid;grid-template-columns:1fr 1fr;border-top:1px solid var(--line)}
+.shot-actions button{border:0;border-radius:0;background:var(--surface);padding:9px 4px;font-size:14px}
+.shot-actions button+button{border-left:1px solid var(--line);color:var(--bad)}
+.shot.busy::after{content:"Обработка…";position:absolute;inset:0;display:grid;place-items:center;background:rgba(0,0,0,.55);color:#fff;font-weight:600}
+.add-row{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px}
+.add-row.drag .add-btn{border-color:var(--trace)}
+.add-btn{display:flex;flex-direction:column;align-items:center;gap:6px;padding:18px 8px;border:2px dashed var(--line);background:var(--surface-2);border-radius:12px;font-weight:600;font-size:15px}
+.add-btn svg{width:28px;height:28px;color:var(--trace)}
+.editor{position:fixed;inset:0;z-index:50;background:#0D1013;color:#EEF1F4;display:flex;flex-direction:column;padding:env(safe-area-inset-top) 0 env(safe-area-inset-bottom)}
+.editor[hidden]{display:none}
+.ed-head{padding:12px 16px 4px;text-align:center}
+.ed-head b{display:block;font-size:18px}
+.ed-head span{font-size:14px;color:#A2ADB8}
+.ed-stage{position:relative;flex:1;min-height:0;touch-action:none;user-select:none;-webkit-user-select:none;overflow:hidden}
+#edCanvas{position:absolute}
+#edOverlay{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+#edMask{fill:rgba(0,0,0,.6)}
+#edQuad{fill:none;stroke:#FF5A6E;stroke-width:2}
+.ed-h{position:absolute;width:30px;height:30px;margin:-15px 0 0 -15px;border-radius:50%;border:3px solid #fff;background:rgba(255,90,110,.45);box-shadow:0 1px 6px rgba(0,0,0,.6);pointer-events:none}
+.ed-h.active{background:#FF5A6E}
+.loupe{position:absolute;width:110px;height:110px;border-radius:50%;border:3px solid #fff;box-shadow:0 2px 10px rgba(0,0,0,.6);pointer-events:none;background:#000}
+.ed-tools,.ed-foot{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:10px 16px 0}
+.ed-foot{padding-bottom:14px}
+.editor button{background:#242A31;color:#EEF1F4;border-color:#2E343B;padding:12px;font-size:16px}
+.editor .ed-done{background:#EEF1F4;color:#161A1F;border-color:#EEF1F4;font-weight:700}
+.speed-note{font-size:14px;border-radius:10px;padding:10px 12px;margin:0 0 14px;background:var(--surface-2);color:var(--ink-soft)}
+.speed-note.warn{background:var(--warn-bg);color:var(--warn)}
+.ecg-thumbs{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}
+.ecg-thumbs img{width:100%;border-radius:8px;border:1px solid var(--line);background:#fff}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <div class="brand">
+      <svg viewBox="0 0 26 26" aria-hidden="true"><path d="M2 14h6l2-5 3 11 3-14 2 8h6" fill="none" stroke="var(--trace)" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round"/></svg>
+      Кардиоскан
+    </div>
+    <button id="newBtn" type="button" hidden>Новая ЭКГ</button>
+  </header>
+
+  <section class="hero" id="hero">
+    <h1>Расшифровка ЭКГ по фото</h1>
+    <p id="heroText">Сфотографируйте ленту или загрузите скан — получите описание ритма, интервалов и возможных отклонений.</p>
+    <svg class="trace" viewBox="0 0 640 92" preserveAspectRatio="none" aria-hidden="true">
+      <path d="M0 56 H40 q8 -10 16 0 H70 l6 6 l8 -52 l8 66 l6 -20 H122 q14 -20 28 0 H200 q8 -10 16 0 H230 l6 6 l8 -52 l8 66 l6 -20 H282 q14 -20 28 0 H360 q8 -10 16 0 H390 l6 6 l8 -52 l8 66 l6 -20 H442 q14 -20 28 0 H520 q8 -10 16 0 H550 l6 6 l8 -52 l8 66 l6 -20 H602 q14 -20 28 0 H640"/>
+    </svg>
+  </section>
+
+  <!-- Экран загрузки -->
+  <section class="panel" id="uploadPanel">
+    <div class="mode" role="group" aria-label="Для кого расшифровка">
+      <button type="button" data-mode="patient" aria-pressed="true">Я пациент<span>Понятным языком</span></button>
+      <button type="button" data-mode="doctor" aria-pressed="false">Я врач<span>Полный протокол</span></button>
+    </div>
+    <div class="rec-params">
+      <div class="plabel"><span>Скорость ленты</span><button type="button" class="linkish" id="speedHelpBtn" aria-expanded="false">Где посмотреть?</button></div>
+      <div class="seg" role="radiogroup" aria-label="Скорость ленты" id="speedSeg">
+        <button type="button" role="radio" data-v="25" aria-checked="false">25 мм/с</button>
+        <button type="button" role="radio" data-v="50" aria-checked="false">50 мм/с</button>
+        <button type="button" role="radio" data-v="auto" aria-checked="true">Не знаю</button>
+      </div>
+      <p class="hint speed-help" id="speedHelp" hidden>Скорость обычно напечатана внизу или вверху ленты: «25 mm/s» или «50 mm/s». В России часто пишут на 50 мм/с. Если ошибиться, ЧСС и все интервалы будут неверными в 2 раза. При «Не знаю» ИИ попробует найти надпись сам и предупредит, если не найдёт.</p>
+      <div class="plabel"><span>Амплитуда</span></div>
+      <div class="seg" role="radiogroup" aria-label="Амплитуда" id="ampSeg">
+        <button type="button" role="radio" data-v="10" aria-checked="true">10 мм/мВ</button>
+        <button type="button" role="radio" data-v="5" aria-checked="false">5 мм/мВ</button>
+        <button type="button" role="radio" data-v="20" aria-checked="false">20 мм/мВ</button>
+      </div>
+    </div>
+
+    <details class="tips" id="tips">
+      <summary>Как правильно сфотографировать ЭКГ</summary>
+      <div class="tips-grid" id="tipsGrid"></div>
+      <ul class="tips-list">
+        <li>Положите ленту на ровную поверхность и разгладьте сгибы.</li>
+        <li>Снимайте при дневном свете, без вспышки.</li>
+        <li>Держите телефон параллельно листу, прямо над ним.</li>
+        <li>В кадре должны быть все отведения и надпись со скоростью.</li>
+        <li>Длинную ленту снимайте частями — до 4 фото.</li>
+        <li>Закройте ФИО и другие личные данные пациента.</li>
+      </ul>
+    </details>
+
+    <div class="shots" id="shots"></div>
+    <div class="add-row" id="addRow">
+      <button type="button" class="add-btn" id="camBtn">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 8h3l2-3h6l2 3h3v11H4z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><circle cx="12" cy="13" r="3.5" fill="none" stroke="currentColor" stroke-width="1.8"/></svg>
+        <span>Сфотографировать</span>
+      </button>
+      <button type="button" class="add-btn" id="galBtn">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="5" width="16" height="14" rx="2" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M4 16l5-5 4 4 2-2 5 5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>
+        <span>Из галереи</span>
+      </button>
+    </div>
+    <p class="hint" id="shotsHint">Можно добавить до 4 фото одной записи, если отведения на разных листах.</p>
+    <input type="file" id="camInput" accept="image/*" capture="environment" hidden>
+    <input type="file" id="galInput" accept="image/*" multiple hidden>
+
+    <details class="more">
+      <summary id="moreSummary">Расскажите о себе (повышает точность)</summary>
+      <div class="fields">
+        <div><label for="age">Возраст</label><input id="age" type="number" min="0" max="120" inputmode="numeric" placeholder="например, 54"></div>
+        <div><label for="sex">Пол</label>
+          <select id="sex"><option value="">Не указан</option><option>Мужской</option><option>Женский</option></select></div>
+        <div class="full"><label for="symptoms" id="symLabel">Что беспокоит</label>
+          <textarea id="symptoms" placeholder="Например: иногда колет в груди, быстро устаю при подъёме по лестнице"></textarea></div>
+        <div class="full doctor-only" hidden><label for="meds">Препараты, анамнез, предыдущие ЭКГ</label>
+          <textarea id="meds" placeholder="ИБС, ПИКС 2019; бисопролол 5 мг, амиодарон; на ЭКГ от 03.2026 — синусовый ритм, БПНПГ"></textarea></div>
+      </div>
+    </details>
+
+    <div class="panel" id="apiBox" hidden style="margin-top:16px;background:var(--surface-2)">
+      <b>Локальный режим</b>
+      <p class="hint" style="margin:4px 0 12px">Файл открыт вне Claude, поэтому для анализа нужен ваш API-ключ. Он хранится только в этом браузере.</p>
+      <div class="fields" style="margin-top:0">
+        <div class="full"><label for="provider">Сервис</label>
+          <select id="provider"><option value="gemini">Google Gemini — есть бесплатный лимит</option><option value="anthropic">Anthropic Claude — платно</option></select></div>
+        <div class="full"><label for="apiKey" id="keyLabel">API-ключ</label><input id="apiKey" type="password" autocomplete="off"></div>
+        <div class="full"><label for="model">Модель</label><select id="model"></select></div>
+      </div>
+      <p class="hint" id="keyHint"></p>
+      <button type="button" id="testBtn" style="width:100%;margin-top:10px">Проверить соединение и ключ</button>
+      <p class="hint" id="testOut" role="status"></p>
+    </div>
+
+    <button class="primary" id="analyzeBtn" type="button" disabled>Расшифровать</button>
+    <p class="notice" id="notice"></p>
+    <p class="error" id="error" role="alert"></p>
+  </section>
+
+  <!-- Анализ -->
+  <section class="panel status" id="statusPanel" aria-live="polite">
+    <svg class="pulse" viewBox="0 0 44 28" aria-hidden="true"><path d="M0 16h12l3-6 4 14 4-22 4 14h17"/></svg>
+    <div>
+      <b>Анализирую запись…</b>
+      <div class="hint" id="statusText" style="margin:2px 0 0">Обычно это занимает 20–60 секунд</div>
+    </div>
+  </section>
+
+  <!-- Результат -->
+  <section class="panel" id="resultPanel" hidden></section>
+
+  <p class="disclaimer">
+    Прототип. Результат сформирован ИИ и не является медицинским заключением или медицинским изделием.
+    Решения о лечении принимает врач. При боли в груди, обмороке или резкой одышке вызывайте скорую (112 / 103).
+  </p>
+</div>
+
+<div class="editor" id="editor" hidden role="dialog" aria-modal="true" aria-labelledby="edTitle">
+  <div class="ed-head"><b id="edTitle">Выровняйте ЭКГ</b><span>Перетащите углы точно к краям ленты</span></div>
+  <div class="ed-stage" id="edStage">
+    <canvas id="edCanvas"></canvas>
+    <svg id="edOverlay" aria-hidden="true"><path id="edMask" fill-rule="evenodd"/><path id="edQuad"/></svg>
+    <div class="ed-h" data-k="0" aria-label="Левый верхний угол"></div>
+    <div class="ed-h" data-k="1" aria-label="Правый верхний угол"></div>
+    <div class="ed-h" data-k="2" aria-label="Правый нижний угол"></div>
+    <div class="ed-h" data-k="3" aria-label="Левый нижний угол"></div>
+    <canvas class="loupe" id="loupe" width="220" height="220" hidden></canvas>
+  </div>
+  <div class="ed-tools">
+    <button type="button" id="edRotate">Повернуть</button>
+    <button type="button" id="edReset">Весь кадр</button>
+  </div>
+  <div class="ed-foot">
+    <button type="button" id="edCancel">Отмена</button>
+    <button type="button" id="edDone" class="ed-done">Готово</button>
+  </div>
+</div>
+
+<script>
+(function(){
+  const $ = id => document.getElementById(id);
+  const analyzeBtn=$("analyzeBtn"), errorEl=$("error"), notice=$("notice");
+  const uploadPanel=$("uploadPanel"), statusPanel=$("statusPanel"), resultPanel=$("resultPanel"), hero=$("hero"), newBtn=$("newBtn");
+
+  const MAX_SHOTS=4;
+  let shots=[], shotSeq=0, maxShots=MAX_SHOTS;
+  let sample=null, canSendImages=false, localMode=false;
+
+  // --- Режим: пациент / врач ---
+  let mode="patient";
+  try{ const saved=localStorage.getItem("ekg-mode"); if(saved==="doctor"||saved==="patient") mode=saved; }catch(e){}
+  const modeButtons=document.querySelectorAll(".mode button");
+  function applyMode(){
+    modeButtons.forEach(b=>b.setAttribute("aria-pressed", String(b.dataset.mode===mode)));
+    const doc = mode==="doctor";
+    $("heroText").textContent = doc
+      ? "Загрузите ЭКГ в 12 отведениях — получите протокол: ритм, ось, интервалы, ST-T, заключение и дифференциальный ряд."
+      : "Сфотографируйте ленту ЭКГ — объясним простыми словами, что на ней видно и нужно ли идти к врачу.";
+    $("moreSummary").textContent = doc ? "Клинические данные (повышают точность)" : "Расскажите о себе (повышает точность)";
+    $("symLabel").textContent = doc ? "Жалобы и клиническая ситуация" : "Что беспокоит";
+    $("symptoms").placeholder = doc
+      ? "Давящая боль за грудиной 40 мин, иррадиация в левую руку, АД 150/90"
+      : "Например: иногда колет в груди, быстро устаю при подъёме по лестнице";
+    document.querySelectorAll(".doctor-only").forEach(el=>el.hidden=!doc);
+  }
+  modeButtons.forEach(b=>b.addEventListener("click", ()=>{
+    mode=b.dataset.mode;
+    try{ localStorage.setItem("ekg-mode", mode); }catch(e){}
+    applyMode();
+  }));
+  applyMode();
+
+  // --- Локальный режим (файл открыт вне Claude) ---
+  function enableLocal(){
+    if(localMode) return;
+    localMode=true;
+    $("apiBox").hidden=false;
+    let framed=false; try{ framed = window.top!==window; }catch(e){ framed=true; }
+    if(framed) showNotice("Страница открыта во встроенном окне (например, в предпросмотре Claude или мессенджера), где запросы к внешним сервисам заблокированы. Скачайте файл и откройте его напрямую в Chrome, Edge или Firefox.");
+    try{ const pv=localStorage.getItem("ekg-provider"); if(PROVIDERS[pv]) $("provider").value=pv; }catch(e){}
+    applyProvider();
+  }
+
+  const PROVIDERS = {
+    gemini: {
+      placeholder:"AIza...",
+      hint:"Ключ: aistudio.google.com → Get API key. На бесплатном тарифе Google может использовать отправленные данные для улучшения своих продуктов — не загружайте ЭКГ с ФИО и данными реальных пациентов.",
+      models:[["auto","Автовыбор — при перегрузке пробует другую"],["gemini-3.8-flash","Gemini 3.8 Flash — бесплатно"],["gemini-3.7-flash","Gemini 3.7 Flash — бесплатно"],["gemini-3.6-flash","Gemini 3.6 Flash — бесплатно"],["gemini-2.5-flash","Gemini 2.5 Flash — бесплатно"],["gemini-3.1-pro-preview","Gemini 3.1 Pro — точнее, только платно"]],
+      fallback:["gemini-3.8-flash","gemini-3.7-flash","gemini-3.6-flash","gemini-2.5-flash"]
+    },
+    anthropic: {
+      placeholder:"sk-ant-...",
+      hint:"Ключ: console.anthropic.com → API Keys (нужно пополнить баланс).",
+      models:[["claude-opus-5","Claude Opus 5 — точнее"],["claude-sonnet-5","Claude Sonnet 5 — быстрее и дешевле"]]
+    }
+  };
+  function applyProvider(){
+    const pv=$("provider").value, cfg=PROVIDERS[pv];
+    $("apiKey").placeholder=cfg.placeholder;
+    $("keyHint").textContent=cfg.hint;
+    $("model").innerHTML=cfg.models.map(([v,t])=>`<option value="${v}">${t}</option>`).join("");
+    try{
+      $("apiKey").value = localStorage.getItem("ekg-key-"+pv)||"";
+      const mdl=localStorage.getItem("ekg-model-"+pv); if(mdl && cfg.models.some(m=>m[0]===mdl)) $("model").value=mdl;
+    }catch(e){}
+    updateBtn();
+  }
+  $("provider").addEventListener("change", ()=>{ try{ localStorage.setItem("ekg-provider",$("provider").value); }catch(e){} applyProvider(); });
+  $("apiKey").addEventListener("input", ()=>{ try{ localStorage.setItem("ekg-key-"+$("provider").value,$("apiKey").value.trim()); }catch(e){} updateBtn(); });
+  $("model").addEventListener("change", ()=>{ try{ localStorage.setItem("ekg-model-"+$("provider").value,$("model").value); }catch(e){} });
+
+  $("testBtn").addEventListener("click", async ()=>{
+    const out=$("testOut"), key=$("apiKey").value.trim(), pv=$("provider").value;
+    if(!key){ out.textContent="Сначала вставьте ключ."; return; }
+    out.textContent="Проверяю…";
+    const t0=Date.now();
+    try{
+      let r;
+      if(pv==="gemini") r=await fetch("https://generativelanguage.googleapis.com/v1beta/models?pageSize=1",{headers:{"x-goog-api-key":key}});
+      else r=await fetch("https://api.anthropic.com/v1/models?limit=1",{headers:{"x-api-key":key,"anthropic-version":"2023-06-01","anthropic-dangerous-direct-browser-access":"true"}});
+      const ms=Date.now()-t0;
+      if(r.ok) out.textContent=`✓ Соединение и ключ в порядке (ответ за ${ms} мс). Если расшифровка всё равно не проходит — попробуйте одно фото или другую модель.`;
+      else{ const j=await r.json().catch(()=>null); out.textContent=`✗ Сервис ответил ошибкой ${r.status}: ${j&&j.error&&j.error.message||"без описания"}`; }
+    }catch(e){
+      out.textContent=`✗ Сервис недоступен из этого браузера (${e.message}). Проверьте VPN, блокировщики рекламы, «Экономию трафика» и попробуйте другую сеть (Wi-Fi ↔ мобильный интернет).`;
+    }
+  });
+  function blobToBase64(b){
+    return new Promise((res,rej)=>{ const r=new FileReader(); r.onload=()=>res(String(r.result).split(",")[1]); r.onerror=()=>rej(new Error("read")); r.readAsDataURL(b); });
+  }
+  function parseJsonText(text){
+    const clean=String(text||"").replace(/```json|```/g,"").trim();
+    const a=clean.indexOf("{"), z=clean.lastIndexOf("}");
+    try{ return JSON.parse(clean.slice(a,z+1)); }catch(e){ throw {code:"invalid_json"}; }
+  }
+  async function analyzeLocal(prompt, signal){
+    const key=$("apiKey").value.trim(), model=$("model").value, pv=$("provider").value;
+    const datas=await Promise.all(shots.map(x=>blobToBase64(x.blob)));
+    const sizeMB = (datas.reduce((n,x)=>n+x.length,0)/1048576).toFixed(1);
+    const netFetch = async (url, opts)=>{
+      for(let attempt=0; attempt<2; attempt++){
+        try{ return await fetch(url, opts); }
+        catch(e){
+          if(e.name==="AbortError") throw {code:"cancelled"};
+          if(attempt===0){ statusHint("Связь прервалась, повторяю запрос…"); await new Promise(r=>setTimeout(r,2000)); continue; }
+          throw {code:"network", message:`${e && e.message || "сеть"}; фото: ${shots.length}, объём ${sizeMB} МБ; модель: ${model}; ${navigator.onLine===false?"устройство офлайн":"онлайн"}`};
+        }
+      }
+    };
+    let resp;
+    if(pv==="gemini"){
+      const list = model==="auto" ? PROVIDERS.gemini.fallback : [model];
+      for(let i=0;i<list.length;i++){
+        try{
+          resp = await netFetch(`https://generativelanguage.googleapis.com/v1beta/models/${encodeURIComponent(list[i])}:generateContent`,{
+            method:"POST", signal,
+            headers:{"content-type":"application/json","x-goog-api-key":key},
+            body:JSON.stringify({
+              contents:[{role:"user",parts:[...datas.map(data=>({inline_data:{mime_type:"image/jpeg",data}})),{text:prompt}]}],
+              generationConfig:{responseMimeType:"application/json"}
+            })
+          });
+        }catch(err){
+          if(err.code==="network" && i<list.length-1){ statusHint("Нет ответа от " + list[i] + ", пробую " + list[i+1] + "…"); continue; }
+          throw err;
+        }
+        const busy = [500,503,429,404].includes(resp.status);
+        if(!busy || i===list.length-1) break;
+        statusHint("Модель " + list[i] + " перегружена, пробую " + list[i+1] + "…");
+      }
+    }else{
+      resp = await netFetch("https://api.anthropic.com/v1/messages",{
+        method:"POST", signal,
+        headers:{"content-type":"application/json","x-api-key":key,"anthropic-version":"2023-06-01","anthropic-dangerous-direct-browser-access":"true"},
+        body:JSON.stringify({model, max_tokens:4000,
+          messages:[{role:"user",content:[...datas.map(data=>({type:"image",source:{type:"base64",media_type:"image/jpeg",data}})),{type:"text",text:prompt}]}]})
+      });
+    }
+    const json = await resp.json().catch(()=>null);
+    if(!resp.ok){
+      const msg = json && json.error && json.error.message || "";
+      let code="api_error";
+      if(resp.status===401 || resp.status===403 || /API key/i.test(msg)) code="bad_key";
+      else if(resp.status===429) code="rate_limited";
+      else if(resp.status===503 || /high demand|overloaded|unavailable/i.test(msg)) code="overloaded";
+      else if(resp.status===404) code="bad_model";
+      else if(/location|region/i.test(msg)) code="region";
+      throw {code, message:msg};
+    }
+    let text="";
+    if(pv==="gemini"){
+      const cand = json.candidates && json.candidates[0];
+      if(!cand || !cand.content){ throw {code:"refused", message: (json.promptFeedback && json.promptFeedback.blockReason) || (cand && cand.finishReason) || ""}; }
+      text = (cand.content.parts||[]).filter(x=>x.text && !x.thought).map(x=>x.text).join("\n");
+    }else{
+      text=(json.content||[]).filter(c=>c.type==="text").map(c=>c.text).join("\n");
+    }
+    return parseJsonText(text);
+  }
+
+  // --- Подключение к Claude ---
+  (async () => {
+    try{
+      sample = window.claude && await window.claude.use("sample");
+      if(!sample){ enableLocal(); return; }
+      const caps = await sample.limits().catch(()=>null);
+      canSendImages = !!(caps && caps.images);
+      if(caps && caps.images && caps.images.maxCount) { maxShots=Math.min(MAX_SHOTS, caps.images.maxCount); renderShots(); }
+      if(!canSendImages) showNotice("В этом приложении Claude пока нельзя отправлять изображения. Откройте страницу в браузере на claude.ai.");
+      updateBtn();
+    }catch(e){ enableLocal(); }
+  })();
+
+  function statusHint(t){ $("statusText").textContent=t; }
+  function showNotice(t){ notice.textContent=t; notice.style.display="block"; }
+  function showError(t){ errorEl.textContent=t; errorEl.style.display=t?"block":"none"; }
+  function updateBtn(){
+    const ready = (sample && canSendImages) || (localMode && $("apiKey").value.trim());
+    analyzeBtn.disabled = !(shots.length && shots.every(x=>x.url) && ready);
+  }
+
+  // --- Параметры записи ---
+  let paperSpeed="auto", amplitude="10";
+  function bindSeg(id, set){
+    const seg=$(id);
+    seg.addEventListener("click", e=>{
+      const b=e.target.closest("button[data-v]"); if(!b) return;
+      seg.querySelectorAll("button").forEach(x=>x.setAttribute("aria-checked", String(x===b)));
+      set(b.dataset.v);
+    });
+  }
+  bindSeg("speedSeg", v=>paperSpeed=v);
+  bindSeg("ampSeg", v=>amplitude=v);
+  $("speedHelpBtn").addEventListener("click", ()=>{
+    const h=$("speedHelp"); h.hidden=!h.hidden; $("speedHelpBtn").setAttribute("aria-expanded", String(!h.hidden));
+  });
+
+  // --- Подсказки по съёмке ---
+  (function(){
+    const sheet=(inner, ok)=>`<svg viewBox="0 0 160 110">${inner}<circle cx="146" cy="14" r="11" fill="${ok?"#1F7A4D":"#B00020"}"/>${ok?'<path d="M140 14l4 4 8-8" fill="none" stroke="#fff" stroke-width="2.4"/>':'<path d="M141 9l10 10M151 9l-10 10" stroke="#fff" stroke-width="2.4"/>'}</svg>`;
+    const grid=(x,y,w,h)=>{ let g=""; for(let i=1;i<8;i++) g+=`<line x1="${x+w*i/8}" y1="${y}" x2="${x+w*i/8}" y2="${y+h}"/>`; for(let i=1;i<5;i++) g+=`<line x1="${x}" y1="${y+h*i/5}" x2="${x+w}" y2="${y+h*i/5}"/>`; return `<g stroke="#F2B8BF" stroke-width=".6">${g}</g>`; };
+    const trace=(x,y,w)=>{ let d=`M${x} ${y}`; const step=w/5; for(let i=0;i<5;i++){ const s=x+i*step; d+=` H${s+step*.35} l3 -14 l3 20 l3 -6 H${s+step}`; } return `<path d="${d}" fill="none" stroke="#C4122F" stroke-width="1.4"/>`; };
+    const paper=(pts)=>`<polygon points="${pts}" fill="#fff" stroke="#999" stroke-width="1"/>`;
+    const tips=[
+      {cls:"good", t:"Так правильно", s:"ровно, весь лист", svg: sheet(paper("24,18 136,18 136,92 24,92")+grid(24,18,112,74)+trace(24,42,112)+trace(24,74,112), true)},
+      {cls:"bad", t:"Нельзя", s:"снято под углом", svg: sheet(`<polygon points="44,20 116,20 146,94 14,94" fill="#fff" stroke="#999"/>`+`<path d="M40 44 L120 44 M28 74 L132 74" stroke="#C4122F" stroke-width="1.4"/>`, false)},
+      {cls:"bad", t:"Нельзя", s:"блики и тени", svg: sheet(paper("24,18 136,18 136,92 24,92")+grid(24,18,112,74)+trace(24,42,112)+trace(24,74,112)+`<ellipse cx="96" cy="46" rx="30" ry="16" fill="#fff" opacity=".95"/><rect x="24" y="62" width="60" height="30" fill="#000" opacity=".25"/>`, false)},
+      {cls:"bad", t:"Нельзя", s:"обрезаны края", svg: sheet(paper("-10,8 150,8 150,102 -10,102")+grid(-10,8,160,94)+trace(-10,40,160)+trace(-10,76,160), false)}
+    ];
+    $("tipsGrid").innerHTML = tips.map(x=>`<figure class="tip ${x.cls}">${x.svg}<figcaption><b>${x.t}</b><br>${x.s}</figcaption></figure>`).join("");
+    try{ if(!localStorage.getItem("ekg-tips-seen")){ $("tips").open=true; localStorage.setItem("ekg-tips-seen","1"); } }catch(e){ $("tips").open=true; }
+  })();
+
+  // --- Фото ---
+  const FULL=[[0,0],[1,0],[1,1],[0,1]];
+  const camInput=$("camInput"), galInput=$("galInput");
+  $("camBtn").addEventListener("click", ()=>camInput.click());
+  $("galBtn").addEventListener("click", ()=>galInput.click());
+  camInput.addEventListener("change", ()=>{ addFiles([...camInput.files], true); camInput.value=""; });
+  galInput.addEventListener("change", ()=>{ const f=[...galInput.files]; addFiles(f, f.length===1); galInput.value=""; });
+  const addRow=$("addRow");
+  ["dragenter","dragover"].forEach(ev=>uploadPanel.addEventListener(ev,e=>{ if(e.dataTransfer && [...e.dataTransfer.types].includes("Files")){ e.preventDefault(); addRow.classList.add("drag"); } }));
+  ["dragleave","drop"].forEach(ev=>uploadPanel.addEventListener(ev,()=>addRow.classList.remove("drag")));
+  uploadPanel.addEventListener("drop", e=>{ if(e.dataTransfer && e.dataTransfer.files.length){ e.preventDefault(); addFiles([...e.dataTransfer.files], e.dataTransfer.files.length===1); } });
+
+  function loadImage(file){
+    return new Promise((res,rej)=>{
+      const url=URL.createObjectURL(file), img=new Image();
+      img.onload=()=>res(img);
+      img.onerror=()=>{ URL.revokeObjectURL(url); rej(new Error("decode")); };
+      img.src=url;
+    });
+  }
+  async function addFiles(files, openEdit){
+    showError("");
+    files = files.filter(f=>!f.type || f.type.startsWith("image/"));
+    const free = maxShots - shots.length;
+    if(free<=0){ showError(`Можно добавить не больше ${maxShots} фото.`); return; }
+    if(files.length>free) showError(`Добавлены первые ${free} фото — больше ${maxShots} отправить нельзя.`);
+    files = files.slice(0, free);
+    let last=null;
+    for(const f of files){
+      try{
+        const img=await loadImage(f);
+        const shot={id:++shotSeq, img, rot:0, quad:FULL.map(p=>p.slice()), blob:null, url:null};
+        shots.push(shot); renderShots();
+        await processShot(shot);
+        last=shot;
+      }catch(e){ showError("Не удалось открыть фото. Если это HEIC с iPhone, сохраните его как JPG или выберите из галереи."); }
+    }
+    renderShots();
+    if(openEdit && last) openEditor(last);
+  }
+  function renderShots(){
+    const box=$("shots");
+    box.innerHTML = shots.map((s,i)=>`<div class="shot${s.url?"":" busy"}" data-id="${s.id}">
+        ${s.url?`<img src="${s.url}" alt="Фото ЭКГ ${i+1}">`:`<img alt="">`}
+        <span class="num">${i+1}</span>
+        <div class="shot-actions"><button type="button" data-act="edit">Выровнять</button><button type="button" data-act="del" aria-label="Удалить фото ${i+1}">Удалить</button></div>
+      </div>`).join("");
+    addRow.hidden = shots.length>=maxShots;
+    $("shotsHint").textContent = shots.length
+      ? `Фото: ${shots.length} из ${maxShots}. Проверьте, что края ленты выровнены.`
+      : `Можно добавить до ${maxShots} фото одной записи, если отведения на разных листах.`;
+    updateBtn();
+  }
+  $("shots").addEventListener("click", e=>{
+    const b=e.target.closest("button[data-act]"); if(!b) return;
+    const id=+b.closest(".shot").dataset.id, shot=shots.find(s=>s.id===id); if(!shot) return;
+    if(b.dataset.act==="del"){ if(shot.url) URL.revokeObjectURL(shot.url); shots=shots.filter(s=>s!==shot); renderShots(); }
+    else openEditor(shot);
+  });
+
+  function rotatedCanvas(img, rot, maxSide){
+    const k=Math.min(1, maxSide/Math.max(img.naturalWidth,img.naturalHeight));
+    const w=Math.round(img.naturalWidth*k), h=Math.round(img.naturalHeight*k), swap=rot%180!==0;
+    const c=document.createElement("canvas"); c.width=swap?h:w; c.height=swap?w:h;
+    const ctx=c.getContext("2d"); ctx.fillStyle="#fff"; ctx.fillRect(0,0,c.width,c.height);
+    ctx.translate(c.width/2,c.height/2); ctx.rotate(rot*Math.PI/180); ctx.drawImage(img,-w/2,-h/2,w,h);
+    return c;
+  }
+  const isFull=q=>q.every((p,i)=>Math.abs(p[0]-FULL[i][0])<.003 && Math.abs(p[1]-FULL[i][1])<.003);
+  const dist=(a,b)=>Math.hypot(a[0]-b[0],a[1]-b[1]);
+  function warp(src, q, W, H){
+    const sw=src.width, sh=src.height, sd=src.getContext("2d").getImageData(0,0,sw,sh).data;
+    const out=document.createElement("canvas"); out.width=W; out.height=H;
+    const octx=out.getContext("2d"), od=octx.createImageData(W,H), o=od.data;
+    const [x0,y0]=q[0],[x1,y1]=q[1],[x2,y2]=q[2],[x3,y3]=q[3];
+    const dx1=x1-x2, dx2=x3-x2, dx3=x0-x1+x2-x3, dy1=y1-y2, dy2=y3-y2, dy3=y0-y1+y2-y3;
+    let a,b,c,d,e,f,g,h;
+    if(Math.abs(dx3)<1e-9 && Math.abs(dy3)<1e-9){ a=x1-x0;b=x2-x1;c=x0;d=y1-y0;e=y2-y1;f=y0;g=0;h=0; }
+    else{
+      const den=dx1*dy2-dx2*dy1;
+      g=(dx3*dy2-dx2*dy3)/den; h=(dx1*dy3-dx3*dy1)/den;
+      a=x1-x0+g*x1; b=x3-x0+h*x3; c=x0; d=y1-y0+g*y1; e=y3-y0+h*y3; f=y0;
+    }
+    let p=0;
+    for(let yy=0;yy<H;yy++){
+      const v=(yy+.5)/H;
+      for(let xx=0;xx<W;xx++,p+=4){
+        const u=(xx+.5)/W, z=g*u+h*v+1;
+        const X=(a*u+b*v+c)/z-.5, Y=(d*u+e*v+f)/z-.5;
+        const ix=Math.floor(X), iy=Math.floor(Y);
+        if(ix<0||iy<0||ix>=sw-1||iy>=sh-1){ o[p]=o[p+1]=o[p+2]=255; o[p+3]=255; continue; }
+        const fx=X-ix, fy=Y-iy, i00=(iy*sw+ix)*4, i10=i00+4, i01=i00+sw*4, i11=i01+4;
+        const w00=(1-fx)*(1-fy), w10=fx*(1-fy), w01=(1-fx)*fy, w11=fx*fy;
+        o[p]=sd[i00]*w00+sd[i10]*w10+sd[i01]*w01+sd[i11]*w11;
+        o[p+1]=sd[i00+1]*w00+sd[i10+1]*w10+sd[i01+1]*w01+sd[i11+1]*w11;
+        o[p+2]=sd[i00+2]*w00+sd[i10+2]*w10+sd[i01+2]*w01+sd[i11+2]*w11;
+        o[p+3]=255;
+      }
+    }
+    octx.putImageData(od,0,0);
+    return out;
+  }
+  async function processShot(shot){
+    const src=rotatedCanvas(shot.img, shot.rot, 2600);
+    let out;
+    if(isFull(shot.quad)){
+      out = src.width>1800||src.height>1800 ? rotatedCanvas(shot.img, shot.rot, 1800) : src;
+    }else{
+      const q=shot.quad.map(([x,y])=>[x*src.width, y*src.height]);
+      let W=Math.max(dist(q[0],q[1]),dist(q[3],q[2])), H=Math.max(dist(q[0],q[3]),dist(q[1],q[2]));
+      const k=Math.min(1, 1800/Math.max(W,H)); W=Math.max(8,Math.round(W*k)); H=Math.max(8,Math.round(H*k));
+      out=warp(src,q,W,H);
+    }
+    const blob=await new Promise(r=>out.toBlob(r,"image/jpeg",0.85));
+    if(shot.url) URL.revokeObjectURL(shot.url);
+    shot.blob=blob; shot.url=URL.createObjectURL(blob);
+  }
+
+  // --- Редактор ---
+  const editor=$("editor"), stage=$("edStage"), edCanvas=$("edCanvas"), loupe=$("loupe");
+  const handles=[...editor.querySelectorAll(".ed-h")];
+  let ed=null;
+  function openEditor(shot){
+    ed={shot, rot:shot.rot, quad:shot.quad.map(p=>p.slice()), base:null, lay:null, active:-1, lastFocus:document.activeElement};
+    editor.hidden=false; document.body.style.overflow="hidden";
+    buildBase(); requestAnimationFrame(layout);
+    $("edDone").focus();
+  }
+  function closeEditor(){
+    editor.hidden=true; document.body.style.overflow=""; loupe.hidden=true;
+    const f=ed && ed.lastFocus; ed=null; if(f && f.focus) f.focus();
+  }
+  function buildBase(){
+    ed.base=rotatedCanvas(ed.shot.img, ed.rot, 1600);
+    edCanvas.width=ed.base.width; edCanvas.height=ed.base.height;
+    edCanvas.getContext("2d").drawImage(ed.base,0,0);
+  }
+  function layout(){
+    if(!ed) return;
+    const r=stage.getBoundingClientRect(), pad=30;
+    const s=Math.min((r.width-2*pad)/ed.base.width,(r.height-2*pad)/ed.base.height);
+    const dw=ed.base.width*s, dh=ed.base.height*s, ox=(r.width-dw)/2, oy=(r.height-dh)/2;
+    ed.lay={dw,dh,ox,oy,sw:r.width,sh:r.height};
+    Object.assign(edCanvas.style,{left:ox+"px",top:oy+"px",width:dw+"px",height:dh+"px"});
+    drawQuad();
+  }
+  function drawQuad(){
+    const {dw,dh,ox,oy,sw,sh}=ed.lay;
+    const pts=ed.quad.map(([x,y])=>[ox+x*dw, oy+y*dh]);
+    handles.forEach((h,i)=>{ h.style.left=pts[i][0]+"px"; h.style.top=pts[i][1]+"px"; h.classList.toggle("active", i===ed.active); });
+    const poly=`M${pts.map(p=>p.join(" ")).join("L")}Z`;
+    $("edOverlay").setAttribute("viewBox",`0 0 ${sw} ${sh}`);
+    $("edMask").setAttribute("d",`M0 0H${sw}V${sh}H0Z${poly}`);
+    $("edQuad").setAttribute("d",poly);
+  }
+  function drawLoupe(k){
+    const {dw,dh,ox,oy}=ed.lay, [nx,ny]=ed.quad[k];
+    const px=ox+nx*dw, py=oy+ny*dh, zoom=3, sz=220, srcSz=sz/(dw/ed.base.width)/zoom/2;
+    const ctx=loupe.getContext("2d");
+    ctx.fillStyle="#000"; ctx.fillRect(0,0,sz,sz);
+    ctx.drawImage(ed.base, nx*ed.base.width-srcSz/2, ny*ed.base.height-srcSz/2, srcSz, srcSz, 0,0,sz,sz);
+    ctx.strokeStyle="#FF5A6E"; ctx.lineWidth=3; ctx.beginPath(); ctx.moveTo(sz/2,sz/2-24); ctx.lineTo(sz/2,sz/2+24); ctx.moveTo(sz/2-24,sz/2); ctx.lineTo(sz/2+24,sz/2); ctx.stroke();
+    let lx=px-55, ly=py-150; if(ly<4) ly=py+40; lx=Math.max(4,Math.min(ed.lay.sw-114,lx));
+    loupe.style.left=lx+"px"; loupe.style.top=ly+"px"; loupe.hidden=false;
+  }
+  stage.addEventListener("pointerdown", e=>{
+    if(!ed) return;
+    const r=stage.getBoundingClientRect(), x=e.clientX-r.left, y=e.clientY-r.top, {dw,dh,ox,oy}=ed.lay;
+    let best=-1, bd=56;
+    ed.quad.forEach(([nx,ny],i)=>{ const d=Math.hypot(ox+nx*dw-x, oy+ny*dh-y); if(d<bd){ bd=d; best=i; } });
+    if(best<0) return;
+    ed.active=best; stage.setPointerCapture(e.pointerId);
+    ed.grab=[ox+ed.quad[best][0]*dw-x, oy+ed.quad[best][1]*dh-y];
+    drawQuad(); drawLoupe(best); e.preventDefault();
+  });
+  stage.addEventListener("pointermove", e=>{
+    if(!ed || ed.active<0) return;
+    const r=stage.getBoundingClientRect(), {dw,dh,ox,oy}=ed.lay;
+    const nx=Math.min(1,Math.max(0,(e.clientX-r.left+ed.grab[0]-ox)/dw));
+    const ny=Math.min(1,Math.max(0,(e.clientY-r.top+ed.grab[1]-oy)/dh));
+    ed.quad[ed.active]=[nx,ny]; drawQuad(); drawLoupe(ed.active);
+  });
+  const endDrag=()=>{ if(!ed) return; ed.active=-1; loupe.hidden=true; drawQuad(); };
+  stage.addEventListener("pointerup", endDrag); stage.addEventListener("pointercancel", endDrag);
+  window.addEventListener("resize", ()=>{ if(ed) layout(); });
+  $("edRotate").addEventListener("click", ()=>{ ed.rot=(ed.rot+90)%360; ed.quad=FULL.map(p=>p.slice()); buildBase(); layout(); });
+  $("edReset").addEventListener("click", ()=>{ ed.quad=FULL.map(p=>p.slice()); drawQuad(); });
+  $("edCancel").addEventListener("click", closeEditor);
+  editor.addEventListener("keydown", e=>{ if(e.key==="Escape") closeEditor(); });
+  $("edDone").addEventListener("click", async ()=>{
+    const shot=ed.shot; shot.rot=ed.rot; shot.quad=ed.quad.map(p=>p.slice());
+    closeEditor();
+    if(shot.url){ URL.revokeObjectURL(shot.url); shot.url=null; }
+    renderShots();
+    await new Promise(r=>setTimeout(r,40));
+    await processShot(shot);
+    renderShots();
+  });
+
+  // --- Анализ ---
+  function buildPrompt(){
+    const age=$("age").value.trim(), sex=$("sex").value, sym=$("symptoms").value.trim(), meds=$("meds").value.trim();
+    const speedTxt = paperSpeed==="auto"
+      ? `Скорость ленты пользователю неизвестна. Найди на ленте надпись скорости (обычно «25 mm/s» или «50 mm/s»). Если надписи нет — оцени по ширине комплексов и сетке, считай скорость предполагаемой, пометь ЧСС и интервалы как приблизительные и прямо напиши об этом в limitations.`
+      : `Скорость ленты: ${paperSpeed} мм/с (указал пользователь): 1 мм = ${paperSpeed==="50"?20:40} мс, большая клетка 5 мм = ${paperSpeed==="50"?100:200} мс. Если надпись на ленте явно противоречит этому — используй скорость с ленты и отметь расхождение в limitations.`;
+    const ampTxt = `Амплитуда (калибровка): ${amplitude} мм/мВ${amplitude==="10"?" (стандарт)":""} — учитывай при оценке вольтажа и смещения ST. Если на ленте виден калибровочный импульс другой высоты, используй его и отметь это.`;
+    const imgTxt = shots.length>1 ? `Изображений: ${shots.length} — это части ОДНОЙ записи ЭКГ (разные листы или фрагменты). Анализируй их вместе как одну ЭКГ.` : `Изображение одно.`;
+    const common = `${imgTxt}
+${speedTxt}
+${ampTxt}
+На изображении — электрокардиограмма (фото или скан). Сначала мысленно проведи полную систематическую расшифровку: качество записи, ритм, ЧСС, электрическая ось, PR, QRS, QT/QTc, зубец P, QRS, сегмент ST, зубец T, гипертрофии, блокады, ишемия/инфаркт (включая STEMI-эквиваленты), нарушения ритма и проводимости.
+
+Правила:
+- В paper_speed_used укажи скорость, по которой считал ("25" или "50"), в speed_source — откуда она: "user" (указал пользователь), "label" (надпись на ленте), "estimated" (оценка по сетке).
+- Не выдумывай значения. Если параметр не определить — "не определяется".
+- Если на изображении не ЭКГ или качество не позволяет анализ — readable=false.
+- urgency: "normal" (без значимых отклонений), "attention" (отклонения, нужна плановая консультация врача), "urgent" (признаки неотложного состояния: STEMI и эквиваленты, ЖТ/ФЖ, АВ-блокада высокой степени, выраженная брадикардия/тахикардия и т.п.).
+- Для каждой находки дай probability — целое число 1–99: насколько ты уверен, что находка действительно есть на этой ЭКГ. Будь честен: нечёткое фото или спорные критерии — ниже 60. Не включай находки с уверенностью ниже 20.
+- Для каждой находки укажи regions — зоны сердца, к которым она относится (можно пустой массив), только из списка: ra (правое предсердие), la (левое предсердие), atria (оба предсердия), rv (правый желудочек), septum (межжелудочковая перегородка), lv_anterior (передняя стенка ЛЖ), lv_lateral (боковая стенка ЛЖ), lv_inferior (нижняя стенка и верхушка ЛЖ), sa_node (синусовый узел), atrial_path (проведение по предсердиям), av_node (АВ-узел), his (пучок Гиса), rbb (правая ножка), lbb (левая ножка), purkinje (волокна Пуркинье), accessory (дополнительный путь, WPW). Пример: нижний инфаркт → ["lv_inferior"]; ФП → ["atria"]; АВ-блокада I ст. → ["av_node"]; БЛНПГ → ["lbb"]; ГЛЖ → ["lv_anterior","lv_lateral","septum"].
+- heart_effect — характер сердечного ритма для анимации: "normal", "fast" (тахикардия), "slow" (брадикардия), "irregular" (нерегулярный ритм), "chaotic_atria" (фибрилляция/трепетание предсердий).
+- Отвечай по-русски.`;
+
+    if(mode==="doctor"){
+      return `Ты — опытный врач функциональной диагностики, пишешь заключение для коллеги-врача.
+${common}
+- Используй профессиональную терминологию и критерии (Sokolow-Lyon, Sgarbossa, Wellens, de Winter и т.п., где уместно). В detail указывай, в каких отведениях и по каким критериям.
+- Дай дифференциальный ряд и тактику с учётом клинических данных.
+
+Клинические данные: возраст — ${age||"не указан"}; пол — ${sex||"не указан"}; жалобы/ситуация — ${sym||"не указаны"}; анамнез/препараты/предыдущие ЭКГ — ${meds||"не указаны"}.
+
+Ответь ТОЛЬКО JSON-объектом:
+{"readable":true,"urgency":"normal|attention|urgent","urgency_reason":"одно предложение",
+"measurements":{"rhythm":"","hr":"","axis":"","pr":"","qrs":"","qt":"","qtc":""},
+"conclusion":"заключение в стиле протокола ЭКГ",
+"paper_speed_used":"25|50","speed_source":"user|label|estimated",
+"heart_effect":"normal|fast|slow|irregular|chaotic_atria",
+"findings":[{"title":"","detail":"отведения, критерии","probability":85,"regions":["lv_inferior"]}],
+"differential":["",""],
+"recommendations":["тактика, дообследование"],
+"limitations":""}`;
+    }
+    return `Ты — внимательный кардиолог и объясняешь результаты ЭКГ самому пациенту, человеку без медицинского образования.
+${common}
+- Пиши простыми словами, короткими предложениями. Медицинский термин можно назвать, но сразу объясни его бытовым языком.
+- Спокойный тон: не пугай, но и не преуменьшай. Не ставь окончательный диагноз — говори «на ЭКГ есть признаки…».
+- Если urgency="urgent", прямо и ясно скажи, что нужно вызвать скорую помощь сейчас.
+- Не назначай лекарства.
+
+О человеке: возраст — ${age||"не указан"}; пол — ${sex||"не указан"}; что беспокоит — ${sym||"не указано"}.
+
+Ответь ТОЛЬКО JSON-объектом:
+{"readable":true,"urgency":"normal|attention|urgent","urgency_reason":"одно простое предложение",
+"summary":"2–4 предложения: что в целом показывает ЭКГ, простыми словами",
+"paper_speed_used":"25|50","speed_source":"user|label|estimated",
+"heart_effect":"normal|fast|slow|irregular|chaotic_atria",
+"explained":[{"title":"простое название находки","meaning":"что это значит и насколько это важно","probability":85,"regions":["atria"]}],
+"measurements":{"rhythm":"","hr":"","axis":"","pr":"","qrs":"","qt":"","qtc":""},
+"next_steps":["что сделать: к какому врачу и как скоро"],
+"questions_for_doctor":["вопрос, который стоит задать врачу"],
+"limitations":"простыми словами, что могло помешать"}`;
+  }
+  let ctl=null;
+  analyzeBtn.addEventListener("click", async ()=>{
+    if(!shots.length||!(sample||localMode)) return;
+    showError("");
+    ctl=new AbortController();
+    uploadPanel.hidden=true; hero.hidden=true;
+    statusPanel.style.display="flex"; resultPanel.hidden=true; statusHint("Обычно это занимает 20–60 секунд");
+    try{
+      const data = (sample && canSendImages)
+        ? await sample.json(buildPrompt(), { images:shots.map(x=>x.blob), modelTier:"complex", signal:ctl.signal, cache:false })
+        : await analyzeLocal(buildPrompt(), ctl.signal);
+      showResult(data);
+    }catch(e){
+      statusPanel.style.display="none"; uploadPanel.hidden=false; hero.hidden=false;
+      showError(errorText(e && e.code) + (e && e.message && localMode ? " ("+e.message+")" : ""));
+      if(e && ["not_granted","sampling_disabled","images_unavailable","not_declared","capability_disabled"].includes(e.code)){ canSendImages=false; updateBtn(); }
+    }
+  });
+
+  function errorText(code){
+    return ({
+      not_granted:"Доступ к анализу не разрешён. Разрешите его в диалоге Claude и перезагрузите страницу.",
+      rate_limited:"Слишком много запросов. Попробуйте через пару минут.",
+      image_rejected:"Изображение не подходит: слишком большое или повреждено. Выберите другой файл.",
+      refused:"Анализ этого изображения не выполнен. Попробуйте другое фото ЭКГ.",
+      invalid_json:"Ответ пришёл в неверном формате. Нажмите «Расшифровать» ещё раз.",
+      session_expired:"Сессия истекла. Войдите в Claude снова.",
+      bad_key:"Ключ не подходит. Проверьте, что он скопирован полностью и выбран правильный сервис.",
+      region:"Сервис недоступен в вашей стране.",
+      overloaded:"Серверы Google сейчас перегружены. Подождите пару минут или выберите другую модель.",
+      bad_model:"Модель недоступна для этого ключа (возможно, нужен платный тариф). Выберите другую модель.",
+      network:"Запрос к сервису не дошёл, даже после повтора. Нажмите «Проверить соединение и ключ» выше, чтобы понять причину.",
+      api_error:"API вернул ошибку.",
+      cancelled:"",
+      images_unavailable:"В этом приложении нельзя отправлять изображения. Откройте страницу на claude.ai."
+    })[code] || "Сбой соединения. Нажмите «Расшифровать» ещё раз.";
+  }
+
+  const esc = s => String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+
+  // --- Схема сердца ---
+  const REGIONS = {
+    ra:{name:"Правое предсердие", type:"reg atr", d:"M0 0H148V156L0 150Z"},
+    la:{name:"Левое предсердие", type:"reg atr", d:"M148 0H300V142L148 156Z"},
+    rv:{name:"Правый желудочек", type:"reg ven", d:"M0 150L138 156Q150 245 184 314L0 340Z"},
+    septum:{name:"Межжелудочковая перегородка", type:"reg ven", d:"M138 156L160 155Q170 240 196 312L184 314Q150 245 138 156Z"},
+    lv_anterior:{name:"Передняя стенка ЛЖ", type:"reg ven", d:"M160 155L300 142V204H170Q164 178 160 155Z"},
+    lv_lateral:{name:"Боковая стенка ЛЖ", type:"reg ven", d:"M170 204H300V262H184Q175 234 170 204Z"},
+    lv_inferior:{name:"Нижняя стенка и верхушка ЛЖ", type:"reg ven", d:"M184 262H300V340H120L184 314L196 312Q189 290 184 262Z"},
+    sa_node:{name:"Синусовый узел", type:"node", circle:[100,78,7]},
+    atrial_path:{name:"Проведение по предсердиям", type:"cond", d:"M100 78Q126 118 146 150"},
+    av_node:{name:"АВ-узел", type:"node", circle:[146,152,6]},
+    his:{name:"Пучок Гиса", type:"cond", d:"M146 152L152 178"},
+    rbb:{name:"Правая ножка пучка Гиса", type:"cond", d:"M150 178Q146 238 176 298"},
+    lbb:{name:"Левая ножка пучка Гиса", type:"cond", d:"M155 178Q170 236 198 298M160 204Q200 190 238 184"},
+    purkinje:{name:"Волокна Пуркинье", type:"cond", d:"M176 298l-16-6M176 298l-8 10M198 298l16-10M198 298l10 6"},
+    accessory:{name:"Дополнительный путь (WPW)", type:"cond acc", d:"M240 126L247 162"}
+  };
+  const ALIASES = {
+    atria:["ra","la"], ventricles:["rv","septum","lv_anterior","lv_lateral","lv_inferior"],
+    lv:["lv_anterior","lv_lateral","lv_inferior","septum"], lv_septal:["septum"], lv_apex:["lv_inferior"],
+    inferior:["lv_inferior"], anterior:["lv_anterior"], lateral:["lv_lateral"], septal:["septum"],
+    conduction:["sa_node","atrial_path","av_node","his","rbb","lbb","purkinje"], bundle:["his","rbb","lbb"]
+  };
+  function expandRegions(arr){
+    const out=new Set();
+    (Array.isArray(arr)?arr:[]).forEach(r=>{ r=String(r).trim().toLowerCase(); (ALIASES[r]||[r]).forEach(x=>{ if(REGIONS[x]) out.add(x); }); });
+    return [...out];
+  }
+  function heartSVG(){
+    const shape="M58 120C44 90 62 58 98 56C120 55 138 64 150 76C166 60 196 54 226 62C262 72 280 104 270 142C286 178 278 226 252 262C230 292 206 308 192 314C176 306 140 284 112 258C78 226 52 186 58 120Z";
+    const part=(k,v)=> v.circle
+      ? `<circle data-r="${k}" class="${v.type}" cx="${v.circle[0]}" cy="${v.circle[1]}" r="${v.circle[2]}"/>`
+      : `<path data-r="${k}" class="${v.type}" d="${v.d}"/>`;
+    const chambers=Object.entries(REGIONS).filter(([k,v])=>v.type.startsWith("reg")).map(([k,v])=>part(k,v)).join("");
+    const cond=Object.entries(REGIONS).filter(([k,v])=>!v.type.startsWith("reg")).map(([k,v])=>part(k,v)).join("");
+    return `<svg class="heart-svg" viewBox="0 0 300 330" role="img" aria-label="Схема сердца с отмеченными изменениями">
+      <defs><clipPath id="hclip"><path d="${shape}"/></clipPath></defs>
+      <g class="body">
+        <path class="vessel" d="M98 60V14"/>
+        <path class="vessel" d="M178 64C174 20 232 8 250 40"/>
+        <path class="vessel thin" d="M156 70C150 40 128 30 112 34"/>
+        <g clip-path="url(#hclip)">
+          ${chambers}
+          <path class="cavity" d="M72 172Q118 162 136 170Q146 236 172 290Q138 270 110 242Q80 212 72 172Z"/>
+          <path class="cavity" d="M174 166Q228 158 250 168Q262 222 236 262Q216 290 198 296Q184 250 174 166Z"/>
+          <path class="avplane" d="M0 150L148 156L300 142"/>
+          <path class="avplane" d="M148 60V156"/>
+        </g>
+        <path class="outline" d="${shape}"/>
+        <g class="lbl"><text x="92" y="122">ПП</text><text x="206" y="112">ЛП</text><text x="100" y="214">ПЖ</text><text x="206" y="226">ЛЖ</text></g>
+        ${cond}
+      </g></svg>`;
+  }
+  let beatTimer=null;
+  function stopBeat(){ if(beatTimer){ clearTimeout(beatTimer); beatTimer=null; } }
+  function startBeat(svg, hr, effect){
+    stopBeat();
+    if(window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    const body=svg.querySelector(".body");
+    const base=60000/Math.min(180,Math.max(35,hr||72));
+    const irregular = effect==="irregular" || effect==="chaotic_atria";
+    const tick=()=>{
+      body.classList.add("beat");
+      setTimeout(()=>body.classList.remove("beat"),160);
+      const next = irregular ? base*(0.55+Math.random()*0.9) : base;
+      beatTimer=setTimeout(tick,next);
+    };
+    beatTimer=setTimeout(tick,400);
+  }
+  function probClass(p){ return p>=70?"p-high":p>=40?"p-mid":"p-low"; }
+  function probWord(p){ return p>=70?"высокая":p>=40?"средняя":"низкая"; }
+  function normProb(f){
+    let p=Number(f && f.probability);
+    if(!isFinite(p)){ const c=String(f&&f.confidence||""); p=c.startsWith("выс")?80:c.startsWith("ср")?55:c.startsWith("низ")?30:50; }
+    if(p>0 && p<=1) p*=100;
+    return Math.round(Math.min(99,Math.max(1,p)));
+  }
+
+  function showResult(d){
+    statusPanel.style.display="none"; resultPanel.hidden=false; newBtn.hidden=false;
+    d = d || {};
+    const doc = mode==="doctor";
+    const readable = d.readable!==false;
+    const u = readable ? (["normal","attention","urgent"].includes(d.urgency)?d.urgency:"attention") : "unreadable";
+    const heads = doc
+      ? {normal:"Вариант нормы", attention:"Патологические изменения", urgent:"Неотложное состояние", unreadable:"Запись не интерпретируема"}
+      : {normal:"Серьёзных отклонений не видно", attention:"Стоит показать врачу", urgent:"Нужна срочная помощь", unreadable:"Не удалось разобрать запись"};
+    const m = d.measurements||{};
+    const metrics = doc
+      ? [["Ритм",m.rhythm],["ЧСС",m.hr],["ЭОС",m.axis],["PR",m.pr],["QRS",m.qrs],["QT",m.qt],["QTc",m.qtc]]
+      : [["Ритм",m.rhythm],["Пульс",m.hr],["Ось сердца",m.axis],["PR",m.pr],["QRS",m.qrs],["QT",m.qt],["QTc",m.qtc]];
+    const metricsHtml = `<dl class="metrics">${metrics.map(([k,v])=>`<div class="metric"><dt>${k}</dt><dd>${esc(v||"—")}</dd></div>`).join("")}</dl>`;
+    const list = (title, arr) => Array.isArray(arr)&&arr.length ? `<h3>${title}</h3><ul class="recs">${arr.map(r=>`<li>${esc(r)}</li>`).join("")}</ul>` : "";
+    const hlColor = {normal:"var(--ok)",attention:"var(--warn)",urgent:"var(--bad)",unreadable:"var(--ink-soft)"}[u];
+    resultPanel.style.setProperty("--hl", hlColor);
+
+    const raw = doc ? d.findings : d.explained;
+    const items = (Array.isArray(raw)?raw:[]).map(f=>({
+      title:f.title, text: doc ? f.detail : f.meaning, p:normProb(f), regions:expandRegions(f.regions)
+    })).sort((a,b)=>b.p-a.p);
+    const allRegions=[...new Set(items.flatMap(i=>i.regions))];
+    const hrNum = parseInt(String(m.hr||"").replace(/[^\d]/g,""),10);
+
+    let html = `<span class="tag">${doc?"Протокол для врача":"Объяснение для пациента"}</span>`;
+    html += `<div class="verdict v-${u}"><h2>${heads[u]}</h2><p>${esc(d.urgency_reason || (readable?"":"Сделайте фото ровнее, при хорошем освещении, чтобы была видна вся лента."))}</p>
+      ${u==="urgent" && !doc ? '<p style="margin-top:8px;font-weight:600">Вызовите скорую помощь прямо сейчас: 112 или 103. Не садитесь за руль сами.</p>':""}</div>`;
+
+    if(readable){
+      const chips = allRegions.length
+        ? `<div class="chips">${allRegions.map(r=>{ const mp=Math.max(...items.filter(i=>i.regions.includes(r)).map(i=>i.p)); return `<span class="chip"><i style="opacity:${mp>=70?1:mp>=40?.6:.35}"></i>${REGIONS[r].name} · ${mp}%</span>`; }).join("")}</div>`
+        : `<p>${u==="normal" ? (doc?"Локальных изменений не выявлено.":"Отмеченных проблемных зон нет.") : "Изменения не привязаны к конкретной зоне сердца."}</p>`;
+      html += `<div class="heart-card">
+        <div class="heart-wrap">${heartSVG()}${hrNum?`<div class="heart-hr"><b>${hrNum}</b><span>уд/мин</span></div>`:""}</div>
+        <div class="heart-side"><h3>${doc?"Локализация изменений":"Где это в сердце"}</h3>
+          <p>${items.some(i=>i.regions.length) ? (doc?"Нажмите на находку, чтобы выделить её зону на схеме.":"Нажмите на пункт ниже — зона подсветится на схеме.") : ""}</p>${chips}</div>
+      </div>`;
+
+      const modelSp = String(d.paper_speed_used||"").replace(/\D/g,"");
+      const userSp = paperSpeed!=="auto" ? paperSpeed : "";
+      const spUsed = modelSp || userSp;
+      const ampTxt = `${amplitude} мм/мВ`;
+      let spMsg, spWarn=false;
+      if(userSp && modelSp && modelSp!==userSp){
+        spWarn=true;
+        spMsg=`Вы указали ${userSp} мм/с, но на ленте найдена скорость ${modelSp} мм/с — расчёт сделан по ленте. Проверьте, какая скорость верная.`;
+      }else if(userSp){
+        spMsg=`Расчёт при скорости ${userSp} мм/с, ${ampTxt} — указано вами.`;
+      }else if(d.speed_source==="label" && spUsed){
+        spMsg=`Расчёт при скорости ${spUsed} мм/с, ${ampTxt} — скорость найдена по надписи на ленте.`;
+      }else{
+        spWarn=true;
+        spMsg = (spUsed?`Скорость ленты не найдена, ИИ предположил ${spUsed} мм/с. `:`Скорость ленты не определена. `) +
+          (doc ? "ЧСС и интервалы приблизительные — укажите скорость и повторите." : "Пульс и интервалы могут быть неточными — укажите скорость и повторите расшифровку.");
+      }
+      html += `<p class="speed-note${spWarn?" warn":""}">${spMsg}</p>`;
+      if(doc){
+        html += metricsHtml;
+        html += `<h3>Заключение</h3><p class="conclusion">${esc(d.conclusion)}</p>`;
+      }else{
+        html += `<p class="conclusion">${esc(d.summary)}</p>`;
+      }
+      if(items.length){
+        html += `<h3>${doc?"Находки":"Что нашли на ЭКГ"}</h3>`;
+        html += items.map((it,idx)=>`<button type="button" class="fcard ${probClass(it.p)}" data-idx="${idx}" aria-pressed="false">
+            <span class="ftop"><span class="ftitle">${esc(it.title)}</span><span class="pct">${it.p}%</span></span>
+            <span class="bar"><span data-w="${it.p}"></span></span>
+            <span class="fdetail">${esc(it.text)}</span>
+            ${it.regions.length?`<span class="fwhere">${it.regions.map(r=>REGIONS[r].name).join(", ")}</span>`:""}
+          </button>`).join("");
+        html += `<p class="pnote">${doc
+          ? "Проценты — субъективная оценка ИИ по изображению, не калиброванная диагностическая вероятность."
+          : "Проценты показывают, насколько ИИ уверен в находке по этому фото. Это не диагноз."}</p>`;
+      }
+      if(doc){
+        html += list("Дифференциальный ряд", d.differential);
+        html += list("Тактика", d.recommendations);
+      }else{
+        html += list("Что делать дальше", d.next_steps);
+        html += list("О чём спросить врача", d.questions_for_doctor);
+        html += `<details class="nums"><summary>Показать цифры для врача</summary>${metricsHtml}</details>`;
+      }
+    }
+    if(d.limitations) html += `<p class="hint">${doc?"Ограничения":"Что могло повлиять на точность"}: ${esc(d.limitations)}</p>`;
+    if(shots.length) html += `<details class="ecg-thumb"><summary>${shots.length>1?"Загруженные фото ЭКГ":"Загруженная ЭКГ"}</summary><div class="ecg-thumbs">${shots.map((x,i)=>`<img src="${x.url}" alt="Фото ЭКГ ${i+1}">`).join("")}</div></details>`;
+    html += `<button class="primary" type="button" id="againBtn">Расшифровать другую ЭКГ</button>`;
+    resultPanel.innerHTML = html;
+    $("againBtn").addEventListener("click", reset);
+
+    const svg = resultPanel.querySelector(".heart-svg");
+    if(svg){
+      const regP={}; items.forEach(it=>it.regions.forEach(r=>{ regP[r]=Math.max(regP[r]||0,it.p); }));
+      allRegions.forEach(r=>svg.querySelectorAll(`[data-r="${r}"]`).forEach(el=>{
+        el.classList.add("on");
+        el.style.setProperty("--ro", regP[r]>=70?1:regP[r]>=40?.6:.35);
+      }));
+      const effect = String(d.heart_effect||"");
+      if(effect==="chaotic_atria") svg.classList.add("chaotic");
+      startBeat(svg, hrNum, effect);
+      resultPanel.querySelectorAll(".fcard").forEach(btn=>{
+        btn.addEventListener("click", ()=>{
+          const it=items[+btn.dataset.idx];
+          const was=btn.getAttribute("aria-pressed")==="true";
+          resultPanel.querySelectorAll(".fcard").forEach(b=>b.setAttribute("aria-pressed","false"));
+          svg.querySelectorAll(".sel").forEach(el=>el.classList.remove("sel"));
+          if(was || !it.regions.length){ svg.classList.remove("focus"); return; }
+          btn.setAttribute("aria-pressed","true");
+          svg.classList.add("focus");
+          it.regions.forEach(r=>svg.querySelectorAll(`[data-r="${r}"]`).forEach(el=>el.classList.add("sel")));
+          svg.scrollIntoView({behavior:"smooth",block:"nearest"});
+        });
+      });
+    }
+    requestAnimationFrame(()=>resultPanel.querySelectorAll(".bar span").forEach(s=>s.style.width=s.dataset.w+"%"));
+    resultPanel.scrollIntoView({behavior:"smooth",block:"start"});
+  }
+
+  function reset(){
+    stopBeat(); shots.forEach(x=>x.url && URL.revokeObjectURL(x.url)); shots=[]; renderShots();
+    resultPanel.hidden=true; newBtn.hidden=true; uploadPanel.hidden=false; hero.hidden=false;
+    showError(""); updateBtn(); window.scrollTo({top:0});
+  }
+  newBtn.addEventListener("click", reset);
+})();
+</script>
+</body>
+</html>
