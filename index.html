@@ -1,0 +1,1271 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Кардиоскан — расшифровка ЭКГ</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20200%20200%22%3E%20%3Cpath%20d%3D%22M26%20200%20C30%20164%2058%20148%20100%20146%20C142%20148%20170%20164%20174%20200%20Z%22%20fill%3D%22%23F4F6FA%22%20stroke%3D%22%23C9D0DB%22%20stroke-width%3D%221.5%22/%3E%20%3Cpath%20d%3D%22M84%20146%20L100%20178%20L116%20146%20Z%22%20fill%3D%22%232F4B8C%22/%3E%20%3Cpath%20d%3D%22M82%20147%20L100%20180%20L92%20200%20L66%20200%20L70%20162%20Z%22%20fill%3D%22%23DCE2EC%22/%3E%20%3Cpath%20d%3D%22M118%20147%20L100%20180%20L108%20200%20L134%20200%20L130%20162%20Z%22%20fill%3D%22%23DCE2EC%22/%3E%20%3Crect%20x%3D%22140%22%20y%3D%22170%22%20width%3D%2220%22%20height%3D%2214%22%20rx%3D%223%22%20fill%3D%22%23FFFFFF%22%20stroke%3D%22%23C9D0DB%22%20stroke-width%3D%221.2%22/%3E%20%3Cpath%20d%3D%22M142%20178%20h5%20l2%20-4%20l3%208%20l2%20-4%20h4%22%20fill%3D%22none%22%20stroke%3D%22%23FF4D63%22%20stroke-width%3D%221.8%22%20stroke-linejoin%3D%22round%22%20stroke-linecap%3D%22round%22/%3E%20%3Cpath%20d%3D%22M68%20150%20C58%20172%2070%20194%2098%20192%22%20fill%3D%22none%22%20stroke%3D%22%233A4152%22%20stroke-width%3D%225%22%20stroke-linecap%3D%22round%22/%3E%20%3Cpath%20d%3D%22M132%20150%20C140%20164%20136%20178%20126%20184%22%20fill%3D%22none%22%20stroke%3D%22%233A4152%22%20stroke-width%3D%225%22%20stroke-linecap%3D%22round%22/%3E%20%3Ccircle%20cx%3D%22120%22%20cy%3D%22188%22%20r%3D%2210%22%20fill%3D%22%23C9D0DB%22%20stroke%3D%22%233A4152%22%20stroke-width%3D%223%22/%3E%20%3Ccircle%20cx%3D%22120%22%20cy%3D%22188%22%20r%3D%224%22%20fill%3D%22%23FF4D63%22/%3E%20%3Cpath%20d%3D%22M48%2086%20C36%2062%2034%2034%2042%2020%20C48%2010%2058%2012%2064%2018%20L96%2058%20Z%22%20fill%3D%22%23E4863A%22/%3E%20%3Cpath%20d%3D%22M57%2074%20C49%2056%2047%2040%2051%2030%20C54%2026%2058%2027%2061%2031%20L84%2060%20Z%22%20fill%3D%22%23F6C59A%22/%3E%20%3Cpath%20d%3D%22M152%2086%20C164%2062%20166%2034%20158%2020%20C152%2010%20142%2012%20136%2018%20L104%2058%20Z%22%20fill%3D%22%23E4863A%22/%3E%20%3Cpath%20d%3D%22M143%2074%20C151%2056%20153%2040%20149%2030%20C146%2026%20142%2027%20139%2031%20L116%2060%20Z%22%20fill%3D%22%23F6C59A%22/%3E%20%3Cpath%20d%3D%22M100%2050%20C135%2050%20156%2074%20156%20100%20C161%20112%20158%20124%20151%20131%20C142%20145%20124%20153%20100%20153%20C76%20153%2058%20145%2049%20131%20C42%20124%2039%20112%2044%20100%20C44%2074%2065%2050%20100%2050%20Z%22%20fill%3D%22%23E4863A%22/%3E%20%3Cpath%20d%3D%22M100%2056%20C106%2056%20108%2070%20108%2084%20C117%2096%20136%20106%20138%20122%20C139%20141%20120%20153%20100%20153%20C80%20153%2061%20141%2062%20122%20C64%20106%2083%2096%2092%2084%20C92%2070%2094%2056%20100%2056%20Z%22%20fill%3D%22%23FFF6EC%22/%3E%20%3Cellipse%20cx%3D%2277%22%20cy%3D%2298%22%20rx%3D%226.5%22%20ry%3D%227%22%20fill%3D%22%231B1B24%22/%3E%20%3Cellipse%20cx%3D%22123%22%20cy%3D%2298%22%20rx%3D%226.5%22%20ry%3D%227%22%20fill%3D%22%231B1B24%22/%3E%20%3Ccircle%20cx%3D%2279.5%22%20cy%3D%2295.5%22%20r%3D%222.2%22%20fill%3D%22%23FFFFFF%22/%3E%20%3Ccircle%20cx%3D%22125.5%22%20cy%3D%2295.5%22%20r%3D%222.2%22%20fill%3D%22%23FFFFFF%22/%3E%20%3Ccircle%20cx%3D%2264%22%20cy%3D%22119%22%20r%3D%227%22%20fill%3D%22%23FF8A99%22%20opacity%3D%22.45%22/%3E%20%3Ccircle%20cx%3D%22136%22%20cy%3D%22119%22%20r%3D%227%22%20fill%3D%22%23FF8A99%22%20opacity%3D%22.45%22/%3E%20%3Cpath%20d%3D%22M90%20113%20Q100%20106%20110%20113%20Q110%20121%20100%20125%20Q90%20121%2090%20113%20Z%22%20fill%3D%22%231B1B24%22/%3E%20%3Cpath%20d%3D%22M96%20133%20Q100%20145%20104%20133%20Z%22%20fill%3D%22%23FF6B7E%22/%3E%20%3Cpath%20d%3D%22M100%20125%20V131%20M100%20131%20Q93%20138%2086%20132%20M100%20131%20Q107%20138%20114%20132%22%20fill%3D%22none%22%20stroke%3D%22%231B1B24%22%20stroke-width%3D%222.6%22%20stroke-linecap%3D%22round%22/%3E%20%3C/svg%3E">
+<link rel="apple-touch-icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAALQAAAC0CAIAAACyr5FlAAAQAElEQVR4nOx9B3xUVfr2uVPunZpJMpM6kw5JSCF0EEGqCCJNF1RAd3VxF+uu69pWXLCsdd39r93/96GfbRVRl7KigmBBei9JIAmk9zq93/u9kwmTSTJzp92ZO0ge8gszd86dnHvuc9/znPe85z28GHkmGsYwPIGHhjEMLxgmxzC8Ypgcw/CKYXIMwyuGyTEMrxgmxzC8Ypgcw/CKYXIMwyuGyTEMrxgmxzC8Ypgcw/CKYXIMwyuGyTEMrxgmxzC8Ypgcw/CKYXIMwyuGyTEMrxgmxzC8Ypgcw/CKYXIMwyuGyTEMr4gicsgIbHGhaOEowehkAt6qTWSH3l7Rbv30tOFIvQX94jAtg1hWJMxN4CvEXJmAA0dOt5i/KjdtKzWozRSKAmBRsjThrknitVOkQj7H46cXu6yv79N+U2FCvwgsyBPcO1WaHc/3+KnRSr59UPt/DusR24gKcrwwX7a4UOyz2Olmy4s/qE80WdFli7Gp/Ednykan4D5Lbik1/OWbHsQquIQoFrEHAQ97fWn8vFyRP4WTpNx5ucLjDZZmrR1dhrg6g3htaXx6rF9deX4ivziF/12lyUYitsAyOR6YGrOsyC9mOEHwsBsKhE0a+/l2G7qssLhA+M9FcQIv/aZHZMTxgBlHGljTWwHUlXHkJfDunOS7NxkEnIs9MVuWGcdFlw+gtlBnLgdDAWLtFEl+AmuDBjbJsW6OjIMF3F4AKcF5Y6mcuEyG4RIcg9pCnVHgAD49NkuGWAJr5JgzQjBeSaBgkRXPe+66OHQ54O83xEFtUbCYlEZMzwy+oUIBa+S4f6oUhYYF+cI1kyQougE1vCZLgELDH6fFIDbADjlUMu5IBQO9wh+nSdl6qvwB1A1qiEJGfiIvPZYFjcUOOZYUiLCg1MYggGQBox2d4hRqBXXjMHGZ0FYwhkcRBzvkmJ7F2OPuFKcg+lA0IRQR6hFzR4TaNwUBFhR/gphTnMynL8PhE3hiNk+WRNrM1s56a2cDTWGQe/CMrv2yC0UHMP9EKF+RhsenYTzc2tNsaaumbHT+DGgxKYFpIzvnwoITbN5IwdyRdEaSK46NGXM9npgFL3hSBQEsiU2ydtYh0quzEPxFZjt1vDEq5ufuvUq6fDSd/waoLy25TphWzJPK4RpxeRqRmGXtaqRsZm+nQM9yvs1W2RlR1x8L3UpJqo+ZBWnJAg4xoHH5sSnS0ddhXLpnMUrEKdTh7qvoxlAYly8tmc+LSXQ/yBFIpGPmI1rkJ/gwt4yDBXKMSqS7SH5sKjxYQ4+DCZEUzKI5MRrEqT8iVFI4iyv24KHh4EJ4BmhOzEuMtAZggRw5tJ0xX6Hy+lG8Upg13vupveJ0iVwU6QesDzEgQpf4EKHC7PH8uFRvn/LlKppzfQo1xhFpckALimmbjx9P10DC9GK+Ip2mQJac949F8SjiAFvxEohQOR3v8YQM0Bk0BfhxSppPY4XcmMgOyiJNjlQZrW3k8LhCH95ASf41HCHddAN4JCPvOb3nKim9JxTqLM6bjmgB4hRhdHfER+sxjUiTQymj0wRcse9JJpCl0uI5QCOaMhEWp36J0OI59ILaCS4t7+lbj3FEmhwKEd1f9Gk2XMUkBTNoCkRSnPorQv27NI6Izt1O33qMI9LkkApoySHwdyYCfAPCjDE0BSLjOfXHEyrMHEMjQgeBvgVw3i9ac8TgtH+RG8CzLsgo4dGO/Zye0/A1pz+eUNDXgvQS5P93cuhagPhlk4M+QgfDAiAHOA3BXHNoHzUQiSAVUXhw/9W+RKhACt1fYFOMHLo7Eif4RZPDB7DA6sPh4dLiuYj2aQOpGA5xCt+5dgot7TggnOeCFEUBgZZJPM4VTA6ME3B9uCKZJH8aTYFwiFOnCKUvA7WCuqGAQdcC5shGVUcXOUhbMDNneEKWIK2IpgCz4tQvEZpehCdkoiBA2wIwuYgiiEiTg577lCXINW3gVof5fZoCTIlTf0QoyGRB5ngUFEirEUUNIk0OjYVujU7QTdMrTmcPmssdBEbE6YPTYnyIUEIMMjnoODf6x+MXbjm0JjpyUNbgV8PCXK6kaC69pA1RnMK5aybTOuYxDtQBZDIKFnYL3eNB33qMI+LkoI1lIk0GFAJ4kjhJ3tU0BUIRp36KUKgDCgGUmW79dIQjwSIdItBuoFvmajeqKdJO7wiiB56UQ2jazU3nvBVwitM/bO1KlHAy4nkKMUeKc4R8TMTHxDiH4GJguvUW0mCljFZKayE79GRNl61NT766OJ5ehAqUo/DEbBQCQI+TtLaTvvUYR6TJ0aT2cXl2g5onCWnOXTRikk3bade2u45QiMIopwvB8eSBnNx2RyIKBpTb/xhy0xUgh4U5E1FosGs76Av4bD1mEelupVVnt9KqKlLfjUIDhnGkRbMxXEhRlOMuUpTjNvYpRAyhUIYsWN8P5mRG7/cD83AhyGEMC7Ux7Qa6nAs2kmrR/qLJYSOR2kinquz6UJNS2HSdpvozGNwz5y1kYuWIFzgp4uCKueGMPWRa23V039CqtUd2sMLG0oTydut0iVdVAT0CCg6kzdxWbWo6Zw/6G4IFZTYY687CD3QuAmUershAWDCyib7mF7sinXWCBXKAvpue5fVTq7qVosiATDRlM5vqzpqaz1O24JcmcMTx4sI5eFKupeW8vmx3cL2bTd2qU7dy+AJCmS9QFQY0sQJq1KanW3pTcyWQw8cTQNntmnZ6d6dbYdLcVGGsPUFazSgEcGXJiSteAH7Aa0HOZHHRvLbPHiP1Qa6SghGHseakqem8KHsCkZTj51m27ib6ApG3HCzMrVT5Wplj7WlBfgAeU/WxbfqqgyEyA6BYut7JDCeAK4rF61BooCxG/bm9mhP/BQ3kT3lrTzN9gbK2SCdDY4Ecpa1WkqJTVjZfzYRIu+HCEc3Jr0NXrwDJhBt5Q8K++UkjRIVzUciwaTo0x/9rrD0NRs5HSdqrhhar6LgCyGGyUbVddEMyq7od2b0WAEKoj283NZQihiAds8jjcUnJDYgRUJSx5riDyiadtyKkWW83aGi+A1rMHPEsaOxM2cOAhe5jym7prPP4iaWtWn10CyMGwwlCVcyRyD1+xE/M5sYE5yvzAJumXXN0q9WLsLC019CffqqFhWXA7JDjZJOPS4VB6dCDpuYKXfmPiFEIsibQfCrMnoyYA2W3as/ssnR44L259SL9uYfqQtVVQYAdchz1lT7R2lVP2QZYF9D/hor9iGkQKrooIVxZgJgFRelK95hbL7gfsxu1dl+i9WjDFWM5zrdbe2j9pNCIlo4a1zvDxSPG2pOIaWB8AS+RbqiJq+hWLwYNGMXAQNf11jKQK0PRqLY1aljIy8sOOWCscszXo2Bp67O0Dp9BPWPy0x14Sj69t40rjGFQdrjDUHnA1XVaPPWh7mArTy1rMaQ/XPQR9GXtbgZ5b6w/Gw6b4QQ/Ps1nGR7t4uZQoC//CfSHTd1mN6rpS+6rYWdHANYSvf5YbbbYKZxLNytmqDxo7WpAYQMvLsV3GVly2KSgQ3/gtFkFANBK319gQY0iFi1Hh570qcDDygwANybZZxkgBwonLL6uEVrJYGVn+xU2lybsqWJ5/xSeH3qCK5UjVsFiK7FJju+qTJRXP3oknhVOjO/pPa5EgSIAL+1gtVO7Kq9IcnQaSC86nAotXssvwDjWY/KxQeBEJtuil4ikg3XmLiNrG66wvOJty1mP4eaRWBFKnx7IBa6AnbzjTnx9js01TiyTY2elyWpnSW0J/EoNhQlYy72vt5A7K9mUZSyTA3Q4W30qhvudTTyERUqhAFqGrXGKE+wvpN502m0ZDxW5tuDw/c0mjkWSHG4t8J/SkJZ4hQ72yXGk3lLhmsHHIqE2+v4U199bjnEimAD0UgtUdVhZ3003KlIwfOGUpVRkTSjHX++wP1kAmURvO2w+w7LZQFFCjq2lBrWJjKTZcIDyN7IKwyO7nQWGNCZyC9t9CooScmjM1JG6SJtQ/8OSOfwANjdlAtiXZw3aKNixPFoy+4givt+B2O/4YfG4JSiyMNmiYi/7qCCHTIBNzYio6RaPXiAcebWfhUW508TF16EIYl4uC/syDUVUkGNyWkTtBpE5XjbzdwGdAuWJtADSiYaI7Hh+hJMVe0RUkGNSWuQcCUR6iWLp+kBTgGBcvnzJOlxZiCKFKRnseN7cER2WIz1CloPIGCdf/FcUFDAeoVi2AacNSGYQE1Xs7zrFPjlkBJYjj4SXSZA9Ge4uxgv+bwE/En71HJExFoUf41XsWw7294PPZW7rsrJW62dnDKearBY7VZLCX1oonHRJzYDOiL/hMcQE5IueaP/8L9aWCufbw/XmLaXGU81WnItNUOHLCoUFSQxcUUasI10xyeqohYXdIQdhWiYxMydUcW4nqfePGZ7aranosGstlMGKWkz4CY2sqV09JgUXZ49z2AyMGTMJekWUN93cWKrvan91v+7ln7TV3ST8Rfi7LVbR3hbCYtAXJfND3G4YTt9Rbug2XdkTb9nxDFivQ/WWtw/pbZfCYiZNmnDq1MEDB37IW/anXT0q+ZIgdYY3YHyh4sZnd3UmbTptdEWf/OpXy06cOHDw0F7r6JsZ2cQ0S87SbnWXwD450kLefYgkqX/uHbBGedmyxSKRw625YsVN73xfrzcwHxWg1hnf2DMgNnjp0kU4jnM4nFWrbn5lr44MuUvIYGP/enewTw4RP9Q61KltdQPT7DU0NDpfVFVdaG/vOHLsNGIaB4+c6O4esJ67vr6PK6Wl5dXddqgVCg0KMcvkYF+Q4iFX4WzL4Nvw8cefAidiY2U//rgX3paWV86acRViFMdPnh105NVX3ywtLSMIYufO3fC2ot2eGRdSvyAXsvzosk8OPjfUydj4Ic7Enh71Z5994XorkzEf6pemGrwgqrm55aOPPnW9lRChXlec+IonB31aYH/gM1114ahcxDRysjLpC+QqQm1bpZTlu8MyN9NjuRlxoTZBagxvincHfHZWeknxKMQ0xo8tysnO8PYp1Cd0xZAl56WzqklZJseiUcyESjw4Xext2e3zTz3K5TLfxASB/239nz1+BDX503RmOrKFeX5HQYcBLJPjhlHMXHxWStwnbz2TnJTgflAuj3vvnZevvirIfXF8YtrUifD9MTEDeJCepvzoHw+Fbg6dmJ/PJjmwGHkmYglpMs63a5hYpszlJyx/Hk/OVau13+z64dDRU2azefLEMdfPm6VQhH1f+7a2jm+++/HQkZMwTpk0fvTC+XOkUrGx4ueuHS8hJjDrnZZWHTuL3tgkx7yRgv9ZzMDNky9+UpAd6o4FjEN3Yqv6x40oZNy7pfOKS8EAyEtkwPbGzvpdFDIDIBm7RFR4LQoZeQrWnOhskiM/5MsWF80TM5UtNAyIu/Z+IuT4j9wE1ga0bI6kk6QhDSJ4ikzZrLWICVAUVV1TV37+Qm1dY0a6siB/RGZGGsbEUom4hY+1f3a7zgAAEABJREFUvX83adKiYJEkYW00yyY5hLzg7RaGCxWLnwhxuRFwYsv2ne99uLnsXKXJNKBfFwiIooK8O2771eKF14bCEq4wJv76Rzq+fBIFC5wb2eU8bmAznuPOieIg3KMY4mMUL2baKkHmBBQC9h88ftd9j7//8efNLW022+BEjnCkqbl1x7ff7/5+X3paKpgTFCx4smRbT5O9vbk3oCTgcYfWTH5ykp0FTmxaDjyQndkxx1p3BQ+LgRccUYyYW4iqm1CKAgmCCae7c+3DO3fv9afk6bPnbv3NA/PmTH/37ZdREDCaUUtnrHyulteFSDsFrKM0FtQBL/z8ggjvX+8ONgWpzuLvY8RFYjE2ko/FY71sFmSOw0gK9ejQuRrUqUaBo70jsL1UAi3fB6jbuVqoJ4cnJFIcLnyoP1wFXAtckZ/foTFdkZl9WrR+XjYmwFJdAVccQsJTXNrpiUKosR1ZAt5rgmZaxCMKR41EgcJkcdTtEhxh6/1xihiBpfiZwKhFx0LuYifYJEebzi/TykdxoDNcb3FlwQCFaCdRa8Bbbo3IzgykeMBkcqCt21G3S+AQIp48vf8twvnIL7XXqr0iyVHd5ddlc9GAyTn+0GzlhoAdiDctnS8S+TttASVvWDAHBQrj4DBSXJHp/tbPnqW6O+L7rFwCm+Q4WO/XTeVg/bHpXImcMzRdkzlgcqQkJz78R39XRD752P1QHgWKIbVytxxo4HXRYH8tO75zxC45Tjdb9X5oUpLqDw/mSj1lBSWCWRy25je33HbrjT6Lrbx5yepblqEgMKRW4JVxT7Pvfl3e0KK113Zfkd0K5Uj57vuxsKP+dIue80MGlb8BhMvzTz9y7+9vpynz+9+ufOnZx4N0gnmqFU/WH1zofl3e8MMFNrMJsryoqcdELin0Ee9DISsfk2G9POYrMgcbD7hz6UmIH6TDZvrUiTiO/3zgyNCP1j16/0MP3IWCBs5DnYO3bQM/uq2rHjkuymZGzT4TNT/2dU/3FZuk9mCdparTx0AU2tFENXr9OFWBhCGtOb5v7e3bNv/fqyaPoy5h1oyr4MjaNatQKIBapQ7tBPvYAFdEIR/9xYFaU+T3knUH+8shDRZq7kgfAwcwHjak4SAhLs/qtxwEjnJSUZwUhQzQmytuXFhdU3++4uLNN93wzmvPBaNAh0IsRBIh0hldY1qbts3cVWmkaknku7/YsKunQc2a4EDREH2+tcy4aqy4KNmHF5xEZiOq5ksNeFqSI9+eSOD4YdSz7Bzc8vmMtolUhAqykNGE9CboAS26w0aq2p/zdlUaD9QNp5pE6Ilve+z+LR606ZuQQoYSYpFYgFibcwgQUE/gMdRZIbNqGv05w2SlnvkumGkBZhEV5KjssL2536+IB2t3eLfnCTesvWrUJ576rqfDwJoOdSFasgm+dUi3s8L30M7adpG0hmt057REWNjSoZJmvc3LZsru+OSkHrpaFAWIFnIAHt3Rc9bnvssUaakPZlW0Vqvf+P6myiqv/X1NbcPBI46dBg8cPlFb59U+VVRWv/vBZzqdHgUOc80xn2WONZif2c1+h+IE+6MVF+wU+rHatLRQJODTPbscvkCQPQkFiG1f7Xrsry9+8O8vLRbLhHHFPN4A1bl9x3erf/tgW3sHvO7uVn/6+fbsrPTcEVnuZUwm0wuvvHX/Q+u//+lAXm7OqLwRKEBoD2+2ddbSFOgxkr/+rNPI6k4J7mBzaYJHTErD31sup7PtHF7ymve4Ir+20nHBZDKve/qVTzdvg9epKUlzZk4dM7pAICD27j964NBxp6koUCofXXz9S9u/Lm1wvM3KTJsyaey0qyYYjaaTp8t2/7C/uaUNjt+yfPHf1v+ZIAILMrJp2lvfuwssn7cC4F/5zWedbG0h6xFRRw7AH6dJfzeZznshGb9MNv0OFDgOHTnx4KPP1tV7GDLcmZ37ZOFYPpdrsdufLT3x7sWKoWXS05T/fHHd5InBJIzr2f2G/sy3NAXePKB5fb8ORROikRxgND68RTFO6f3R5PKTf7uRG1SHaDZbvtn1w8HDJ8FlrtMbwDCAB/2awlHJG7/qL8ThtNx5/U9ny37ad/jnA0djpJKrp0yYOmXcvDnXBGownLD1NLW+fw+N2TjZZFn1SUe0dCeXEI3kAMQQ2HsrFKMSvS5sERXOjbv2AcQgNu1CR8v7Xk8YhW5mYD2SC53bnjVdPOzt09JWy52bO6MhE/4gRNFoxR0aM3X7po4z3gcvhtLvzPWMJnNaeDVy5niB3wv9TYvuD4xV+2mYcarJcvun0cgMFFWjlUGw2tGOc8aJKiIlxvOqHuPFQ8Lc6RymNujD+agwC8ll6PqpSMbAfI0T1vaaji1PIcrzFAkMXO/8vNPE5uQaHaKXHAArCfwwFCXz02M9zXfYrebaY+L8mYztwQZO7vRkJGRsxwK7uqX9i3WU2bPM/PGC6Z4t3WY2Z9Z8IKrJAbCRaHu5odtITlDhQ7OHkSatseaoKG8GxmM/GfQg2PVd7ZseJfWdQz/Smu3P7dG89JPGHo2dST+inRy9wM60WP97zpifyFfKBpsQ0qA2150QZk3E8Ajvp0QHW1dDxxfr7Nr2oR8dqDWD/Iwqf4Y3XBbkcAAk25ZSY5vOPl6FE7wBJoTUdxvKfyBUxVyJHEUBTDXHgRmkcbAXvMdoB9f4iz9qDFHjA6XHZUMOJ8rarJtP6TkYGpWI89x6GcpmNpTt4RAiPDkPsQjSrjnwcc/uN+GF+2GDhdx4RPfH7V1nWqJVfHpClPo5fCJRwrlvqnRZoYg7cCmpIGdK3Nz7OULGhhv+AzqRrq9esrScdz9otZOfnTa8sV/bY7o8rIU7LldyACQSaU6CYHme7doRuJToH+5iAons6tvFRfMQFikvjs2iPfqF5sgXyN6vJHpM5NfnjJ+d59d1GoxG9vcBDQKXKzkEAmHOyHyYn7PZrPUXKyYrsevzhXNGCIlLgpUnz5CMnu8YyAiYT1/sAqnr1Jfu1p/91qU9jTZs13ndV+eMhxrIjJw8giBIkrxQdd5siooQjYBwuZJDlZ4ZG9uXbC4pSXHzipvSMzJ4yCppPynqKuW1lyN9392CjkaUNx3cZYg5UGaDsfJnQ8Vec92pviPSFLsiXy8v1MvH2ChOXV3tJ59sdq3N12rVtdUX0OWGy5IcXC5vVOFo19vf3nHbnNnThEJCSBCcSxLE1N2ivXCE01aGtZZx1LUYLhSOuEqUO53IDD4tKWU1GasOGiv3mS4egj6LjMuiEgrsiQXSEeOFsr5odZKkjCazwWTes+fnje996Dq3qqLcdLkZj8uMHDk5OdfNn0cQ4l3f7XEe4XK5X27aKBzo1rTZ7J1qPeWSgHaz0NwmNLefOni48eKFwvy0VGWiNCGFG5PEFck4AhlGePCRkEYtaVKT+h6bukXd1tzY1H7qTE1WUdG4KZMMRIIRT4TJYWdJDAO3u5jHG+Dmt1ptK399j1rdt66psHCUPD7m6x3fVFf7FX0eDbg8yIHj+KzZs5bduDQnZwTO46zf8HxHZ5/Fnjpl4oYnH3IvDM8uMMNuHzw/Lo8V2+3Uivve7+zpC/ITcq04Zse5JPxOiifiY4gYEa7Wmzu1lvYus5nkWkkO/DaRfNc3fPb6r7lczPUNLnC5HEWseFCM0qbPt21879+ut+vXPRorj6+qrPryy//s2rkTRT2i3c+RqlSuWr3qL08+MX3atLyROWkpCR0d7V9u2eEqcPvq5ZkZae6n9GiMVpuHGQs7SUnFBIeLHTrZF+Vro7hmkmew87U2olnLvdiBypvt1Z2oRcuFI3AcPoUyrm+465YpY0Yp1TrTUOZRFGUnSQExIMYgOzP9q6+/s1zKLZOcpJg9Y4pcoRg9Zszy5b+SSqXNTU06XXQF+Lgjeskhl8sf+MMDf3rowfy8kZnpqenKRIlYyOFwvvn2+9Nnypxl+Hz+nx9c6573XmcwG82e11fCHeXzuHnZSV/tKTOaAk4GBGbjyfvmAQP0XtKB2HoZg7utiYLqgf44c7YvTESn1y9dNF8iEiQqYkUikVKVduNNNyUlJ507d85ojEY5Eo3xHAKB4Nd3/PqDjz+cM3c2cKK4YEScTOKy2EePnXKVvGbaZOhxXG9NFquONpGLVm8SELxVS8ehwAFnwbnwDTRl4K+bBuagmjf3Gtfr2tqGzt7eEK4Frmh0wQi4unnXXvvRRx/edvttBMH+LsODEHXkGDtu7IcffbDy1pUZyqTCvKwYyQCpqNcbys9Xut7OnNEflQOGQa318fzBw20y25bMLQYzgAIBlIez4Fyb3cdaI6iDe6eTmpKcmNC/nHrvvgFRP3B1hflZ6ark1atXffDh+6NLRqNoQhSRQygSPvLYoy+9/FJaWmpBXkZ8rHRoBPo5N2YACgv6ZlKgy+/WGCg/PNRavZHAuYEaDygPZ8G5PktCHXpr0l+VCeP7b/mhI8cHlYdrhCstyMvMSFe98o9XHnr4IaGIzW003BEt5Jg4ceKHH304b97cTFVSemoil+O5Yg2Nza7XBIFLxH12Ra0z+nymnQBZqjdaAjIeTrMBZ/m7oBdsmK6fRmPHFLteV12o8XgKXC90MXDtCxbMh3YA84miAFFBjjV3rfnb839LT0vJz0kXi+gCsRqbWlyvExP6tt5x9PTmAGY79UYzzg/AeEBJPp8DZyG/AfVxqR8wCa7j4PagvNs3uHZogXRV6osvvQiqC7ENlskB2vOFF19YvmJ5hipJlZzA8ZWtt7OrP6uka6MdgymwwBm4O/4bD5fZoAKcVXXVKkY6YIpY3aOhOQtaQJWigNZYuXLlM88+w65KZZMcCQkJb//v2+MnjBuZpZSK/epozeZ+HiT0kgMexCD2fgYzwOdx/DEeDrPB4xiMAQduQa2cRiI2Nsb9eI9a4/NcaA1ok8lTJr319lvx8rBvNuUNrJEjOTn5zbfeVKmUedlpAr9XCplM/SNJhcIR90VSQcZJaA0mn8bDaTa0we527qwbzMq6H+xR+7VOGtrE0cWkq6CVEhISEBtghxxwtf967V9yeVx+TtqgKQl6mNw6fqvV4VGwB7tlPMgCcIQvv76EpgyYDVDGAQkadzjr5t4VArg8fzMHQcvkj0iHkfCrr/0rPp4F+8ECOeA6X339VbjmkdkqDiewChCC/j64rs6x5HXQcxkQtAbz0muLwafu8VOn2dAZgs8R66xbd/cAU5EaSLYxaB9opeTkpNdef00mC2zteOiINDnAo/zy319OUMhHZCq5nID/emJiv0PJuR6aDCG832Kx4Th3+fVjPH4KZgO8shZr8AtLnHXr6eknB5/PkweoIaCVoK2SkhJeevnFcGyQS4NIJ4x7+JGH09JUudlpMI2JAof7zrHNLa0WqzXobsUJcIcvX1CyecdJrX6AhQCzsXhOEb2z3CecdWtqbnUdSU1N7j1OdveAkjH7I6UJPl8mE0OLgeP1wT89+PeX/wonutUAAAsCSURBVI4ihYiSY8mSJTNnzsjOSA1IZ7gjO2tA+vD6+iZFYkg5IcFhJRJywHi8u/mQ+3HQIhSi/HSseQPZu6z+wKH+hD75uY6s/g1N7RgHS4yPwX1lLqQc/nhDXUMbDG5zMpXYdfPKysp3fPUViggiR478Ufn33HdParJCFEJO2ZLiQve3dXUNcXIFCg06vXmQ8QAVsmRukU4fakZ6eNZhMsg1Kwu4asoEmJ7RGUzji7P97FVjJELQLj1qXUpSfEpi/AN/uL/i/PmqqioUfkRIc8Dc6YYNGwQEH+YRUAiIiZGmp/Vvt/bz/iP2kJcUwoCT4xi29CsPeA1Hgh4k938ziQ4ePu6SzDweb/zYEqvNLhLiHpixdRfa9bPH74H5OZvdIX3kcTEiAbHhqQ0g3VD4ESFyrLptdVx8bKaKgc3Jp03tTwi2d9/BhqZmFDLAJwbGwzlsgd/wOiBnuTfY7fbPvtjmejthXMml3C9DHMG1jWjjJvTxFuSRkY7ifcehf0lITLh15a0o/IgEOVQq1S233KxMTmAkOfCC+bPd327d+l8UMhx3BENO4+H4jaGQrYYDu7//qbq6P7fkjUuv91r0wy8dv7t60KlyRAtow9QkOZAjOYWBJ40ekYgEe+7551KSk2DKgJEUnxKx+GzZ+Zbe3G2AhoamaVdfJRaHuooarH1JvnLP/srH187xFkvmAvQUjY1Np06f3fvTvl3ffQ91AG0BXad7NRobm19//R27vW8kPG5s8eqVN6He4GedwZiIc1FFNWrrdPyUV6HPv0YrFqKaBgTzA1PHO/aUPHeh71ONziQR6w0mmbTPmSsU4D0aXXZ2zs5vwxuIGnZBOmnSxLz8vHRlEoPJX1fdsuzEyTPO1zB/sW37jt/eeTsKGRQiX9two0+TUVZ2/t13P2hr719Bf+pUX2XyckeuWfMb8ElotNqXXv4fs9tmTWvXDKzhGx+g/W6xHcCqZdfB/DLatRfdvRo9+QqqrHF9yHnxcYT3T1ZDS8L8vp0cPW7cuOPHj6OwIezkWLlqJehQoYDJ/BmjiwtAefy8vy+q6qef9o0bN2bsmFDDqMBNHiMltN4HKXqd/qN/b9q376DriEgoVCQomptbnL788xWVj/9l/aIbFpw4cbK7u99rPnvm1ZmZA6Kg0b23o4Vu+8Ypkxz8mDMV7fgevfr/HMy4cT4a3xsIIiBI8O6097ifLRIKBDhv1eqVlzE5Ro4cUVhUpEwKdbQ5FL+/6zbwHziNNhgPMODr1z+enqZCoYFmhAJ/64WX/1lb49AQIrFo2dJFubkjYfTk/LSjo/PEidPffLPLZrP9Z8t2h2a5ZClVypR7775z8NdJJah4SEKAkVlImYz2H3N8unIxcoXHajwkTE5JUowuKcnNy604X4HCg/Bqjkcee3jkiGxFPPOTAqA8hALi2PG+nHEgAo4dOzl54niRKHjxweFgsRIhCA6PDNm69auDBx0bOo0eXbR27ZrMzHT3YAv4uzk5WWPHltTW1mk0GmAGUBbsf3x83D9e3hAX298CcLy9syclMc5zP2uxoJNl6NZFqDjfday7R2+12weF04Iy1egMcXFxe3bvQeFBGMmhUCjuu/8BVaqCzwuLfSoYlVvf2FJT2zccgA7+9JnSaVdPCdoHIBbCSJMPzBg6nwLetnfe2Qj3VaVKBWZ4y0YKgrSoqPDgoaM2qxXuvFAofGbDE5npqe5lYN4A5KTNRoLHwsMcgirFkbpuybXoUqOBh7SptSteFkMQg68LaiuSyrZv2+4eycAgwkiOxUsWjx03RpnMfJ/iQt6o/NKyc52XVr/pdLrDh4/BEwzPKwocMokQjAe4p4aGln3y6ed1dfXA8nvv/b1Y3Ddq4On0ceWVsZXVPIPBDLah904Db2B2ELoYMB6LFi2YNGmcaIjekgiF3RpdQ3NnQ0tnY2vXgJ9uXWNiYmOnxnUE3KmxMmmczEOuAPC+t3eCtukpKytDYUAYNcfCGxYmJYQ5CoHC/vTgfRueeh4kofNAW1v708+8eO3c2StWLHNf0uITOM5zPsfwG17DhK37p84FrgWFo5wRRgBJXcOo9z7BLi2ts0rEZ+++wxrjuIXFxUWxsTKYjG1v6/A4tQY2ID2ViW3CHOFwcQtvuP7zzZ+jMCBcTrDsnJzk5ORYaWDLQwIC2H/Qj2C6H33kQYlE4nac2rlr92OPry8vP+//t4kEfI+vAQaDsbl3ZjUtvX/Eofx+H+a26JKv0ycd7h84pKU5Sl64WO0KFgwTwPmhUqVlZGSgMCBc5JgzZzaPizG8X9pAkJdSiUMn8szT60aOHLCNOQwfnn/hlb+uf3b7f79u790rgwbQmxBuVYXX7mqx9pKsUab27woraWga9CVit2UTIE3gN9gzk9lEhpMcIDug8rPnBr6buh8I182bMXNG3MDAWsbhvrBMLo9/ct2jO3fu/ujjTe5lamrq4Gfz5v9kpKeNHz+2oCBfKpVIpPBvQBcOssCdDfAajrimVySSPvsHbtD+vy4QcE0DPCKkG710esfgk8vl4nzcTlLccM5SyONkM2Zc897GdxHTCAs5pFJpUlKSOMwrt4bGB86bN6ekpOid/32vqurioI9q6+rh58v/bHOvpFQqBp5gHIzP4xqMRg6G3f373xT1rqKDnsVFDqUyFW4z+DkaGxvHj++bvO0ZmZXYu7OTC935I12vwbkOvzMzMzgcTu+sbBgjuGCQpVQqpTFSrcavffL8R1goXTKmhKJIkSC8WYU9Ro8CKdc98ciKFTfxfPVoWq22qakFfJrnzlWcOVt+4UJNZVX1x5986fzUKUudr+EGp/XGCThvuRP1187qzs91vW2ZOrFjXL+Ltq53d5+MTEdoEhnmPMXg7wFZU1zM/DrbsFiOMWPGCAk8fDvpOWHzEloM9/KGhdfNmjHt5KkzJ06ePn3mrMnorxvAaOjvOMB4uMYsM2ZMr6n5GAwS6I+MDMcttwuJylU38jVaXKM1yeV2twimn38+YOv1ps+Z5VhiH2Igo0+A5hDg/NGji/fv24cYRVj8HHffe3dmupJ+YWPoMJotNGF8MI5NT1dNmjQeZjrAiw8qo6enhz4NBriw7vj1La5UML0Oj77p2azMjBPHT8HotLy8YsqUia4t4kiCsMZIKTcr1dLcuvHdDxx7ns+8ZsaMacgR48OBm4fCCeAfh8ffumUrYhTMp32CB/frb7/OSkuWiMOrObrU+kBDw2HsoNPqdVqdTm+AiVN4YbdZ42IloD5kMdLCwjyYz3IvD5NwLuVRdeHi00+/gHrF7+rVt2Zmpg/9/kOHj4KXHcyPSCR85e/PO2fwcT43XhbGIX1vPQ019a0LrlsQykKNoWC+W0lOSQF+4HjY49iCCBAUEAL4cTmyAAlxEpo4eHdZOiIne+bM6T/8sBccsv/61xuTJ0/MzR0BEichQdHSDP9ajh8/VVHRlyFi5cqbXbEd9vDvjYDzYUDLSU5OamIiLs4F5smhUqkoksT54Z3vRb0B/ig0uLyi3uCQpXyuyz7decdtMCT+dNMXMI9z6NAR+Bl6CsyxweTLqFF5DNbTJ6C1oSNTKlXMkoP50YpKpQyzEnWAEc/SIE+olzIDYuXnzJn53N/Ww/SNx8LXTJ/6wgvPuDPDibD6wZBzF22KhAEtYhThsBxpHC4XukAUTjh6rtDSE8Cj1tLa5U9J6IvcR17Qj6z/6+MgTlvb2lpb2tQajUIen5iYmJqaIvSyy1NDUwcZZvvB5fFSlSmIUfx/AAAA//8JyXHmAAAABklEQVQDADBy2F7UDhwVAAAAAElFTkSuQmCC">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600&family=Unbounded:wght@500;600;700&display=swap" rel="stylesheet">
+<meta name="theme-color" content="#0E1320">
+<style>
+:root{
+  --bg:#0E1320; --surface:#171E2E; --surface-2:#1F2839; --line:#2A3447; --line-2:#36415A;
+  --ink:#E9EDF5; --soft:#9AA5BA; --body2:#C3CAD8;
+  --artery:#FF4D63; --vein:#7EA2F2;
+  --ok:#6FD6A0; --ok-bg:#11261C; --ok-line:#1E4A34; --ok-ink:#CDEBDB;
+  --warn:#F2B35B; --warn-bg:#2C2110; --warn-line:#4A3818; --warn-ink:#E6CFA6;
+  --bad:#FF6B7E; --bad-bg:#2E1218; --bad-line:#5A2230; --bad-ink:#F3C2C9; --bad-btn:#D6243F;
+  --trace:var(--artery); --ink-soft:var(--soft);
+  --heart-base:#4A2C33; --heart-atria:#3C2A31; --cavity:#0E1320; --heart-line:#8A5E68; --heart-cond:#C9AEB6;
+  --hl:var(--warn);
+  --display:"Unbounded","Golos Text",system-ui,sans-serif;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html,body{margin:0}
+body{background:var(--bg);color:var(--ink);font-family:"Golos Text",system-ui,-apple-system,"Segoe UI",sans-serif;font-size:16px;line-height:1.5;-webkit-font-smoothing:antialiased}
+button{font:inherit;cursor:pointer;color:inherit}
+button:disabled{opacity:.45;cursor:not-allowed}
+a{color:var(--vein)}
+:focus-visible{outline:3px solid var(--vein);outline-offset:2px}
+.wrap{max-width:560px;margin:0 auto;padding-bottom:40px}
+.display{font-family:var(--display);font-weight:600;letter-spacing:-.02em}
+
+header.top{display:flex;justify-content:space-between;align-items:center;min-height:58px;padding:10px 8px 0 20px}
+.brand{display:flex;align-items:center;gap:8px;font-family:var(--display);font-weight:600;font-size:17px;letter-spacing:-.01em}
+.brand .logo-sm{display:block;width:36px;height:36px;border-radius:50%;background:#1F2839;overflow:hidden}
+.brand .logo-sm svg,.logo-lg svg{display:block;width:100%;height:100%}
+.hero-top{display:flex;justify-content:space-between;align-items:flex-end;gap:12px;padding-right:16px}
+.logo-lg{flex:none;width:112px;height:112px;margin-bottom:-6px}
+@media (max-width:340px){.logo-lg{width:84px;height:84px}}
+.textbtn{height:44px;padding:0 12px;border:0;background:transparent;font-size:15px;font-weight:500;display:inline-flex;align-items:center;gap:6px}
+
+.paper{background-color:#1A1216;background-image:linear-gradient(#3A2229 1px,transparent 1px),linear-gradient(90deg,#3A2229 1px,transparent 1px),linear-gradient(#26171C 1px,transparent 1px),linear-gradient(90deg,#26171C 1px,transparent 1px);background-size:40px 40px,40px 40px,8px 8px,8px 8px;border-top:1px solid #4A2A33;border-bottom:1px solid #4A2A33}
+.trace-path{fill:none;stroke:var(--artery);stroke-width:2.2;stroke-linejoin:round;stroke-linecap:round;filter:drop-shadow(0 0 4px rgba(255,77,99,.55))}
+.draw-once{stroke-dasharray:1400;stroke-dashoffset:1400;animation:draw 2.2s ease-out .15s forwards}
+.pen{animation:blink 1.4s ease-in-out infinite}
+@keyframes draw{to{stroke-dashoffset:0}}
+@keyframes blink{50%{opacity:.35}}
+
+.hero{padding-top:22px}
+.hero h1{margin:0 0 0 20px;font-size:clamp(32px,9vw,44px);line-height:1.08}
+.hero p{margin:12px 20px 0;color:var(--soft);max-width:34ch}
+.strip{margin-top:22px;height:112px;overflow:hidden}
+.strip svg{display:block;width:100%;height:100%}
+
+.panel{padding:18px 20px 0}
+.mode{display:flex}
+.mode button{flex:1;height:48px;border:0;border-bottom:2px solid var(--line-2);border-radius:0;background:transparent;color:var(--soft);font-size:16px;font-weight:500}
+.mode button[aria-pressed="true"]{border-bottom-color:var(--ink);color:var(--ink);font-weight:600}
+.plabel{display:flex;justify-content:space-between;align-items:baseline;font-size:14px;color:var(--soft);font-weight:500;margin:18px 0 8px}
+.linkish{border:0;background:none;padding:6px 0;color:var(--vein);font-size:14px;font-weight:500}
+.seg{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.seg button{height:44px;border-radius:22px;border:1px solid var(--line-2);background:var(--surface);font-size:15px;font-weight:500}
+.seg button[aria-checked="true"]{background:var(--ink);border-color:var(--ink);color:var(--bg);font-weight:600}
+.speed-help{background:var(--surface);border-radius:12px;padding:10px 12px}
+.hint{font-size:14px;color:var(--soft);margin:10px 0 0}
+
+.shots{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:22px}
+.shots:empty{display:none}
+.shot{position:relative;border-radius:14px;overflow:hidden;background:var(--surface);border:1px solid var(--line)}
+.shot img{display:block;width:100%;aspect-ratio:4/3;object-fit:contain;background:#fff}
+.shot .num{position:absolute;left:8px;top:8px;background:rgba(14,19,32,.8);color:#fff;font-size:13px;font-weight:600;border-radius:999px;padding:1px 9px}
+.shot-actions{display:grid;grid-template-columns:1fr 1fr}
+.shot-actions button{border:0;background:var(--surface);padding:10px 4px;font-size:14px;min-height:44px}
+.shot-actions button+button{border-left:1px solid var(--line);color:var(--bad)}
+.shot.busy::after{content:"Обработка…";position:absolute;inset:0;display:grid;place-items:center;background:rgba(14,19,32,.7);color:#fff;font-weight:600}
+
+.btn{width:100%;height:52px;border-radius:16px;border:1px solid var(--line-2);background:var(--surface);color:var(--ink);font-size:16px;font-weight:500;display:flex;align-items:center;justify-content:center;gap:10px;text-decoration:none}
+.btn svg{width:22px;height:22px;flex:none}
+.btn-primary{height:58px;background:var(--ink);border-color:var(--ink);color:var(--bg);font-size:17px;font-weight:600}
+.add-row{display:flex;flex-direction:column;gap:10px;margin-top:24px}
+.add-row.drag .btn{border-color:var(--artery)}
+.add-row.compact{flex-direction:row;margin-top:12px}
+.add-row.compact .btn{height:48px;font-size:15px;background:var(--surface);color:var(--ink);border-color:var(--line-2)}
+#analyzeBtn{margin-top:14px}
+
+details.tips{margin-top:12px}
+details.tips>summary{list-style:none;text-align:center;color:var(--vein);font-weight:500;font-size:15px;padding:10px 0;cursor:pointer}
+details.tips>summary::-webkit-details-marker{display:none}
+details.tips[open]>summary{margin-bottom:6px}
+.tips-body{background:var(--surface);border-radius:20px;padding:14px 16px}
+.tips-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.tip{margin:0;text-align:center;font-size:13px;color:var(--soft)}
+.tip svg{display:block;width:100%;height:auto;border-radius:10px;background:var(--surface-2)}
+.tip figcaption{margin-top:4px}
+.tip.good b{color:var(--ok)} .tip.bad b{color:var(--bad)}
+.tips-list{margin:10px 0 0;padding-left:20px;font-size:15px;color:var(--body2)}
+.tips-list li{margin:3px 0}
+
+details.more{margin-top:18px}
+details.more>summary{cursor:pointer;color:var(--soft);font-size:15px;padding:6px 0}
+.fields{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px}
+.fields .full{grid-column:1/-1}
+label{display:block;font-size:14px;color:var(--soft);margin-bottom:4px;font-weight:500}
+input,select,textarea{width:100%;font:inherit;font-size:16px;color:var(--ink);background:var(--surface);border:1px solid var(--line-2);border-radius:12px;padding:11px 12px}
+textarea{min-height:72px;resize:vertical}
+input::placeholder,textarea::placeholder{color:#6E7A92}
+.box{background:var(--surface);border-radius:20px;padding:16px;margin-top:18px}
+.box .fields input,.box .fields select{background:var(--surface-2)}
+.box button.btn{height:48px;background:var(--surface-2);margin-top:12px;font-size:15px}
+.notice{display:none;background:var(--warn-bg);color:var(--warn);border-radius:12px;padding:12px;font-size:15px;margin:14px 0 0}
+.error{display:none;color:var(--bad);margin:12px 0 0}
+.disclaimer{font-size:12px;line-height:1.45;color:var(--soft);text-align:center;margin:26px 20px 0}
+
+/* Анализ */
+.status{display:none;flex-direction:column;padding-top:26px}
+.status h2{margin:0 20px;font-size:28px;line-height:1.12}
+.status .hint{margin:10px 20px 0;font-size:16px}
+.scan-strip{position:relative;height:150px;margin-top:24px;overflow:hidden}
+.scan-strip svg{display:block;width:100%;height:100%}
+.scan-path{stroke-dasharray:1100;stroke-dashoffset:1100;animation:scan-draw 3.2s linear infinite}
+.scan-line{position:absolute;top:0;bottom:0;width:2px;left:0;background:linear-gradient(transparent,rgba(255,77,99,.7),transparent);animation:scan-move 3s linear infinite}
+@keyframes scan-draw{to{stroke-dashoffset:0}}
+@keyframes scan-move{from{transform:translateX(0)}to{transform:translateX(calc(min(560px,100vw) - 2px))}}
+.steps{list-style:none;margin:0;padding:26px 20px 0}
+.steps li{display:flex;gap:14px}
+.steps .ind{width:26px;display:flex;flex-direction:column;align-items:center;flex:none}
+.steps .dot{width:26px;height:26px;border-radius:50%;border:2.5px solid var(--line-2);display:grid;place-items:center;flex:none}
+.steps .ln{width:2px;flex:1;min-height:20px;background:var(--line-2)}
+.steps li:last-child .ln{display:none}
+.steps .txt{padding:2px 0 16px}
+.steps .st{font-size:16px;font-weight:500;color:var(--soft)}
+.steps li.done .dot{background:var(--ink);border-color:var(--ink)}
+.steps li.done .dot::after{content:"";width:10px;height:5px;border-left:2.4px solid var(--bg);border-bottom:2.4px solid var(--bg);transform:translateY(-1px) rotate(-45deg)}
+.steps li.done .ln{background:var(--ink)}
+.steps li.done .st{color:var(--ink);font-weight:600}
+.steps li.now .dot{border-color:var(--artery)}
+.steps li.now .dot::after{content:"";width:9px;height:9px;border-radius:50%;background:var(--artery);animation:blink 1.2s infinite}
+.steps li.now .st{color:var(--artery);font-weight:600}
+.status-foot{display:flex;justify-content:center;margin-top:10px}
+
+/* Результат */
+.rtop{display:flex;justify-content:space-between;align-items:center;padding:2px 20px 10px}
+.tag{font-size:14px;color:var(--soft)}
+.verdict{padding:14px 20px 22px;border-top:1px solid;border-bottom:1px solid}
+.verdict svg{display:block;width:100%;height:56px}
+.verdict svg path{fill:none;stroke:currentColor;stroke-width:1.8;stroke-linejoin:round}
+.verdict h2{margin:10px 0 0;font-size:26px;line-height:1.12}
+.verdict p{margin:8px 0 0;font-size:16px;line-height:1.45}
+.v-normal{background:var(--ok-bg);border-color:var(--ok-line);color:var(--ok)} .v-normal p{color:var(--ok-ink)}
+.v-attention{background:var(--warn-bg);border-color:var(--warn-line);color:var(--warn)} .v-attention p{color:var(--warn-ink)}
+.v-urgent{background:var(--bad-bg);border-color:var(--bad-line);color:var(--bad)} .v-urgent p{color:var(--bad-ink)}
+.v-unreadable{background:var(--surface);border-color:var(--line);color:var(--ink)} .v-unreadable p{color:var(--body2)}
+.call{margin-top:14px;height:52px;border-radius:16px;background:var(--bad-btn);color:#fff;font-size:17px;font-weight:600;display:flex;align-items:center;justify-content:center;gap:10px;text-decoration:none}
+.call svg{width:20px;height:20px}
+.hr{display:flex;align-items:flex-end;gap:14px;padding:22px 20px 0}
+.hr b{font-family:var(--display);font-weight:600;font-size:64px;line-height:.9;color:var(--artery);letter-spacing:-.03em;font-variant-numeric:tabular-nums}
+.hr .u{font-weight:600}
+.hr .s{font-size:14px;color:var(--soft)}
+.speed-note{margin:12px 20px 0;font-size:13px;color:var(--soft)}
+.speed-note.warn{background:var(--warn-bg);color:var(--warn);padding:10px 12px;border-radius:12px;font-size:14px}
+.sec{margin:26px 20px 0}
+.sec>h3{font-family:var(--display);font-weight:600;font-size:18px;letter-spacing:-.01em;margin:0 0 10px}
+.card{background:var(--surface);border-radius:20px;padding:16px}
+.metrics{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));background:var(--surface);border-radius:20px;overflow:hidden;margin:0}
+.metric{padding:12px 14px;border-right:1px solid var(--line);border-bottom:1px solid var(--line);min-width:0}
+.metric.wide{grid-column:1/-1;border-right:0}
+.metric:nth-child(3n+1):not(.wide){border-right:0}
+.metric:nth-last-child(-n+3){border-bottom:0}
+.metric dt{font-size:13px;color:var(--soft)}
+.metric dd{margin:2px 0 0;font-family:var(--display);font-weight:600;font-size:15px;line-height:1.25;overflow-wrap:break-word;hyphens:auto}
+.conclusion{font-size:17px;line-height:1.55;margin:0}
+.leads{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px}
+.lead{padding:6px 7px 4px;border-radius:10px;border:1px solid var(--line);background:var(--surface);min-width:0}
+.lead .lt{display:flex;justify-content:space-between;align-items:baseline;gap:2px;font-size:13px;font-weight:600}
+.lead small{font-size:10px;font-weight:600;white-space:nowrap}
+.lead svg{display:block;width:100%;height:26px}
+.lead path{fill:none;stroke:var(--ink);stroke-width:1.5;stroke-linejoin:round}
+.l-st_up{background:var(--bad-bg);border:1.5px solid var(--bad)} .l-st_up path{stroke:var(--bad)} .l-st_up small{color:#FF9AA8}
+.l-st_down{background:#15213D;border:1.5px solid var(--vein)} .l-st_down path{stroke:var(--vein)} .l-st_down small{color:#A9C1F7}
+.l-t_inv{background:var(--warn-bg);border:1.5px solid var(--warn)} .l-t_inv path{stroke:var(--warn)} .l-t_inv small{color:var(--warn)}
+.l-q_wave{background:#231B35;border:1.5px solid #B79CF2} .l-q_wave path{stroke:#B79CF2} .l-q_wave small{color:#CDB9F7}
+.legend{display:flex;flex-direction:column;gap:6px;margin-top:10px;font-size:14px}
+.legend span{display:flex;align-items:center;gap:8px}
+.legend i{width:12px;height:12px;border-radius:3px;display:inline-block}
+
+.heart-card{display:grid;grid-template-columns:minmax(0,1fr);gap:6px}
+.heart-wrap{max-width:260px;width:100%;margin:0 auto}
+.heart-svg{display:block;width:100%;height:auto;overflow:visible}
+.heart-svg .body{transform-box:fill-box;transform-origin:50% 55%;transition:transform .12s ease-out}
+.heart-svg .body.beat{transform:scale(1.04)}
+.heart-svg .reg{stroke:var(--heart-line);stroke-width:1.2;transition:fill .25s,opacity .25s}
+.heart-svg .reg.atr{fill:var(--heart-atria)}
+.heart-svg .reg.ven{fill:var(--heart-base)}
+.heart-svg .vessel{fill:none;stroke:#5A3A42;stroke-width:14;stroke-linecap:round}
+.heart-svg .vessel.thin{stroke-width:10}
+.heart-svg .outline{fill:none;stroke:var(--heart-line);stroke-width:2}
+.heart-svg .cavity{fill:var(--cavity);stroke:var(--heart-line);stroke-width:1;pointer-events:none}
+.heart-svg .avplane{fill:none;stroke:var(--heart-line);stroke-width:1.2;opacity:.7}
+.heart-svg .lbl text{font:600 12px "Golos Text",sans-serif;fill:var(--soft);pointer-events:none}
+.heart-svg .cond{fill:none;stroke:var(--heart-cond);stroke-width:2.2;stroke-linecap:round;opacity:.55;transition:stroke .25s,stroke-width .25s,opacity .25s}
+.heart-svg .node{fill:var(--heart-cond);opacity:.8;transition:fill .25s}
+.heart-svg .acc{display:none}
+.heart-svg .on.reg{fill:var(--hl);fill-opacity:var(--ro,1);animation:glow 1.6s ease-in-out infinite}
+.heart-svg .on.cond{stroke:var(--hl);stroke-opacity:var(--ro,1);stroke-width:4;opacity:1;stroke-dasharray:6 5;animation:flow .9s linear infinite}
+.heart-svg .on.node{fill:var(--hl);opacity:1;animation:glow 1.6s ease-in-out infinite}
+.heart-svg .on.acc{display:inline}
+.heart-svg.focus .on{opacity:.35;animation:none}
+.heart-svg.focus .on.sel{opacity:1;animation:glow 1.1s ease-in-out infinite}
+.heart-svg.focus .on.cond.sel{animation:flow .9s linear infinite}
+.heart-svg .sel.node{stroke:var(--hl);stroke-width:8;stroke-opacity:.35}
+.heart-svg.chaotic .reg.atr{animation:flicker .35s steps(3) infinite}
+@keyframes glow{0%,100%{opacity:1}50%{opacity:.55}}
+@keyframes flow{to{stroke-dashoffset:-22}}
+@keyframes flicker{0%{opacity:1}33%{opacity:.7}66%{opacity:.9}}
+.heart-legend{border-top:1px solid var(--line);margin-top:8px;padding-top:6px}
+.heart-legend p{margin:6px 0;font-size:14px;color:var(--soft)}
+.zone{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:7px 0;font-size:15px}
+.zone span{display:flex;align-items:center;gap:8px}
+.zone i{width:12px;height:12px;border-radius:3px;background:var(--hl);display:inline-block}
+.zone b{font-weight:600;font-variant-numeric:tabular-nums}
+
+.fcard{display:block;width:100%;text-align:left;background:transparent;border:0;border-bottom:1px solid var(--line);border-radius:0;padding:14px 0;font-size:16px;line-height:1.45;color:var(--ink)}
+.fcard:last-of-type{border-bottom:0}
+.fcard[aria-pressed="true"] .ftitle{color:var(--hl)}
+.fcard .ftop{display:flex;justify-content:space-between;gap:12px;align-items:baseline}
+.fcard .ftitle{font-weight:600}
+.fcard .pct{font-family:var(--display);font-weight:600;font-size:17px;white-space:nowrap}
+.bar{display:block;height:4px;border-radius:2px;background:var(--line);margin:8px 0;overflow:hidden}
+.bar span{display:block;height:100%;border-radius:2px;width:0;transition:width .6s ease-out}
+.p-high .bar span{background:var(--artery)} .p-high .pct{color:var(--artery)}
+.p-mid .bar span{background:var(--warn)} .p-mid .pct{color:var(--warn)}
+.p-low .bar span{background:#5E6880} .p-low .pct{color:var(--soft)}
+.fcard .fdetail{display:block;font-size:15px;color:var(--body2)}
+.fcard .fwhere{display:block;margin-top:6px;font-size:13px;color:var(--soft)}
+.pnote{font-size:13px;color:var(--soft);margin:6px 0 0}
+.nlist{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:12px}
+.nlist li{display:flex;gap:12px;font-size:16px;line-height:1.4}
+.nlist .n{flex:none;width:26px;height:26px;border-radius:13px;background:var(--ink);color:var(--bg);font-size:14px;font-weight:600;display:grid;place-items:center}
+.recs{margin:0;padding-left:20px;color:var(--body2)}
+.recs li{margin:4px 0}
+details.nums>summary,details.ecg-thumb>summary{cursor:pointer;color:var(--soft);padding:6px 0}
+details.nums .metrics{margin-top:10px}
+.ecg-thumbs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin-top:8px}
+.ecg-thumbs img{width:100%;border-radius:10px;background:#fff}
+.actions{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin:28px 20px 0}
+.actions .wide{grid-column:1/-1}
+.toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:var(--ink);color:var(--bg);padding:10px 16px;border-radius:12px;font-weight:600;font-size:15px;z-index:60;box-shadow:0 6px 24px rgba(0,0,0,.4)}
+
+/* Редактор */
+.editor{position:fixed;inset:0;z-index:50;background:var(--bg);color:var(--ink);display:flex;flex-direction:column;padding:env(safe-area-inset-top) 0 env(safe-area-inset-bottom)}
+.editor[hidden]{display:none}
+.ed-head{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;height:60px;padding:0 8px}
+.ed-head b{font-family:var(--display);font-weight:600;font-size:16px;text-align:center}
+.ed-head #edCancel{justify-self:start;color:#C5CEDF}
+.ed-head #edDone{justify-self:end;font-weight:600}
+.ed-hint{margin:0;padding:0 20px;text-align:center;font-size:15px;color:var(--soft)}
+.ed-stage{position:relative;flex:1;min-height:0;touch-action:none;user-select:none;-webkit-user-select:none;overflow:hidden}
+#edCanvas{position:absolute}
+#edOverlay{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+#edMask{fill:rgba(14,19,32,.62)}
+#edQuad{fill:none;stroke:var(--artery);stroke-width:2}
+.ed-h{position:absolute;width:30px;height:30px;margin:-15px 0 0 -15px;border-radius:50%;border:3px solid #fff;background:rgba(255,77,99,.4);box-shadow:0 1px 6px rgba(0,0,0,.6);pointer-events:none}
+.ed-h.active{background:var(--artery)}
+.loupe{position:absolute;width:110px;height:110px;border-radius:50%;border:3px solid #fff;box-shadow:0 2px 10px rgba(0,0,0,.6);pointer-events:none;background:#000}
+.ed-tools{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;padding:8px 16px 20px}
+.ed-tools button{height:68px;border:0;border-radius:14px;background:var(--surface-2);font-size:13px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px}
+.ed-tools svg{width:22px;height:22px}
+
+@media (prefers-reduced-motion: reduce){
+  *{animation:none!important;transition:none!important}
+  .draw-once,.scan-path{stroke-dashoffset:0}
+  .scan-line{display:none}
+}
+@media (min-width:600px){
+  .heart-card{grid-template-columns:260px minmax(0,1fr);align-items:center}
+}
+@media print{
+  :root{--bg:#fff;--surface:#fff;--surface-2:#f2f2f2;--line:#ccc;--line-2:#bbb;--ink:#111;--soft:#444;--body2:#222;--ok-bg:#eaf6ef;--warn-bg:#fdf3e0;--bad-bg:#fde8eb;--ok:#1e6b48;--warn:#7a4700;--bad:#a0102a;--ok-ink:#1e6b48;--warn-ink:#5e3c00;--bad-ink:#5a0616;--artery:#c8102e;--cavity:#fff;--heart-base:#f1cdd2;--heart-atria:#f7e2e5}
+  body{background:#fff;color:#111}
+  .no-print,header.top,.actions,.call,details.ecg-thumb{display:none!important}
+  .paper{background:#fff8f8}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top no-print">
+    <div class="brand">
+      <span class="logo-sm"><svg viewBox="0 0 200 200" aria-hidden="true"> <path d="M26 200 C30 164 58 148 100 146 C142 148 170 164 174 200 Z" fill="#F4F6FA" stroke="#C9D0DB" stroke-width="1.5"/> <path d="M84 146 L100 178 L116 146 Z" fill="#2F4B8C"/> <path d="M82 147 L100 180 L92 200 L66 200 L70 162 Z" fill="#DCE2EC"/> <path d="M118 147 L100 180 L108 200 L134 200 L130 162 Z" fill="#DCE2EC"/> <rect x="140" y="170" width="20" height="14" rx="3" fill="#FFFFFF" stroke="#C9D0DB" stroke-width="1.2"/> <path d="M142 178 h5 l2 -4 l3 8 l2 -4 h4" fill="none" stroke="#FF4D63" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"/> <path d="M68 150 C58 172 70 194 98 192" fill="none" stroke="#3A4152" stroke-width="5" stroke-linecap="round"/> <path d="M132 150 C140 164 136 178 126 184" fill="none" stroke="#3A4152" stroke-width="5" stroke-linecap="round"/> <circle cx="120" cy="188" r="10" fill="#C9D0DB" stroke="#3A4152" stroke-width="3"/> <circle cx="120" cy="188" r="4" fill="#FF4D63"/> <path d="M48 86 C36 62 34 34 42 20 C48 10 58 12 64 18 L96 58 Z" fill="#E4863A"/> <path d="M57 74 C49 56 47 40 51 30 C54 26 58 27 61 31 L84 60 Z" fill="#F6C59A"/> <path d="M152 86 C164 62 166 34 158 20 C152 10 142 12 136 18 L104 58 Z" fill="#E4863A"/> <path d="M143 74 C151 56 153 40 149 30 C146 26 142 27 139 31 L116 60 Z" fill="#F6C59A"/> <path d="M100 50 C135 50 156 74 156 100 C161 112 158 124 151 131 C142 145 124 153 100 153 C76 153 58 145 49 131 C42 124 39 112 44 100 C44 74 65 50 100 50 Z" fill="#E4863A"/> <path d="M100 56 C106 56 108 70 108 84 C117 96 136 106 138 122 C139 141 120 153 100 153 C80 153 61 141 62 122 C64 106 83 96 92 84 C92 70 94 56 100 56 Z" fill="#FFF6EC"/> <ellipse cx="77" cy="98" rx="6.5" ry="7" fill="#1B1B24"/> <ellipse cx="123" cy="98" rx="6.5" ry="7" fill="#1B1B24"/> <circle cx="79.5" cy="95.5" r="2.2" fill="#FFFFFF"/> <circle cx="125.5" cy="95.5" r="2.2" fill="#FFFFFF"/> <circle cx="64" cy="119" r="7" fill="#FF8A99" opacity=".45"/> <circle cx="136" cy="119" r="7" fill="#FF8A99" opacity=".45"/> <path d="M90 113 Q100 106 110 113 Q110 121 100 125 Q90 121 90 113 Z" fill="#1B1B24"/> <path d="M96 133 Q100 145 104 133 Z" fill="#FF6B7E"/> <path d="M100 125 V131 M100 131 Q93 138 86 132 M100 131 Q107 138 114 132" fill="none" stroke="#1B1B24" stroke-width="2.6" stroke-linecap="round"/> </svg></span>
+      Кардиоскан
+    </div>
+    <button id="newBtn" class="textbtn" type="button" hidden>
+      <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+      Новая ЭКГ
+    </button>
+  </header>
+
+  <section class="hero" id="hero">
+    <div class="hero-top">
+      <h1 class="display">Прочтём<br>вашу ЭКГ</h1>
+      <span class="logo-lg"><svg viewBox="0 0 200 200" aria-hidden="true"> <path d="M26 200 C30 164 58 148 100 146 C142 148 170 164 174 200 Z" fill="#F4F6FA" stroke="#C9D0DB" stroke-width="1.5"/> <path d="M84 146 L100 178 L116 146 Z" fill="#2F4B8C"/> <path d="M82 147 L100 180 L92 200 L66 200 L70 162 Z" fill="#DCE2EC"/> <path d="M118 147 L100 180 L108 200 L134 200 L130 162 Z" fill="#DCE2EC"/> <rect x="140" y="170" width="20" height="14" rx="3" fill="#FFFFFF" stroke="#C9D0DB" stroke-width="1.2"/> <path d="M142 178 h5 l2 -4 l3 8 l2 -4 h4" fill="none" stroke="#FF4D63" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"/> <path d="M68 150 C58 172 70 194 98 192" fill="none" stroke="#3A4152" stroke-width="5" stroke-linecap="round"/> <path d="M132 150 C140 164 136 178 126 184" fill="none" stroke="#3A4152" stroke-width="5" stroke-linecap="round"/> <circle cx="120" cy="188" r="10" fill="#C9D0DB" stroke="#3A4152" stroke-width="3"/> <circle cx="120" cy="188" r="4" fill="#FF4D63"/> <path d="M48 86 C36 62 34 34 42 20 C48 10 58 12 64 18 L96 58 Z" fill="#E4863A"/> <path d="M57 74 C49 56 47 40 51 30 C54 26 58 27 61 31 L84 60 Z" fill="#F6C59A"/> <path d="M152 86 C164 62 166 34 158 20 C152 10 142 12 136 18 L104 58 Z" fill="#E4863A"/> <path d="M143 74 C151 56 153 40 149 30 C146 26 142 27 139 31 L116 60 Z" fill="#F6C59A"/> <path d="M100 50 C135 50 156 74 156 100 C161 112 158 124 151 131 C142 145 124 153 100 153 C76 153 58 145 49 131 C42 124 39 112 44 100 C44 74 65 50 100 50 Z" fill="#E4863A"/> <path d="M100 56 C106 56 108 70 108 84 C117 96 136 106 138 122 C139 141 120 153 100 153 C80 153 61 141 62 122 C64 106 83 96 92 84 C92 70 94 56 100 56 Z" fill="#FFF6EC"/> <ellipse cx="77" cy="98" rx="6.5" ry="7" fill="#1B1B24"/> <ellipse cx="123" cy="98" rx="6.5" ry="7" fill="#1B1B24"/> <circle cx="79.5" cy="95.5" r="2.2" fill="#FFFFFF"/> <circle cx="125.5" cy="95.5" r="2.2" fill="#FFFFFF"/> <circle cx="64" cy="119" r="7" fill="#FF8A99" opacity=".45"/> <circle cx="136" cy="119" r="7" fill="#FF8A99" opacity=".45"/> <path d="M90 113 Q100 106 110 113 Q110 121 100 125 Q90 121 90 113 Z" fill="#1B1B24"/> <path d="M96 133 Q100 145 104 133 Z" fill="#FF6B7E"/> <path d="M100 125 V131 M100 131 Q93 138 86 132 M100 131 Q107 138 114 132" fill="none" stroke="#1B1B24" stroke-width="2.6" stroke-linecap="round"/> </svg></span>
+    </div>
+    <p id="heroText">Сфотографируйте ленту — объясним ритм, интервалы и возможные отклонения.</p>
+    <div class="paper strip" aria-hidden="true">
+      <svg viewBox="0 0 390 112" preserveAspectRatio="xMinYMid slice">
+        <path class="trace-path draw-once" d="M0 70 L18 70 q5 -8.4 10 0 l5 0 l2 3.6 l3 -40.8 l3 48 l2 -10.8 l3 0 l7 0 q7 -14.4 14 0 L106 70 q5 -8.4 10 0 l5 0 l2 3.6 l3 -40.8 l3 48 l2 -10.8 l3 0 l7 0 q7 -14.4 14 0 L194 70 q5 -8.4 10 0 l5 0 l2 3.6 l3 -40.8 l3 48 l2 -10.8 l3 0 l7 0 q7 -14.4 14 0 L282 70 q5 -8.4 10 0 l5 0 l2 3.6 l3 -40.8 l3 48 l2 -10.8 l3 0 l7 0 q7 -14.4 14 0 L352 70"/>
+        <circle class="pen" cx="352" cy="70" r="12" fill="#FF4D63" opacity=".18"/>
+        <circle cx="352" cy="70" r="4.5" fill="#FF4D63"/>
+      </svg>
+    </div>
+  </section>
+
+  <section class="panel" id="uploadPanel">
+    <div class="mode" role="group" aria-label="Для кого расшифровка">
+      <button type="button" data-mode="patient" aria-pressed="true">Я пациент</button>
+      <button type="button" data-mode="doctor" aria-pressed="false">Я врач</button>
+    </div>
+
+    <div class="plabel"><span>Скорость ленты</span><button type="button" class="linkish" id="speedHelpBtn" aria-expanded="false">Где посмотреть?</button></div>
+    <div class="seg" role="radiogroup" aria-label="Скорость ленты" id="speedSeg">
+      <button type="button" role="radio" data-v="25" aria-checked="false">25 мм/с</button>
+      <button type="button" role="radio" data-v="50" aria-checked="false">50 мм/с</button>
+      <button type="button" role="radio" data-v="auto" aria-checked="true">Не знаю</button>
+    </div>
+    <p class="hint speed-help" id="speedHelp" hidden>Скорость обычно напечатана внизу или вверху ленты: «25 mm/s» или «50 mm/s». В России часто пишут на 50 мм/с. Если ошибиться, пульс и все интервалы будут неверными в 2 раза. При «Не знаю» ИИ попробует найти надпись сам и предупредит, если не найдёт.</p>
+    <div class="plabel"><span>Амплитуда</span></div>
+    <div class="seg" role="radiogroup" aria-label="Амплитуда" id="ampSeg">
+      <button type="button" role="radio" data-v="10" aria-checked="true">10 мм/мВ</button>
+      <button type="button" role="radio" data-v="5" aria-checked="false">5 мм/мВ</button>
+      <button type="button" role="radio" data-v="20" aria-checked="false">20 мм/мВ</button>
+    </div>
+
+    <div class="shots" id="shots"></div>
+    <div class="add-row" id="addRow">
+      <button type="button" class="btn btn-primary" id="camBtn">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 8h3l2-3h6l2 3h3v11H4z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><circle cx="12" cy="13" r="3.5" fill="none" stroke="currentColor" stroke-width="1.8"/></svg>
+        <span id="camLabel">Сфотографировать ЭКГ</span>
+      </button>
+      <button type="button" class="btn" id="galBtn"><span id="galLabel">Выбрать из галереи</span></button>
+    </div>
+    <p class="hint" id="shotsHint" hidden></p>
+    <input type="file" id="camInput" accept="image/*" capture="environment" hidden>
+    <input type="file" id="galInput" accept="image/*" multiple hidden>
+
+    <button class="btn btn-primary" id="analyzeBtn" type="button" disabled hidden>Расшифровать</button>
+
+    <details class="tips" id="tips">
+      <summary>Как снимать правильно</summary>
+      <div class="tips-body">
+        <div class="tips-grid" id="tipsGrid"></div>
+        <ul class="tips-list">
+          <li>Положите ленту на ровную поверхность и разгладьте сгибы.</li>
+          <li>Снимайте при дневном свете, без вспышки.</li>
+          <li>Держите телефон параллельно листу, прямо над ним.</li>
+          <li>В кадре должны быть все отведения и надпись со скоростью.</li>
+          <li>Длинную ленту снимайте частями — до 4 фото.</li>
+          <li>Закройте ФИО и другие личные данные пациента.</li>
+        </ul>
+      </div>
+    </details>
+
+    <details class="more">
+      <summary id="moreSummary">Расскажите о себе (повышает точность)</summary>
+      <div class="fields">
+        <div><label for="age">Возраст</label><input id="age" type="number" min="0" max="120" inputmode="numeric" placeholder="например, 54"></div>
+        <div><label for="sex">Пол</label>
+          <select id="sex"><option value="">Не указан</option><option>Мужской</option><option>Женский</option></select></div>
+        <div class="full"><label for="symptoms" id="symLabel">Что беспокоит</label>
+          <textarea id="symptoms" placeholder="Например: иногда колет в груди, быстро устаю при подъёме по лестнице"></textarea></div>
+        <div class="full doctor-only" hidden><label for="meds">Препараты, анамнез, предыдущие ЭКГ</label>
+          <textarea id="meds" placeholder="ИБС, ПИКС 2019; бисопролол 5 мг, амиодарон; на ЭКГ от 03.2026 — синусовый ритм, БПНПГ"></textarea></div>
+      </div>
+    </details>
+
+    <div class="box" id="apiBox" hidden>
+      <b class="display" style="font-size:16px">Подключение к ИИ</b>
+      <p class="hint" style="margin:6px 0 12px">Файл открыт вне Claude, поэтому для анализа нужен ваш API-ключ. Он хранится только в этом браузере.</p>
+      <div class="fields" style="margin-top:0">
+        <div class="full"><label for="provider">Сервис</label>
+          <select id="provider"><option value="gemini">Google Gemini — есть бесплатный лимит</option><option value="anthropic">Anthropic Claude — платно</option></select></div>
+        <div class="full"><label for="apiKey" id="keyLabel">API-ключ</label><input id="apiKey" type="password" autocomplete="off"></div>
+        <div class="full"><label for="model">Модель</label><select id="model"></select></div>
+      </div>
+      <p class="hint" id="keyHint"></p>
+      <button type="button" class="btn" id="testBtn">Проверить соединение и ключ</button>
+      <p class="hint" id="testOut" role="status"></p>
+    </div>
+
+    <p class="notice" id="notice"></p>
+    <p class="error" id="error" role="alert"></p>
+  </section>
+
+  <section class="status" id="statusPanel" aria-live="polite">
+    <h2 class="display">Читаю вашу ЭКГ</h2>
+    <p class="hint" id="statusText">Обычно 20–60 секунд. Экран можно не закрывать.</p>
+    <div class="paper scan-strip" aria-hidden="true">
+      <svg viewBox="0 0 390 150" preserveAspectRatio="none">
+        <path class="trace-path scan-path" d="M0 90 L14 90 q5.5 -10.5 11 0 l5.5 0 l2.2 4.5 l3.3 -51 l3.3 60 l2.2 -13.5 l3.3 0 l7.7 0 q7.7 -18 15.4 0 L106 90 q5.5 -10.5 11 0 l5.5 0 l2.2 4.5 l3.3 -51 l3.3 60 l2.2 -13.5 l3.3 0 l7.7 0 q7.7 -18 15.4 0 L198 90 q5.5 -10.5 11 0 l5.5 0 l2.2 4.5 l3.3 -51 l3.3 60 l2.2 -13.5 l3.3 0 l7.7 0 q7.7 -18 15.4 0 L290 90 q5.5 -10.5 11 0 l5.5 0 l2.2 4.5 l3.3 -51 l3.3 60 l2.2 -13.5 l3.3 0 l7.7 0 q7.7 -18 15.4 0 L390 90"/>
+      </svg>
+      
+    </div>
+    <ol class="steps" id="steps"></ol>
+    <div class="status-foot"><button type="button" class="textbtn" id="cancelBtn" style="color:var(--vein)">Отменить</button></div>
+  </section>
+
+  <section class="result" id="resultPanel" hidden></section>
+
+  <p class="disclaimer no-print">Прототип. Результат сформирован ИИ, это не медицинское заключение и не медицинское изделие. Решения о лечении принимает врач. При боли в груди, обмороке или резкой одышке звоните 103 или 112.</p>
+</div>
+
+<div class="toast" id="toast" role="status" hidden></div>
+
+<div class="editor" id="editor" hidden role="dialog" aria-modal="true" aria-labelledby="edTitle">
+  <div class="ed-head">
+    <button type="button" class="textbtn" id="edCancel">Отмена</button>
+    <b id="edTitle" tabindex="-1">Выравнивание</b>
+    <button type="button" class="textbtn" id="edDone">Готово</button>
+  </div>
+  <p class="ed-hint">Перетащите углы к краям ленты</p>
+  <div class="ed-stage" id="edStage">
+    <canvas id="edCanvas"></canvas>
+    <svg id="edOverlay" aria-hidden="true"><path id="edMask" fill-rule="evenodd"/><path id="edQuad"/></svg>
+    <div class="ed-h" data-k="0"></div>
+    <div class="ed-h" data-k="1"></div>
+    <div class="ed-h" data-k="2"></div>
+    <div class="ed-h" data-k="3"></div>
+    <canvas class="loupe" id="loupe" width="220" height="220" hidden></canvas>
+  </div>
+  <div class="ed-tools">
+    <button type="button" id="edRotate"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 12a8 8 0 1 1-2.3-5.7M20 4v5h-5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>Повернуть</button>
+    <button type="button" id="edReset"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>Весь кадр</button>
+  </div>
+</div>
+
+<script>
+(function(){
+  const $ = id => document.getElementById(id);
+  const analyzeBtn=$("analyzeBtn"), errorEl=$("error"), notice=$("notice");
+  const uploadPanel=$("uploadPanel"), statusPanel=$("statusPanel"), resultPanel=$("resultPanel"), hero=$("hero"), newBtn=$("newBtn");
+
+  const MAX_SHOTS=4;
+  let shots=[], shotSeq=0, maxShots=MAX_SHOTS;
+  let sample=null, canSendImages=false, localMode=false;
+
+  // --- Режим: пациент / врач ---
+  let mode="patient";
+  try{ const saved=localStorage.getItem("ekg-mode"); if(saved==="doctor"||saved==="patient") mode=saved; }catch(e){}
+  const modeButtons=document.querySelectorAll(".mode button");
+  function applyMode(){
+    modeButtons.forEach(b=>b.setAttribute("aria-pressed", String(b.dataset.mode===mode)));
+    const doc = mode==="doctor";
+    $("heroText").textContent = doc
+      ? "Загрузите ЭКГ в 12 отведениях — получите протокол: ритм, ось, интервалы, ST-T, заключение и дифференциальный ряд."
+      : "Сфотографируйте ленту ЭКГ — объясним простыми словами, что на ней видно и нужно ли идти к врачу.";
+    $("moreSummary").textContent = doc ? "Клинические данные (повышают точность)" : "Расскажите о себе (повышает точность)";
+    $("symLabel").textContent = doc ? "Жалобы и клиническая ситуация" : "Что беспокоит";
+    $("symptoms").placeholder = doc
+      ? "Давящая боль за грудиной 40 мин, иррадиация в левую руку, АД 150/90"
+      : "Например: иногда колет в груди, быстро устаю при подъёме по лестнице";
+    document.querySelectorAll(".doctor-only").forEach(el=>el.hidden=!doc);
+  }
+  modeButtons.forEach(b=>b.addEventListener("click", ()=>{
+    mode=b.dataset.mode;
+    try{ localStorage.setItem("ekg-mode", mode); }catch(e){}
+    applyMode();
+  }));
+  applyMode();
+
+  // --- Локальный режим (файл открыт вне Claude) ---
+  function enableLocal(){
+    if(localMode) return;
+    localMode=true;
+    $("apiBox").hidden=false;
+    let framed=false; try{ framed = window.top!==window; }catch(e){ framed=true; }
+    if(framed) showNotice("Страница открыта во встроенном окне (например, в предпросмотре Claude или мессенджера), где запросы к внешним сервисам заблокированы. Скачайте файл и откройте его напрямую в Chrome, Edge или Firefox.");
+    try{ const pv=localStorage.getItem("ekg-provider"); if(PROVIDERS[pv]) $("provider").value=pv; }catch(e){}
+    applyProvider();
+  }
+
+  const PROVIDERS = {
+    gemini: {
+      placeholder:"AIza...",
+      hint:"Ключ: aistudio.google.com → Get API key. На бесплатном тарифе Google может использовать отправленные данные для улучшения своих продуктов — не загружайте ЭКГ с ФИО и данными реальных пациентов.",
+      models:[["auto","Автовыбор — при перегрузке пробует другую"],["gemini-3.8-flash","Gemini 3.8 Flash — бесплатно"],["gemini-3.7-flash","Gemini 3.7 Flash — бесплатно"],["gemini-3.6-flash","Gemini 3.6 Flash — бесплатно"],["gemini-2.5-flash","Gemini 2.5 Flash — бесплатно"],["gemini-3.1-pro-preview","Gemini 3.1 Pro — точнее, только платно"]],
+      fallback:["gemini-3.8-flash","gemini-3.7-flash","gemini-3.6-flash","gemini-2.5-flash"]
+    },
+    anthropic: {
+      placeholder:"sk-ant-...",
+      hint:"Ключ: console.anthropic.com → API Keys (нужно пополнить баланс).",
+      models:[["claude-opus-5","Claude Opus 5 — точнее"],["claude-sonnet-5","Claude Sonnet 5 — быстрее и дешевле"]]
+    }
+  };
+  function applyProvider(){
+    const pv=$("provider").value, cfg=PROVIDERS[pv];
+    $("apiKey").placeholder=cfg.placeholder;
+    $("keyHint").textContent=cfg.hint;
+    $("model").innerHTML=cfg.models.map(([v,t])=>`<option value="${v}">${t}</option>`).join("");
+    try{
+      $("apiKey").value = localStorage.getItem("ekg-key-"+pv)||"";
+      const mdl=localStorage.getItem("ekg-model-"+pv); if(mdl && cfg.models.some(m=>m[0]===mdl)) $("model").value=mdl;
+    }catch(e){}
+    updateBtn();
+  }
+  $("provider").addEventListener("change", ()=>{ try{ localStorage.setItem("ekg-provider",$("provider").value); }catch(e){} applyProvider(); });
+  $("apiKey").addEventListener("input", ()=>{ try{ localStorage.setItem("ekg-key-"+$("provider").value,$("apiKey").value.trim()); }catch(e){} updateBtn(); });
+  $("model").addEventListener("change", ()=>{ try{ localStorage.setItem("ekg-model-"+$("provider").value,$("model").value); }catch(e){} });
+
+  $("testBtn").addEventListener("click", async ()=>{
+    const out=$("testOut"), key=$("apiKey").value.trim(), pv=$("provider").value;
+    if(!key){ out.textContent="Сначала вставьте ключ."; return; }
+    out.textContent="Проверяю…";
+    const t0=Date.now();
+    try{
+      let r;
+      if(pv==="gemini") r=await fetch("https://generativelanguage.googleapis.com/v1beta/models?pageSize=1",{headers:{"x-goog-api-key":key}});
+      else r=await fetch("https://api.anthropic.com/v1/models?limit=1",{headers:{"x-api-key":key,"anthropic-version":"2023-06-01","anthropic-dangerous-direct-browser-access":"true"}});
+      const ms=Date.now()-t0;
+      if(r.ok) out.textContent=`✓ Соединение и ключ в порядке (ответ за ${ms} мс). Если расшифровка всё равно не проходит — попробуйте одно фото или другую модель.`;
+      else{ const j=await r.json().catch(()=>null); out.textContent=`✗ Сервис ответил ошибкой ${r.status}: ${j&&j.error&&j.error.message||"без описания"}`; }
+    }catch(e){
+      out.textContent=`✗ Сервис недоступен из этого браузера (${e.message}). Проверьте VPN, блокировщики рекламы, «Экономию трафика» и попробуйте другую сеть (Wi-Fi ↔ мобильный интернет).`;
+    }
+  });
+  function blobToBase64(b){
+    return new Promise((res,rej)=>{ const r=new FileReader(); r.onload=()=>res(String(r.result).split(",")[1]); r.onerror=()=>rej(new Error("read")); r.readAsDataURL(b); });
+  }
+  function parseJsonText(text){
+    const clean=String(text||"").replace(/```json|```/g,"").trim();
+    const a=clean.indexOf("{"), z=clean.lastIndexOf("}");
+    try{ return JSON.parse(clean.slice(a,z+1)); }catch(e){ throw {code:"invalid_json"}; }
+  }
+  async function analyzeLocal(prompt, signal){
+    const key=$("apiKey").value.trim(), model=$("model").value, pv=$("provider").value;
+    const datas=await Promise.all(shots.map(x=>blobToBase64(x.blob)));
+    const sizeMB = (datas.reduce((n,x)=>n+x.length,0)/1048576).toFixed(1);
+    const netFetch = async (url, opts)=>{
+      for(let attempt=0; attempt<2; attempt++){
+        try{ return await fetch(url, opts); }
+        catch(e){
+          if(e.name==="AbortError") throw {code:"cancelled"};
+          if(attempt===0){ statusHint("Связь прервалась, повторяю запрос…"); await new Promise(r=>setTimeout(r,2000)); continue; }
+          throw {code:"network", message:`${e && e.message || "сеть"}; фото: ${shots.length}, объём ${sizeMB} МБ; модель: ${model}; ${navigator.onLine===false?"устройство офлайн":"онлайн"}`};
+        }
+      }
+    };
+    let resp;
+    if(pv==="gemini"){
+      const list = model==="auto" ? PROVIDERS.gemini.fallback : [model];
+      for(let i=0;i<list.length;i++){
+        try{
+          resp = await netFetch(`https://generativelanguage.googleapis.com/v1beta/models/${encodeURIComponent(list[i])}:generateContent`,{
+            method:"POST", signal,
+            headers:{"content-type":"application/json","x-goog-api-key":key},
+            body:JSON.stringify({
+              contents:[{role:"user",parts:[...datas.map(data=>({inline_data:{mime_type:"image/jpeg",data}})),{text:prompt}]}],
+              generationConfig:{responseMimeType:"application/json"}
+            })
+          });
+        }catch(err){
+          if(err.code==="network" && i<list.length-1){ statusHint("Нет ответа от " + list[i] + ", пробую " + list[i+1] + "…"); continue; }
+          throw err;
+        }
+        const busy = [500,503,429,404].includes(resp.status);
+        if(!busy || i===list.length-1) break;
+        statusHint("Модель " + list[i] + " перегружена, пробую " + list[i+1] + "…");
+      }
+    }else{
+      resp = await netFetch("https://api.anthropic.com/v1/messages",{
+        method:"POST", signal,
+        headers:{"content-type":"application/json","x-api-key":key,"anthropic-version":"2023-06-01","anthropic-dangerous-direct-browser-access":"true"},
+        body:JSON.stringify({model, max_tokens:4000,
+          messages:[{role:"user",content:[...datas.map(data=>({type:"image",source:{type:"base64",media_type:"image/jpeg",data}})),{type:"text",text:prompt}]}]})
+      });
+    }
+    const json = await resp.json().catch(()=>null);
+    if(!resp.ok){
+      const msg = json && json.error && json.error.message || "";
+      let code="api_error";
+      if(resp.status===401 || resp.status===403 || /API key/i.test(msg)) code="bad_key";
+      else if(resp.status===429) code="rate_limited";
+      else if(resp.status===503 || /high demand|overloaded|unavailable/i.test(msg)) code="overloaded";
+      else if(resp.status===404) code="bad_model";
+      else if(/location|region/i.test(msg)) code="region";
+      throw {code, message:msg};
+    }
+    let text="";
+    if(pv==="gemini"){
+      const cand = json.candidates && json.candidates[0];
+      if(!cand || !cand.content){ throw {code:"refused", message: (json.promptFeedback && json.promptFeedback.blockReason) || (cand && cand.finishReason) || ""}; }
+      text = (cand.content.parts||[]).filter(x=>x.text && !x.thought).map(x=>x.text).join("\n");
+    }else{
+      text=(json.content||[]).filter(c=>c.type==="text").map(c=>c.text).join("\n");
+    }
+    return parseJsonText(text);
+  }
+
+  // --- Подключение к Claude ---
+  (async () => {
+    try{
+      sample = window.claude && await window.claude.use("sample");
+      if(!sample){ enableLocal(); return; }
+      const caps = await sample.limits().catch(()=>null);
+      canSendImages = !!(caps && caps.images);
+      if(caps && caps.images && caps.images.maxCount) { maxShots=Math.min(MAX_SHOTS, caps.images.maxCount); renderShots(); }
+      if(!canSendImages) showNotice("В этом приложении Claude пока нельзя отправлять изображения. Откройте страницу в браузере на claude.ai.");
+      updateBtn();
+    }catch(e){ enableLocal(); }
+  })();
+
+  function statusHint(t){ $("statusText").textContent=t; }
+  function showNotice(t){ notice.textContent=t; notice.style.display="block"; }
+  function showError(t){ errorEl.textContent=t; errorEl.style.display=t?"block":"none"; }
+  function updateBtn(){
+    const ready = (sample && canSendImages) || (localMode && $("apiKey").value.trim());
+    analyzeBtn.disabled = !(shots.length && shots.every(x=>x.url) && ready);
+  }
+
+  // --- Параметры записи ---
+  let paperSpeed="auto", amplitude="10";
+  function bindSeg(id, set){
+    const seg=$(id);
+    seg.addEventListener("click", e=>{
+      const b=e.target.closest("button[data-v]"); if(!b) return;
+      seg.querySelectorAll("button").forEach(x=>x.setAttribute("aria-checked", String(x===b)));
+      set(b.dataset.v);
+    });
+  }
+  bindSeg("speedSeg", v=>paperSpeed=v);
+  bindSeg("ampSeg", v=>amplitude=v);
+  $("speedHelpBtn").addEventListener("click", ()=>{
+    const h=$("speedHelp"); h.hidden=!h.hidden; $("speedHelpBtn").setAttribute("aria-expanded", String(!h.hidden));
+  });
+
+  // --- Подсказки по съёмке ---
+  (function(){
+    const sheet=(inner, ok)=>`<svg viewBox="0 0 160 110">${inner}<circle cx="146" cy="14" r="11" fill="${ok?"#1F7A4D":"#B00020"}"/>${ok?'<path d="M140 14l4 4 8-8" fill="none" stroke="#fff" stroke-width="2.4"/>':'<path d="M141 9l10 10M151 9l-10 10" stroke="#fff" stroke-width="2.4"/>'}</svg>`;
+    const grid=(x,y,w,h)=>{ let g=""; for(let i=1;i<8;i++) g+=`<line x1="${x+w*i/8}" y1="${y}" x2="${x+w*i/8}" y2="${y+h}"/>`; for(let i=1;i<5;i++) g+=`<line x1="${x}" y1="${y+h*i/5}" x2="${x+w}" y2="${y+h*i/5}"/>`; return `<g stroke="#F2B8BF" stroke-width=".6">${g}</g>`; };
+    const trace=(x,y,w)=>{ let d=`M${x} ${y}`; const step=w/5; for(let i=0;i<5;i++){ const s=x+i*step; d+=` H${s+step*.35} l3 -14 l3 20 l3 -6 H${s+step}`; } return `<path d="${d}" fill="none" stroke="#C4122F" stroke-width="1.4"/>`; };
+    const paper=(pts)=>`<polygon points="${pts}" fill="#fff" stroke="#999" stroke-width="1"/>`;
+    const tips=[
+      {cls:"good", t:"Так правильно", s:"ровно, весь лист", svg: sheet(paper("24,18 136,18 136,92 24,92")+grid(24,18,112,74)+trace(24,42,112)+trace(24,74,112), true)},
+      {cls:"bad", t:"Нельзя", s:"снято под углом", svg: sheet(`<polygon points="44,20 116,20 146,94 14,94" fill="#fff" stroke="#999"/>`+`<path d="M40 44 L120 44 M28 74 L132 74" stroke="#C4122F" stroke-width="1.4"/>`, false)},
+      {cls:"bad", t:"Нельзя", s:"блики и тени", svg: sheet(paper("24,18 136,18 136,92 24,92")+grid(24,18,112,74)+trace(24,42,112)+trace(24,74,112)+`<ellipse cx="96" cy="46" rx="30" ry="16" fill="#fff" opacity=".95"/><rect x="24" y="62" width="60" height="30" fill="#000" opacity=".25"/>`, false)},
+      {cls:"bad", t:"Нельзя", s:"обрезаны края", svg: sheet(paper("-10,8 150,8 150,102 -10,102")+grid(-10,8,160,94)+trace(-10,40,160)+trace(-10,76,160), false)}
+    ];
+    $("tipsGrid").innerHTML = tips.map(x=>`<figure class="tip ${x.cls}">${x.svg}<figcaption><b>${x.t}</b><br>${x.s}</figcaption></figure>`).join("");
+    try{ if(!localStorage.getItem("ekg-tips-seen")){ $("tips").open=true; localStorage.setItem("ekg-tips-seen","1"); } }catch(e){ $("tips").open=true; }
+  })();
+
+  // --- Фото ---
+  const FULL=[[0,0],[1,0],[1,1],[0,1]];
+  const camInput=$("camInput"), galInput=$("galInput");
+  $("camBtn").addEventListener("click", ()=>camInput.click());
+  $("galBtn").addEventListener("click", ()=>galInput.click());
+  camInput.addEventListener("change", ()=>{ addFiles([...camInput.files], true); camInput.value=""; });
+  galInput.addEventListener("change", ()=>{ const f=[...galInput.files]; addFiles(f, f.length===1); galInput.value=""; });
+  const addRow=$("addRow");
+  ["dragenter","dragover"].forEach(ev=>uploadPanel.addEventListener(ev,e=>{ if(e.dataTransfer && [...e.dataTransfer.types].includes("Files")){ e.preventDefault(); addRow.classList.add("drag"); } }));
+  ["dragleave","drop"].forEach(ev=>uploadPanel.addEventListener(ev,()=>addRow.classList.remove("drag")));
+  uploadPanel.addEventListener("drop", e=>{ if(e.dataTransfer && e.dataTransfer.files.length){ e.preventDefault(); addFiles([...e.dataTransfer.files], e.dataTransfer.files.length===1); } });
+
+  function loadImage(file){
+    return new Promise((res,rej)=>{
+      const url=URL.createObjectURL(file), img=new Image();
+      img.onload=()=>res(img);
+      img.onerror=()=>{ URL.revokeObjectURL(url); rej(new Error("decode")); };
+      img.src=url;
+    });
+  }
+  async function addFiles(files, openEdit){
+    showError("");
+    files = files.filter(f=>!f.type || f.type.startsWith("image/"));
+    const free = maxShots - shots.length;
+    if(free<=0){ showError(`Можно добавить не больше ${maxShots} фото.`); return; }
+    if(files.length>free) showError(`Добавлены первые ${free} фото — больше ${maxShots} отправить нельзя.`);
+    files = files.slice(0, free);
+    let last=null;
+    for(const f of files){
+      try{
+        const img=await loadImage(f);
+        const shot={id:++shotSeq, img, rot:0, quad:FULL.map(p=>p.slice()), blob:null, url:null};
+        shots.push(shot); renderShots();
+        await processShot(shot);
+        last=shot;
+      }catch(e){ showError("Не удалось открыть фото. Если это HEIC с iPhone, сохраните его как JPG или выберите из галереи."); }
+    }
+    renderShots();
+    if(openEdit && last) openEditor(last);
+  }
+  function renderShots(){
+    const box=$("shots");
+    box.innerHTML = shots.map((s,i)=>`<div class="shot${s.url?"":" busy"}" data-id="${s.id}">
+        ${s.url?`<img src="${s.url}" alt="Фото ЭКГ ${i+1}">`:`<img alt="">`}
+        <span class="num">${i+1}</span>
+        <div class="shot-actions"><button type="button" data-act="edit">Выровнять</button><button type="button" data-act="del" aria-label="Удалить фото ${i+1}">Удалить</button></div>
+      </div>`).join("");
+    addRow.hidden = shots.length>=maxShots;
+    addRow.classList.toggle("compact", shots.length>0);
+    $("camLabel").textContent = shots.length ? "Ещё фото" : "Сфотографировать ЭКГ";
+    $("galLabel").textContent = shots.length ? "Из галереи" : "Выбрать из галереи";
+    $("camBtn").classList.toggle("btn-primary", !shots.length);
+    analyzeBtn.hidden = !shots.length;
+    $("shotsHint").hidden = !shots.length;
+    $("shotsHint").textContent = shots.length
+      ? `Фото: ${shots.length} из ${maxShots}. Проверьте, что края ленты выровнены.`
+      : `Можно добавить до ${maxShots} фото одной записи, если отведения на разных листах.`;
+    updateBtn();
+  }
+  $("shots").addEventListener("click", e=>{
+    const b=e.target.closest("button[data-act]"); if(!b) return;
+    const id=+b.closest(".shot").dataset.id, shot=shots.find(s=>s.id===id); if(!shot) return;
+    if(b.dataset.act==="del"){ if(shot.url) URL.revokeObjectURL(shot.url); shots=shots.filter(s=>s!==shot); renderShots(); }
+    else openEditor(shot);
+  });
+
+  function rotatedCanvas(img, rot, maxSide){
+    const k=Math.min(1, maxSide/Math.max(img.naturalWidth,img.naturalHeight));
+    const w=Math.round(img.naturalWidth*k), h=Math.round(img.naturalHeight*k), swap=rot%180!==0;
+    const c=document.createElement("canvas"); c.width=swap?h:w; c.height=swap?w:h;
+    const ctx=c.getContext("2d"); ctx.fillStyle="#fff"; ctx.fillRect(0,0,c.width,c.height);
+    ctx.translate(c.width/2,c.height/2); ctx.rotate(rot*Math.PI/180); ctx.drawImage(img,-w/2,-h/2,w,h);
+    return c;
+  }
+  const isFull=q=>q.every((p,i)=>Math.abs(p[0]-FULL[i][0])<.003 && Math.abs(p[1]-FULL[i][1])<.003);
+  const dist=(a,b)=>Math.hypot(a[0]-b[0],a[1]-b[1]);
+  function warp(src, q, W, H){
+    const sw=src.width, sh=src.height, sd=src.getContext("2d").getImageData(0,0,sw,sh).data;
+    const out=document.createElement("canvas"); out.width=W; out.height=H;
+    const octx=out.getContext("2d"), od=octx.createImageData(W,H), o=od.data;
+    const [x0,y0]=q[0],[x1,y1]=q[1],[x2,y2]=q[2],[x3,y3]=q[3];
+    const dx1=x1-x2, dx2=x3-x2, dx3=x0-x1+x2-x3, dy1=y1-y2, dy2=y3-y2, dy3=y0-y1+y2-y3;
+    let a,b,c,d,e,f,g,h;
+    if(Math.abs(dx3)<1e-9 && Math.abs(dy3)<1e-9){ a=x1-x0;b=x2-x1;c=x0;d=y1-y0;e=y2-y1;f=y0;g=0;h=0; }
+    else{
+      const den=dx1*dy2-dx2*dy1;
+      g=(dx3*dy2-dx2*dy3)/den; h=(dx1*dy3-dx3*dy1)/den;
+      a=x1-x0+g*x1; b=x3-x0+h*x3; c=x0; d=y1-y0+g*y1; e=y3-y0+h*y3; f=y0;
+    }
+    let p=0;
+    for(let yy=0;yy<H;yy++){
+      const v=(yy+.5)/H;
+      for(let xx=0;xx<W;xx++,p+=4){
+        const u=(xx+.5)/W, z=g*u+h*v+1;
+        const X=(a*u+b*v+c)/z-.5, Y=(d*u+e*v+f)/z-.5;
+        const ix=Math.floor(X), iy=Math.floor(Y);
+        if(ix<0||iy<0||ix>=sw-1||iy>=sh-1){ o[p]=o[p+1]=o[p+2]=255; o[p+3]=255; continue; }
+        const fx=X-ix, fy=Y-iy, i00=(iy*sw+ix)*4, i10=i00+4, i01=i00+sw*4, i11=i01+4;
+        const w00=(1-fx)*(1-fy), w10=fx*(1-fy), w01=(1-fx)*fy, w11=fx*fy;
+        o[p]=sd[i00]*w00+sd[i10]*w10+sd[i01]*w01+sd[i11]*w11;
+        o[p+1]=sd[i00+1]*w00+sd[i10+1]*w10+sd[i01+1]*w01+sd[i11+1]*w11;
+        o[p+2]=sd[i00+2]*w00+sd[i10+2]*w10+sd[i01+2]*w01+sd[i11+2]*w11;
+        o[p+3]=255;
+      }
+    }
+    octx.putImageData(od,0,0);
+    return out;
+  }
+  async function processShot(shot){
+    const src=rotatedCanvas(shot.img, shot.rot, 2600);
+    let out;
+    if(isFull(shot.quad)){
+      out = src.width>1800||src.height>1800 ? rotatedCanvas(shot.img, shot.rot, 1800) : src;
+    }else{
+      const q=shot.quad.map(([x,y])=>[x*src.width, y*src.height]);
+      let W=Math.max(dist(q[0],q[1]),dist(q[3],q[2])), H=Math.max(dist(q[0],q[3]),dist(q[1],q[2]));
+      const k=Math.min(1, 1800/Math.max(W,H)); W=Math.max(8,Math.round(W*k)); H=Math.max(8,Math.round(H*k));
+      out=warp(src,q,W,H);
+    }
+    const blob=await new Promise(r=>out.toBlob(r,"image/jpeg",0.85));
+    if(shot.url) URL.revokeObjectURL(shot.url);
+    shot.blob=blob; shot.url=URL.createObjectURL(blob);
+  }
+
+  // --- Редактор ---
+  const editor=$("editor"), stage=$("edStage"), edCanvas=$("edCanvas"), loupe=$("loupe");
+  const handles=[...editor.querySelectorAll(".ed-h")];
+  let ed=null;
+  function openEditor(shot){
+    ed={shot, rot:shot.rot, quad:shot.quad.map(p=>p.slice()), base:null, lay:null, active:-1, lastFocus:document.activeElement};
+    editor.hidden=false; document.body.style.overflow="hidden";
+    buildBase(); requestAnimationFrame(layout);
+    $("edTitle").focus();
+  }
+  function closeEditor(){
+    editor.hidden=true; document.body.style.overflow=""; loupe.hidden=true;
+    const f=ed && ed.lastFocus; ed=null; if(f && f.focus) f.focus();
+  }
+  function buildBase(){
+    ed.base=rotatedCanvas(ed.shot.img, ed.rot, 1600);
+    edCanvas.width=ed.base.width; edCanvas.height=ed.base.height;
+    edCanvas.getContext("2d").drawImage(ed.base,0,0);
+  }
+  function layout(){
+    if(!ed) return;
+    const r=stage.getBoundingClientRect(), pad=30;
+    const s=Math.min((r.width-2*pad)/ed.base.width,(r.height-2*pad)/ed.base.height);
+    const dw=ed.base.width*s, dh=ed.base.height*s, ox=(r.width-dw)/2, oy=(r.height-dh)/2;
+    ed.lay={dw,dh,ox,oy,sw:r.width,sh:r.height};
+    Object.assign(edCanvas.style,{left:ox+"px",top:oy+"px",width:dw+"px",height:dh+"px"});
+    drawQuad();
+  }
+  function drawQuad(){
+    const {dw,dh,ox,oy,sw,sh}=ed.lay;
+    const pts=ed.quad.map(([x,y])=>[ox+x*dw, oy+y*dh]);
+    handles.forEach((h,i)=>{ h.style.left=pts[i][0]+"px"; h.style.top=pts[i][1]+"px"; h.classList.toggle("active", i===ed.active); });
+    const poly=`M${pts.map(p=>p.join(" ")).join("L")}Z`;
+    $("edOverlay").setAttribute("viewBox",`0 0 ${sw} ${sh}`);
+    $("edMask").setAttribute("d",`M0 0H${sw}V${sh}H0Z${poly}`);
+    $("edQuad").setAttribute("d",poly);
+  }
+  function drawLoupe(k){
+    const {dw,dh,ox,oy}=ed.lay, [nx,ny]=ed.quad[k];
+    const px=ox+nx*dw, py=oy+ny*dh, zoom=3, sz=220, srcSz=sz/(dw/ed.base.width)/zoom/2;
+    const ctx=loupe.getContext("2d");
+    ctx.fillStyle="#000"; ctx.fillRect(0,0,sz,sz);
+    ctx.drawImage(ed.base, nx*ed.base.width-srcSz/2, ny*ed.base.height-srcSz/2, srcSz, srcSz, 0,0,sz,sz);
+    ctx.strokeStyle="#FF5A6E"; ctx.lineWidth=3; ctx.beginPath(); ctx.moveTo(sz/2,sz/2-24); ctx.lineTo(sz/2,sz/2+24); ctx.moveTo(sz/2-24,sz/2); ctx.lineTo(sz/2+24,sz/2); ctx.stroke();
+    let lx=px-55, ly=py-150; if(ly<4) ly=py+40; lx=Math.max(4,Math.min(ed.lay.sw-114,lx));
+    loupe.style.left=lx+"px"; loupe.style.top=ly+"px"; loupe.hidden=false;
+  }
+  stage.addEventListener("pointerdown", e=>{
+    if(!ed) return;
+    const r=stage.getBoundingClientRect(), x=e.clientX-r.left, y=e.clientY-r.top, {dw,dh,ox,oy}=ed.lay;
+    let best=-1, bd=56;
+    ed.quad.forEach(([nx,ny],i)=>{ const d=Math.hypot(ox+nx*dw-x, oy+ny*dh-y); if(d<bd){ bd=d; best=i; } });
+    if(best<0) return;
+    ed.active=best; stage.setPointerCapture(e.pointerId);
+    ed.grab=[ox+ed.quad[best][0]*dw-x, oy+ed.quad[best][1]*dh-y];
+    drawQuad(); drawLoupe(best); e.preventDefault();
+  });
+  stage.addEventListener("pointermove", e=>{
+    if(!ed || ed.active<0) return;
+    const r=stage.getBoundingClientRect(), {dw,dh,ox,oy}=ed.lay;
+    const nx=Math.min(1,Math.max(0,(e.clientX-r.left+ed.grab[0]-ox)/dw));
+    const ny=Math.min(1,Math.max(0,(e.clientY-r.top+ed.grab[1]-oy)/dh));
+    ed.quad[ed.active]=[nx,ny]; drawQuad(); drawLoupe(ed.active);
+  });
+  const endDrag=()=>{ if(!ed) return; ed.active=-1; loupe.hidden=true; drawQuad(); };
+  stage.addEventListener("pointerup", endDrag); stage.addEventListener("pointercancel", endDrag);
+  window.addEventListener("resize", ()=>{ if(ed) layout(); });
+  $("edRotate").addEventListener("click", ()=>{ ed.rot=(ed.rot+90)%360; ed.quad=FULL.map(p=>p.slice()); buildBase(); layout(); });
+  $("edReset").addEventListener("click", ()=>{ ed.quad=FULL.map(p=>p.slice()); drawQuad(); });
+  $("edCancel").addEventListener("click", closeEditor);
+  editor.addEventListener("keydown", e=>{ if(e.key==="Escape") closeEditor(); });
+  $("edDone").addEventListener("click", async ()=>{
+    const shot=ed.shot; shot.rot=ed.rot; shot.quad=ed.quad.map(p=>p.slice());
+    closeEditor();
+    if(shot.url){ URL.revokeObjectURL(shot.url); shot.url=null; }
+    renderShots();
+    await new Promise(r=>setTimeout(r,40));
+    await processShot(shot);
+    renderShots();
+  });
+
+  // --- Анализ ---
+  function buildPrompt(){
+    const age=$("age").value.trim(), sex=$("sex").value, sym=$("symptoms").value.trim(), meds=$("meds").value.trim();
+    const speedTxt = paperSpeed==="auto"
+      ? `Скорость ленты пользователю неизвестна. Найди на ленте надпись скорости (обычно «25 mm/s» или «50 mm/s»). Если надписи нет — оцени по ширине комплексов и сетке, считай скорость предполагаемой, пометь ЧСС и интервалы как приблизительные и прямо напиши об этом в limitations.`
+      : `Скорость ленты: ${paperSpeed} мм/с (указал пользователь): 1 мм = ${paperSpeed==="50"?20:40} мс, большая клетка 5 мм = ${paperSpeed==="50"?100:200} мс. Если надпись на ленте явно противоречит этому — используй скорость с ленты и отметь расхождение в limitations.`;
+    const ampTxt = `Амплитуда (калибровка): ${amplitude} мм/мВ${amplitude==="10"?" (стандарт)":""} — учитывай при оценке вольтажа и смещения ST. Если на ленте виден калибровочный импульс другой высоты, используй его и отметь это.`;
+    const imgTxt = shots.length>1 ? `Изображений: ${shots.length} — это части ОДНОЙ записи ЭКГ (разные листы или фрагменты). Анализируй их вместе как одну ЭКГ.` : `Изображение одно.`;
+    const common = `${imgTxt}
+${speedTxt}
+${ampTxt}
+На изображении — электрокардиограмма (фото или скан). Сначала мысленно проведи полную систематическую расшифровку: качество записи, ритм, ЧСС, электрическая ось, PR, QRS, QT/QTc, зубец P, QRS, сегмент ST, зубец T, гипертрофии, блокады, ишемия/инфаркт (включая STEMI-эквиваленты), нарушения ритма и проводимости.
+
+Правила:
+- В paper_speed_used укажи скорость, по которой считал ("25" или "50"), в speed_source — откуда она: "user" (указал пользователь), "label" (надпись на ленте), "estimated" (оценка по сетке).
+- Не выдумывай значения. Если параметр не определить — "не определяется".
+- Если на изображении не ЭКГ или качество не позволяет анализ — readable=false.
+- urgency: "normal" (без значимых отклонений), "attention" (отклонения, нужна плановая консультация врача), "urgent" (признаки неотложного состояния: STEMI и эквиваленты, ЖТ/ФЖ, АВ-блокада высокой степени, выраженная брадикардия/тахикардия и т.п.).
+- Для каждой находки дай probability — целое число 1–99: насколько ты уверен, что находка действительно есть на этой ЭКГ. Будь честен: нечёткое фото или спорные критерии — ниже 60. Не включай находки с уверенностью ниже 20.
+- Для каждой находки укажи regions — зоны сердца, к которым она относится (можно пустой массив), только из списка: ra (правое предсердие), la (левое предсердие), atria (оба предсердия), rv (правый желудочек), septum (межжелудочковая перегородка), lv_anterior (передняя стенка ЛЖ), lv_lateral (боковая стенка ЛЖ), lv_inferior (нижняя стенка и верхушка ЛЖ), sa_node (синусовый узел), atrial_path (проведение по предсердиям), av_node (АВ-узел), his (пучок Гиса), rbb (правая ножка), lbb (левая ножка), purkinje (волокна Пуркинье), accessory (дополнительный путь, WPW). Пример: нижний инфаркт → ["lv_inferior"]; ФП → ["atria"]; АВ-блокада I ст. → ["av_node"]; БЛНПГ → ["lbb"]; ГЛЖ → ["lv_anterior","lv_lateral","septum"].
+- heart_effect — характер сердечного ритма для анимации: "normal", "fast" (тахикардия), "slow" (брадикардия), "irregular" (нерегулярный ритм), "chaotic_atria" (фибрилляция/трепетание предсердий).
+- Отвечай по-русски.`;
+
+    if(mode==="doctor"){
+      return `Ты — опытный врач функциональной диагностики, пишешь заключение для коллеги-врача.
+${common}
+- Используй профессиональную терминологию и критерии (Sokolow-Lyon, Sgarbossa, Wellens, de Winter и т.п., где уместно). В detail указывай, в каких отведениях и по каким критериям.
+- Дай дифференциальный ряд и тактику с учётом клинических данных.
+- В leads перечисли ТОЛЬКО отведения с изменениями. Ключ — отведение (I, II, III, aVR, aVL, aVF, V1–V6), значение — одно из: "st_up" (элевация ST), "st_down" (депрессия ST), "t_inv" (инверсия T), "q_wave" (патологический Q). Если изменений нет — пустой объект {}.
+
+Клинические данные: возраст — ${age||"не указан"}; пол — ${sex||"не указан"}; жалобы/ситуация — ${sym||"не указаны"}; анамнез/препараты/предыдущие ЭКГ — ${meds||"не указаны"}.
+
+Ответь ТОЛЬКО JSON-объектом:
+{"readable":true,"urgency":"normal|attention|urgent","urgency_reason":"одно предложение",
+"measurements":{"rhythm":"","hr":"","axis":"","pr":"","qrs":"","qt":"","qtc":""},
+"conclusion":"заключение в стиле протокола ЭКГ",
+"paper_speed_used":"25|50","speed_source":"user|label|estimated",
+"heart_effect":"normal|fast|slow|irregular|chaotic_atria",
+"leads":{"II":"st_up","aVL":"st_down"},
+"findings":[{"title":"","detail":"отведения, критерии","probability":85,"regions":["lv_inferior"]}],
+"differential":["",""],
+"recommendations":["тактика, дообследование"],
+"limitations":""}`;
+    }
+    return `Ты — внимательный кардиолог и объясняешь результаты ЭКГ самому пациенту, человеку без медицинского образования.
+${common}
+- Пиши простыми словами, короткими предложениями. Медицинский термин можно назвать, но сразу объясни его бытовым языком.
+- Спокойный тон: не пугай, но и не преуменьшай. Не ставь окончательный диагноз — говори «на ЭКГ есть признаки…».
+- Если urgency="urgent", прямо и ясно скажи, что нужно вызвать скорую помощь сейчас.
+- Не назначай лекарства.
+
+О человеке: возраст — ${age||"не указан"}; пол — ${sex||"не указан"}; что беспокоит — ${sym||"не указано"}.
+
+Ответь ТОЛЬКО JSON-объектом:
+{"readable":true,"urgency":"normal|attention|urgent","urgency_reason":"одно простое предложение",
+"summary":"2–4 предложения: что в целом показывает ЭКГ, простыми словами",
+"paper_speed_used":"25|50","speed_source":"user|label|estimated",
+"heart_effect":"normal|fast|slow|irregular|chaotic_atria",
+"explained":[{"title":"простое название находки","meaning":"что это значит и насколько это важно","probability":85,"regions":["atria"]}],
+"measurements":{"rhythm":"","hr":"","axis":"","pr":"","qrs":"","qt":"","qtc":""},
+"next_steps":["что сделать: к какому врачу и как скоро"],
+"questions_for_doctor":["вопрос, который стоит задать врачу"],
+"limitations":"простыми словами, что могло помешать"}`;
+  }
+  let ctl=null;
+  analyzeBtn.addEventListener("click", async ()=>{
+    if(!shots.length||!(sample||localMode)) return;
+    showError("");
+    ctl=new AbortController();
+    uploadPanel.hidden=true; hero.hidden=true;
+    statusPanel.style.display="flex"; resultPanel.hidden=true; statusHint("Обычно 20–60 секунд. Экран можно не закрывать."); startSteps(); window.scrollTo({top:0});
+    try{
+      const data = (sample && canSendImages)
+        ? await sample.json(buildPrompt(), { images:shots.map(x=>x.blob), modelTier:"complex", signal:ctl.signal, cache:false })
+        : await analyzeLocal(buildPrompt(), ctl.signal);
+      showResult(data);
+    }catch(e){
+      stopSteps(); statusPanel.style.display="none"; uploadPanel.hidden=false; hero.hidden=false;
+      if(e && (e.code==="cancelled" || e.name==="AbortError")){ showError(""); return; }
+      showError(errorText(e && e.code) + (e && e.message && localMode ? " ("+e.message+")" : ""));
+      if(e && ["not_granted","sampling_disabled","images_unavailable","not_declared","capability_disabled"].includes(e.code)){ canSendImages=false; updateBtn(); }
+    }
+  });
+
+  $("cancelBtn").addEventListener("click", ()=>{ if(ctl) ctl.abort(); });
+
+  function errorText(code){
+    return ({
+      not_granted:"Доступ к анализу не разрешён. Разрешите его в диалоге Claude и перезагрузите страницу.",
+      rate_limited:"Слишком много запросов. Попробуйте через пару минут.",
+      image_rejected:"Изображение не подходит: слишком большое или повреждено. Выберите другой файл.",
+      refused:"Анализ этого изображения не выполнен. Попробуйте другое фото ЭКГ.",
+      invalid_json:"Ответ пришёл в неверном формате. Нажмите «Расшифровать» ещё раз.",
+      session_expired:"Сессия истекла. Войдите в Claude снова.",
+      bad_key:"Ключ не подходит. Проверьте, что он скопирован полностью и выбран правильный сервис.",
+      region:"Сервис недоступен в вашей стране.",
+      overloaded:"Серверы Google сейчас перегружены. Подождите пару минут или выберите другую модель.",
+      bad_model:"Модель недоступна для этого ключа (возможно, нужен платный тариф). Выберите другую модель.",
+      network:"Запрос к сервису не дошёл, даже после повтора. Нажмите «Проверить соединение и ключ» выше, чтобы понять причину.",
+      api_error:"API вернул ошибку.",
+      cancelled:"",
+      images_unavailable:"В этом приложении нельзя отправлять изображения. Откройте страницу на claude.ai."
+    })[code] || "Сбой соединения. Нажмите «Расшифровать» ещё раз.";
+  }
+
+  const esc = s => String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+
+  // --- Схема сердца ---
+  const REGIONS = {
+    ra:{name:"Правое предсердие", type:"reg atr", d:"M0 0H148V156L0 150Z"},
+    la:{name:"Левое предсердие", type:"reg atr", d:"M148 0H300V142L148 156Z"},
+    rv:{name:"Правый желудочек", type:"reg ven", d:"M0 150L138 156Q150 245 184 314L0 340Z"},
+    septum:{name:"Межжелудочковая перегородка", type:"reg ven", d:"M138 156L160 155Q170 240 196 312L184 314Q150 245 138 156Z"},
+    lv_anterior:{name:"Передняя стенка ЛЖ", type:"reg ven", d:"M160 155L300 142V204H170Q164 178 160 155Z"},
+    lv_lateral:{name:"Боковая стенка ЛЖ", type:"reg ven", d:"M170 204H300V262H184Q175 234 170 204Z"},
+    lv_inferior:{name:"Нижняя стенка и верхушка ЛЖ", type:"reg ven", d:"M184 262H300V340H120L184 314L196 312Q189 290 184 262Z"},
+    sa_node:{name:"Синусовый узел", type:"node", circle:[100,78,7]},
+    atrial_path:{name:"Проведение по предсердиям", type:"cond", d:"M100 78Q126 118 146 150"},
+    av_node:{name:"АВ-узел", type:"node", circle:[146,152,6]},
+    his:{name:"Пучок Гиса", type:"cond", d:"M146 152L152 178"},
+    rbb:{name:"Правая ножка пучка Гиса", type:"cond", d:"M150 178Q146 238 176 298"},
+    lbb:{name:"Левая ножка пучка Гиса", type:"cond", d:"M155 178Q170 236 198 298M160 204Q200 190 238 184"},
+    purkinje:{name:"Волокна Пуркинье", type:"cond", d:"M176 298l-16-6M176 298l-8 10M198 298l16-10M198 298l10 6"},
+    accessory:{name:"Дополнительный путь (WPW)", type:"cond acc", d:"M240 126L247 162"}
+  };
+  const ALIASES = {
+    atria:["ra","la"], ventricles:["rv","septum","lv_anterior","lv_lateral","lv_inferior"],
+    lv:["lv_anterior","lv_lateral","lv_inferior","septum"], lv_septal:["septum"], lv_apex:["lv_inferior"],
+    inferior:["lv_inferior"], anterior:["lv_anterior"], lateral:["lv_lateral"], septal:["septum"],
+    conduction:["sa_node","atrial_path","av_node","his","rbb","lbb","purkinje"], bundle:["his","rbb","lbb"]
+  };
+  function expandRegions(arr){
+    const out=new Set();
+    (Array.isArray(arr)?arr:[]).forEach(r=>{ r=String(r).trim().toLowerCase(); (ALIASES[r]||[r]).forEach(x=>{ if(REGIONS[x]) out.add(x); }); });
+    return [...out];
+  }
+  function heartSVG(){
+    const shape="M58 120C44 90 62 58 98 56C120 55 138 64 150 76C166 60 196 54 226 62C262 72 280 104 270 142C286 178 278 226 252 262C230 292 206 308 192 314C176 306 140 284 112 258C78 226 52 186 58 120Z";
+    const part=(k,v)=> v.circle
+      ? `<circle data-r="${k}" class="${v.type}" cx="${v.circle[0]}" cy="${v.circle[1]}" r="${v.circle[2]}"/>`
+      : `<path data-r="${k}" class="${v.type}" d="${v.d}"/>`;
+    const chambers=Object.entries(REGIONS).filter(([k,v])=>v.type.startsWith("reg")).map(([k,v])=>part(k,v)).join("");
+    const cond=Object.entries(REGIONS).filter(([k,v])=>!v.type.startsWith("reg")).map(([k,v])=>part(k,v)).join("");
+    return `<svg class="heart-svg" viewBox="0 0 300 330" role="img" aria-label="Схема сердца с отмеченными изменениями">
+      <defs><clipPath id="hclip"><path d="${shape}"/></clipPath></defs>
+      <g class="body">
+        <path class="vessel" d="M98 60V14"/>
+        <path class="vessel" d="M178 64C174 20 232 8 250 40"/>
+        <path class="vessel thin" d="M156 70C150 40 128 30 112 34"/>
+        <g clip-path="url(#hclip)">
+          ${chambers}
+          <path class="cavity" d="M72 172Q118 162 136 170Q146 236 172 290Q138 270 110 242Q80 212 72 172Z"/>
+          <path class="cavity" d="M174 166Q228 158 250 168Q262 222 236 262Q216 290 198 296Q184 250 174 166Z"/>
+          <path class="avplane" d="M0 150L148 156L300 142"/>
+          <path class="avplane" d="M148 60V156"/>
+        </g>
+        <path class="outline" d="${shape}"/>
+        <g class="lbl"><text x="92" y="122">ПП</text><text x="206" y="112">ЛП</text><text x="100" y="214">ПЖ</text><text x="206" y="226">ЛЖ</text></g>
+        ${cond}
+      </g></svg>`;
+  }
+  let beatTimer=null;
+  function stopBeat(){ if(beatTimer){ clearTimeout(beatTimer); beatTimer=null; } }
+  function startBeat(svg, hr, effect){
+    stopBeat();
+    if(window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    const body=svg.querySelector(".body");
+    const base=60000/Math.min(180,Math.max(35,hr||72));
+    const irregular = effect==="irregular" || effect==="chaotic_atria";
+    const tick=()=>{
+      body.classList.add("beat");
+      setTimeout(()=>body.classList.remove("beat"),160);
+      const next = irregular ? base*(0.55+Math.random()*0.9) : base;
+      beatTimer=setTimeout(tick,next);
+    };
+    beatTimer=setTimeout(tick,400);
+  }
+  function probClass(p){ return p>=70?"p-high":p>=40?"p-mid":"p-low"; }
+  function probWord(p){ return p>=70?"высокая":p>=40?"средняя":"низкая"; }
+  function normProb(f){
+    let p=Number(f && f.probability);
+    if(!isFinite(p)){ const c=String(f&&f.confidence||""); p=c.startsWith("выс")?80:c.startsWith("ср")?55:c.startsWith("низ")?30:50; }
+    if(p>0 && p<=1) p*=100;
+    return Math.round(Math.min(99,Math.max(1,p)));
+  }
+
+  // --- Этапы анализа ---
+  const STEP_NAMES=["Качество снимка","Ритм и частота","Интервалы PR, QRS, QT","Сегмент ST и зубец T","Заключение"];
+  const STEP_AT=[0,7000,16000,27000,38000];
+  let stepTimers=[];
+  function startSteps(){
+    stopSteps();
+    const sp=document.querySelector(".scan-path");
+    if(sp && sp.getTotalLength){ const L=Math.ceil(sp.getTotalLength()); sp.style.strokeDasharray=L; sp.style.strokeDashoffset=L; sp.style.setProperty("--len", L); }
+    const ol=$("steps");
+    ol.innerHTML=STEP_NAMES.map(n=>`<li class="todo"><div class="ind"><span class="dot"></span><span class="ln"></span></div><div class="txt"><div class="st">${n}</div></div></li>`).join("");
+    const items=[...ol.children];
+    STEP_AT.forEach((t,i)=>stepTimers.push(setTimeout(()=>{
+      items.forEach((li,j)=>li.className = j<i?"done":j===i?"now":"todo");
+    },t)));
+  }
+  function stopSteps(){ stepTimers.forEach(clearTimeout); stepTimers=[]; }
+
+  // --- Лента в вердикте ---
+  function beatSeg(x, base, st){ return ` L${x} ${base} q5 -7 10 0 l5 0 l2 3 l3 -30 l3 36 l2 -8 l3 ${-st} l7 0 q7 -11 14 ${st}`; }
+  function fwaves(from, to){ let s="", x=from, k=0; while(x+4<=to){ s+=` q2 ${[-3,2,-2,3,-1,2][k++%6]} 4 0`; x+=4; } return s; }
+  function stripPath(kind){
+    const base=38, W=350; let d=`M0 ${base}`;
+    if(kind==="chaotic_atria"||kind==="irregular"){
+      const qrs=[26,84,120,204,248,318]; let x=0;
+      qrs.forEach(q=>{ d += kind==="chaotic_atria" ? fwaves(x,q) : ` L${q} ${base}`; d+=beatSeg(q,base,0); x=q+54; });
+      d += kind==="chaotic_atria" ? fwaves(x,W) : ` L${W} ${base}`;
+      return d;
+    }
+    const gap = kind==="fast"?8 : kind==="slow"?70 : 32;
+    const st = kind==="stemi"?6:0;
+    for(let x=10; x+54<W; x+=54+gap) d+=beatSeg(x,base,st);
+    return d+` L${W} ${base}`;
+  }
+
+  // --- Отведения ---
+  const LEAD_GRID=["I","aVR","V1","V4","II","aVL","V2","V5","III","aVF","V3","V6"];
+  const LEAD_PATH={
+    normal:"M0 16 H8 q3 -4 6 0 H18 l1 2 l2 -12 l2 14 l1 -4 H32 q4 -6 8 0 H60",
+    st_up:"M0 18 H8 q3 -4 6 0 H18 l1 2 l2 -12 l2 14 l1 -9 H32 q5 -8 9 2 l2 3 H60",
+    st_down:"M0 14 H8 q3 -4 6 0 H18 l1 2 l2 -12 l2 14 l1 1 H32 q4 2 8 -3 H60",
+    t_inv:"M0 14 H8 q3 -4 6 0 H18 l1 2 l2 -12 l2 14 l1 -4 H32 q4 7 8 0 H60",
+    q_wave:"M0 12 H8 q3 -4 6 0 H18 l1 9 l2 -19 l2 14 l1 -4 H32 q4 -6 8 0 H60"
+  };
+  const LEAD_INFO={st_up:["ST ↑","Элевация ST","var(--bad)"],st_down:["ST ↓","Депрессия ST","var(--vein)"],t_inv:["T ↓","Инверсия T","var(--warn)"],q_wave:["Q","Патологический Q","#B79CF2"]};
+  function leadsHtml(leads){
+    if(!leads || typeof leads!=="object" || Array.isArray(leads)) return "";
+    const map={}; Object.entries(leads).forEach(([k,v])=>{ const key=String(k).replace(/\s/g,"").toLowerCase(); const val=String(v).toLowerCase(); if(LEAD_INFO[val]) map[key]=val; });
+    const used=new Set(Object.values(map));
+    const cells=LEAD_GRID.map(n=>{ const st=map[n.toLowerCase()]||"normal"; const info=LEAD_INFO[st];
+      return `<div class="lead l-${st}"><div class="lt"><span>${n}</span>${info?`<small>${info[0]}</small>`:""}</div><svg viewBox="0 0 60 26" preserveAspectRatio="none" aria-hidden="true"><path d="${LEAD_PATH[st]}"/></svg></div>`; }).join("");
+    const legend = used.size
+      ? `<div class="legend">${[...used].map(s=>`<span><i style="background:${LEAD_INFO[s][2]}"></i>${LEAD_INFO[s][1]}</span>`).join("")}</div>`
+      : `<p class="pnote">Изменений ST-T и патологических Q по отведениям не выявлено.</p>`;
+    return `<div class="sec"><h3>Отведения</h3><div class="leads" role="img" aria-label="Карта 12 отведений">${cells}</div>${legend}</div>`;
+  }
+
+  // --- Текст для копирования и отправки ---
+  let lastText="";
+  function plainText(d, doc, head){
+    const m=d.measurements||{}, L=[];
+    L.push("Кардиоскан — расшифровка ЭКГ (сформировано ИИ, не является диагнозом)");
+    L.push(new Date().toLocaleString("ru-RU"));
+    L.push("");
+    L.push(head + (d.urgency_reason?`: ${d.urgency_reason}`:""));
+    if(doc && d.conclusion) L.push("", "Заключение: "+d.conclusion);
+    if(!doc && d.summary) L.push("", d.summary);
+    const ms=[["Ритм",m.rhythm],["ЧСС",m.hr],["ЭОС",m.axis],["PR",m.pr],["QRS",m.qrs],["QT",m.qt],["QTc",m.qtc]].filter(x=>x[1]);
+    if(ms.length) L.push("", ms.map(x=>`${x[0]}: ${x[1]}`).join("; "));
+    const items=(doc?d.findings:d.explained)||[];
+    if(items.length){ L.push("", "Находки:"); items.forEach(f=>L.push(`— ${f.title} (${normProb(f)}%): ${doc?f.detail||"":f.meaning||""}`)); }
+    const recs=(doc?d.recommendations:d.next_steps)||[];
+    if(recs.length){ L.push("", doc?"Тактика:":"Что делать:"); recs.forEach(r=>L.push("— "+r)); }
+    if(d.limitations) L.push("", "Ограничения: "+d.limitations);
+    return L.join("\n");
+  }
+  function toast(t){ const el=$("toast"); el.textContent=t; el.hidden=false; clearTimeout(toast.tm); toast.tm=setTimeout(()=>el.hidden=true,2200); }
+  async function copyText(t){
+    try{ await navigator.clipboard.writeText(t); toast("Скопировано"); return; }catch(e){}
+    const ta=document.createElement("textarea"); ta.value=t; ta.style.position="fixed"; ta.style.opacity="0"; document.body.appendChild(ta); ta.select();
+    try{ document.execCommand("copy"); toast("Скопировано"); }catch(e){ toast("Не удалось скопировать"); }
+    ta.remove();
+  }
+
+  function showResult(d){
+    stopSteps();
+    statusPanel.style.display="none"; resultPanel.hidden=false; newBtn.hidden=false;
+    d = d || {};
+    const doc = mode==="doctor";
+    const readable = d.readable!==false;
+    const u = readable ? (["normal","attention","urgent"].includes(d.urgency)?d.urgency:"attention") : "unreadable";
+    const heads = doc
+      ? {normal:"Вариант нормы", attention:"Патологические изменения", urgent:"Неотложное состояние", unreadable:"Запись не интерпретируема"}
+      : {normal:"Серьёзных отклонений не видно", attention:"Стоит показать врачу", urgent:"Нужна срочная помощь", unreadable:"Не удалось разобрать запись"};
+    const m = d.measurements||{};
+    const metricsHtml = (list)=>`<dl class="metrics">${list.map(([k,v],i)=>`<div class="metric${i===0?" wide":""}"><dt>${k}</dt><dd>${esc(v||"—")}</dd></div>`).join("")}</dl>`;
+    const docMetrics=[["Ритм",m.rhythm],["ЧСС",m.hr],["ЭОС",m.axis],["PR",m.pr],["QRS",m.qrs],["QT",m.qt],["QTc",m.qtc]];
+    const patMetrics=[["Ритм",m.rhythm],["Пульс",m.hr],["Ось сердца",m.axis],["PR",m.pr],["QRS",m.qrs],["QT",m.qt],["QTc",m.qtc]];
+    const list = (title, arr) => Array.isArray(arr)&&arr.length ? `<div class="sec"><h3>${title}</h3><ul class="recs">${arr.map(r=>`<li>${esc(r)}</li>`).join("")}</ul></div>` : "";
+    resultPanel.style.setProperty("--hl", {normal:"var(--ok)",attention:"var(--warn)",urgent:"var(--bad)",unreadable:"var(--soft)"}[u]);
+
+    const raw = doc ? d.findings : d.explained;
+    const items = (Array.isArray(raw)?raw:[]).map(f=>({ title:f.title, text: doc ? f.detail : f.meaning, p:normProb(f), regions:expandRegions(f.regions) })).sort((a,b)=>b.p-a.p);
+    const allRegions=[...new Set(items.flatMap(i=>i.regions))];
+    const hrNum = parseInt(String(m.hr||"").replace(/[^\d]/g,""),10);
+    const effect = String(d.heart_effect||"normal");
+    const leadVals = d.leads && typeof d.leads==="object" ? Object.values(d.leads).map(v=>String(v).toLowerCase()) : [];
+    const stemi = leadVals.includes("st_up") || items.some(i=>/STEMI|элевац|подъ[её]м\s*ST/i.test(i.title||""));
+    const stripKind = stemi ? "stemi" : effect;
+
+    let html = `<div class="rtop"><span class="tag">${doc?"Протокол для врача":"Объяснение для пациента"}</span></div>`;
+    html += `<div class="verdict v-${u}">
+      <svg viewBox="0 0 350 56" preserveAspectRatio="none" aria-hidden="true"><path d="${readable?stripPath(stripKind):"M0 38 H350"}"/></svg>
+      <h2 class="display">${heads[u]}</h2>
+      <p>${esc(d.urgency_reason || (readable?"":"Сделайте фото ровнее, при хорошем освещении, чтобы была видна вся лента."))}</p>
+      ${u==="urgent" ? `<a class="call" href="tel:103"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>Позвонить 103</a>
+        ${doc?"":`<p style="font-weight:600">Если есть боль в груди, слабость или одышка — не ждите и не садитесь за руль сами. В Европе — 112.</p>`}` : ""}
+    </div>`;
+
+    if(readable){
+      if(hrNum){
+        const hrWord = hrNum<60 ? (doc?"брадикардия":"реже нормы в покое") : hrNum>100 ? (doc?"тахикардия":"чаще нормы в покое") : (doc?"в пределах нормы":"в пределах нормы");
+        const irr = effect==="irregular"||effect==="chaotic_atria";
+        html += `<div class="hr"><b>${hrNum}</b><div><div class="u">${doc?"уд/мин":"ударов в минуту"}</div><div class="s">${hrWord}${irr?", ритм неровный":""}</div></div></div>`;
+      }
+      // скорость
+      const modelSp = String(d.paper_speed_used||"").replace(/\D/g,"");
+      const userSp = paperSpeed!=="auto" ? paperSpeed : "";
+      const spUsed = modelSp || userSp;
+      let spMsg, spWarn=false;
+      if(userSp && modelSp && modelSp!==userSp){ spWarn=true; spMsg=`Вы указали ${userSp} мм/с, но на ленте найдена скорость ${modelSp} мм/с — расчёт сделан по ленте. Проверьте, какая скорость верная.`; }
+      else if(userSp){ spMsg=`Расчёт при ${userSp} мм/с, ${amplitude} мм/мВ — указано вами`; }
+      else if(d.speed_source==="label" && spUsed){ spMsg=`Расчёт при ${spUsed} мм/с, ${amplitude} мм/мВ — скорость найдена на ленте`; }
+      else { spWarn=true; spMsg=(spUsed?`Скорость ленты не найдена, ИИ предположил ${spUsed} мм/с. `:"Скорость ленты не определена. ")+(doc?"ЧСС и интервалы приблизительные — укажите скорость и повторите.":"Пульс и интервалы могут быть неточными — укажите скорость и повторите расшифровку."); }
+      html += `<p class="speed-note${spWarn?" warn":""}">${spMsg}</p>`;
+
+      const heartBlock = `<div class="sec"><h3>${doc?"Локализация":"Где это в сердце"}</h3><div class="card heart-card">
+          <div class="heart-wrap">${heartSVG()}</div>
+          <div class="heart-legend">
+            ${allRegions.length ? allRegions.map(r=>{ const mp=Math.max(...items.filter(i=>i.regions.includes(r)).map(i=>i.p)); return `<div class="zone"><span><i style="opacity:${mp>=70?1:mp>=40?.6:.35}"></i>${REGIONS[r].name}</span><b>${mp}%</b></div>`; }).join("")
+              : `<p>${u==="normal" ? (doc?"Локальных изменений не выявлено.":"Проблемных зон не отмечено.") : "Изменения не привязаны к конкретной зоне сердца."}</p>`}
+            ${items.some(i=>i.regions.length)?`<p>${doc?"Нажмите на находку — её зона подсветится.":"Нажмите на находку ниже — её зона подсветится."}</p>`:""}
+          </div></div></div>`;
+      const findingsBlock = items.length ? `<div class="sec"><h3>${doc?"Находки":"Что нашли"}</h3>` +
+        items.map((it,idx)=>`<button type="button" class="fcard ${probClass(it.p)}" data-idx="${idx}" aria-pressed="false">
+            <span class="ftop"><span class="ftitle">${esc(it.title)}</span><span class="pct">${it.p}%</span></span>
+            <span class="bar"><span data-w="${it.p}"></span></span>
+            <span class="fdetail">${esc(it.text)}</span>
+            ${it.regions.length?`<span class="fwhere">${it.regions.map(r=>REGIONS[r].name).join(", ")}</span>`:""}
+          </button>`).join("") +
+        `<p class="pnote">${doc?"Проценты — субъективная оценка ИИ по изображению, не калиброванная диагностическая вероятность.":"Проценты показывают уверенность ИИ по этому фото. Это не диагноз."}</p></div>` : "";
+
+      if(doc){
+        html += `<div class="sec">${metricsHtml(docMetrics)}</div>`;
+        html += leadsHtml(d.leads);
+        html += `<div class="sec"><h3>Заключение</h3><p class="conclusion">${esc(d.conclusion)}</p></div>`;
+        html += findingsBlock + heartBlock;
+        html += list("Дифференциальный ряд", d.differential);
+        html += list("Тактика", d.recommendations);
+      }else{
+        html += heartBlock;
+        if(d.summary) html += `<div class="sec"><p class="conclusion">${esc(d.summary)}</p></div>`;
+        html += findingsBlock;
+        if(Array.isArray(d.next_steps)&&d.next_steps.length){
+          html += `<div class="sec"><h3>Что делать</h3><ol class="nlist">${d.next_steps.map((s,i)=>`<li><span class="n">${i+1}</span><span>${esc(s)}</span></li>`).join("")}</ol></div>`;
+        }
+        html += list("О чём спросить врача", d.questions_for_doctor);
+        html += `<div class="sec"><details class="nums"><summary>Показать цифры для врача</summary>${metricsHtml(patMetrics)}</details></div>`;
+      }
+    }
+    if(d.limitations) html += `<p class="speed-note">${doc?"Ограничения":"Что могло повлиять на точность"}: ${esc(d.limitations)}</p>`;
+    if(shots.length) html += `<div class="sec"><details class="ecg-thumb"><summary>${shots.length>1?"Загруженные фото ЭКГ":"Загруженная ЭКГ"}</summary><div class="ecg-thumbs">${shots.map((x,i)=>`<img src="${x.url}" alt="Фото ЭКГ ${i+1}">`).join("")}</div></details></div>`;
+    html += `<div class="actions">
+        ${readable ? (doc
+          ? `<button type="button" class="btn" data-act="copy">Скопировать текст</button><button type="button" class="btn btn-primary" style="height:52px;font-size:16px" data-act="pdf">PDF-протокол</button>`
+          : `<button type="button" class="btn" data-act="pdf">Сохранить PDF</button><button type="button" class="btn btn-primary" style="height:52px;font-size:16px" data-act="share">Поделиться</button>`) : ""}
+        <button type="button" class="btn wide" data-act="again">Расшифровать другую ЭКГ</button>
+      </div>`;
+    resultPanel.innerHTML = html;
+    lastText = plainText(d, doc, heads[u]);
+
+    resultPanel.querySelector(".actions").addEventListener("click", async e=>{
+      const b=e.target.closest("button[data-act]"); if(!b) return;
+      const act=b.dataset.act;
+      if(act==="again") reset();
+      else if(act==="copy") copyText(lastText);
+      else if(act==="pdf"){ resultPanel.querySelectorAll("details").forEach(x=>x.open=true); window.print(); }
+      else if(act==="share"){
+        if(navigator.share){ try{ await navigator.share({title:"Расшифровка ЭКГ", text:lastText}); }catch(err){} }
+        else copyText(lastText);
+      }
+    });
+
+    const svg = resultPanel.querySelector(".heart-svg");
+    if(svg){
+      const regP={}; items.forEach(it=>it.regions.forEach(r=>{ regP[r]=Math.max(regP[r]||0,it.p); }));
+      allRegions.forEach(r=>svg.querySelectorAll(`[data-r="${r}"]`).forEach(el=>{ el.classList.add("on"); el.style.setProperty("--ro", regP[r]>=70?1:regP[r]>=40?.6:.35); }));
+      if(effect==="chaotic_atria") svg.classList.add("chaotic");
+      startBeat(svg, hrNum, effect);
+      resultPanel.querySelectorAll(".fcard").forEach(btn=>{
+        btn.addEventListener("click", ()=>{
+          const it=items[+btn.dataset.idx];
+          const was=btn.getAttribute("aria-pressed")==="true";
+          resultPanel.querySelectorAll(".fcard").forEach(b=>b.setAttribute("aria-pressed","false"));
+          svg.querySelectorAll(".sel").forEach(el=>el.classList.remove("sel"));
+          if(was || !it.regions.length){ svg.classList.remove("focus"); return; }
+          btn.setAttribute("aria-pressed","true");
+          svg.classList.add("focus");
+          it.regions.forEach(r=>svg.querySelectorAll(`[data-r="${r}"]`).forEach(el=>el.classList.add("sel")));
+          svg.scrollIntoView({behavior:"smooth",block:"center"});
+        });
+      });
+    }
+    requestAnimationFrame(()=>resultPanel.querySelectorAll(".bar span").forEach(s=>s.style.width=s.dataset.w+"%"));
+    window.scrollTo({top:0,behavior:"smooth"});
+  }
+
+  function reset(){
+    stopBeat(); stopSteps(); shots.forEach(x=>x.url && URL.revokeObjectURL(x.url)); shots=[]; renderShots();
+    resultPanel.hidden=true; newBtn.hidden=true; uploadPanel.hidden=false; hero.hidden=false;
+    showError(""); updateBtn(); window.scrollTo({top:0});
+  }
+  newBtn.addEventListener("click", reset);
+})();
+</script>
+</body>
+</html>
